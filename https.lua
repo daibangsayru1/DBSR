@@ -1275,6 +1275,8 @@ function login(filelistclone, loginclonenovery)
 		usleep(3000000)
 		tap(66, 1280)
 		usleep(3000000)
+		tap(66, 1280)
+		usleep(3000000)
 		return id.."|"..matkhau
 	else
 		return clone
