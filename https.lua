@@ -1,5 +1,4 @@
-----11111111111111
-------FB DBSR 2.2.lua
+---222
 function doiten(id, matkhau)
 	---usleep(2000000)
 	---appKill("com.facebook.Facebook")
@@ -1169,7 +1168,7 @@ function mailninja()
 	until(string.find(response, "temp_mail") ~= nil)
 end
 ------
-function login(apinvr)
+function login(file list clone, login clone novery)
 	usleep(4000000)
 	a = appState("com.ienthach.XoaInfo")
 	if (a == "ACTIVATED") then
@@ -1184,7 +1183,7 @@ function login(apinvr)
 			i = i + 1
 			a = appState("com.ienthach.XoaInfo")
 			if (i == 4) then
-				alert("Lỗi x&#243;a info hoặc hết 3g");
+				alert("Lỗi xóa info hoặc hết 3g");
 				stop();
 			end
 		until(a == "NOT RUNNING")
@@ -1200,19 +1199,17 @@ function login(apinvr)
 	j = 1
 	repeat
 		repeat
-			clone = laydong1(apinvr)
+			clone = laydong1(file list clone)
 			writetxt("clone đã chạy.txt", clone, "a", 1, 1)
 			if (clone == nil) then
-				alert("input.txt trống")
+				alert(file list clone.." trống")
 				stop();
 			end
-			copyText(clone);
 			test = checkuid(string.sub(clone, 1, string.find(clone, "|")-1))
 			if (test == 1) then
 				writetxt("Clone DIE.txt", clone, "a", 1, 1)
 			end
 		until(test ~= 1)
-		clone = clipText()
 		tab = tachchuoi(clone);
 		id, matkhau = tab[1], tab[2]
 		inputText(id);
@@ -1271,8 +1268,17 @@ function login(apinvr)
 			return 0, 0
 		end
 	until(x == 35 or x == 139)
-	clone = clipText();
-	return clone                                                        
+	if (login clone novery == "1") then
+		tap(66, 1280)
+		usleep(2000000)
+		tap(66, 1280)
+		usleep(2000000)
+		tap(66, 1280)
+		usleep(2000000)
+		return id.."|"..matkhau
+	else
+		return clone
+	end
 end
 -----
 function goimail(apimail)
