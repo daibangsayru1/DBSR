@@ -1,5 +1,4 @@
----333
-function main(loginclonefull, loginclonenovery, restorerrs, filelistclone, filelistrrs, chạyvery, apikeydongvan, linklấyotp, úpdanhbạ, úpavt, úpảnhbìa, úpinfo, bậc2fa, sốlượtkbtheogợiý, sốlượtkbtheouid, đồngýkếtbạn, sốlượtxemthôngbáo, sốlượtjoinnhómgợiý, sốlượtjoinnhómtheolist, filelistnhóm, likepage, filelistpage, sốlượtvuốtnew, sốlượtlikenew, sốlượtbìnhluận, tênfilechứanộidungbl, slchiasẽlêntường, đăngstatus, statuskèmảnh, xuấtclonesaukhiauto, linksheetlưuclonefull, regnoverysaukhichạy, linksheetlưunovery, lưurrssaukhichạy)
+function main(loginclonefull, loginclonenovery, restorerrs, filelistclone, filelistrrs, chayvery, apikeydongvan, linklayotp, updanhba, upavt, upanhbia, upinfo, bac2fa, soluotkbtheogoiy, soluotkbtheouid, dongyketban, soluotxemthongbao, soluotjoinnhomgoiy, soluotjoinnhomtheolist, filelistnhom, likepage, filelistpage, soluotvuotnew, soluotlikenew, soluotbinhluan, tenfilechuanoidungbl, slchiaselentuong, dangstatus, statuskemanh, xuatclonesaukhiauto, linksheetluuclonefull, regnoverysaukhichay, linksheetluunovery, luurrssaukhichay);
 	contair = require("socket.https")
 	if (loginclonenovery == "1") then
 		clone, cl2 = login(filelistclone, loginclonenovery);
@@ -8,7 +7,7 @@ function main(loginclonefull, loginclonenovery, restorerrs, filelistclone, filel
 			return
 		end
 	end
-	if (lưurrssaukhichạy == "1") then
+	if (luurrssaukhichay == "1") then
 		local name = tachchuoi(output)
 		luurrs(name[1], output)
 	else
