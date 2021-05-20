@@ -1269,14 +1269,51 @@ function login(filelistclone, loginclonenovery)
 		end
 	until(x == 35 or x == 139)
 	if (loginclonenovery == "1") then
-		tap(66, 1280)
-		usleep(3000000)
-		tap(66, 1280)
-		usleep(3000000)
-		tap(66, 1280)
-		usleep(3000000)
-		tap(66, 1280)
-		usleep(3000000)
+		if (getColor(35, 88) == 1603570 or getColor(139, 90) == 1603570) then
+			tap(66, 1280)
+		end
+		x = waitcolor(394, 444, 1603570, 395, 508, 1603570, 707, 500, 1603570, 525, 506, 1603570, 708, 469, 1603570, 4, 0)
+		tapimg("skip.jpg", 1, 1000000)
+		tapimg("skip.jpg", 1, 1000000)
+		tapimg("skip.jpg", 1, 1000000)
+		tapimg("skip.jpg", 1, 1000000)
+	---
+		local test1 = tapimg("addmail.jpg", 1, 1)
+		if (test1 ~= 1) then
+			test2 = tapimg("xnmail.jpg", 1, 1)
+		else
+			test2 = 0
+		end
+		if (test1 ~= 1 and test2 ~= 1) then
+			local i = 1
+			repeat
+				appRun("com.apple.SpringBoard");
+				usleep(1000000)
+				appRun("com.facebook.Facebook");
+				usleep(2000000)
+				if (getColor(35, 88) == 1603570 or getColor(139, 90) == 1603570) then
+					tap(66, 1280) 
+					usleep(2000000)
+				end
+				if (getColor(35, 88) == 1603570 or getColor(139, 90) == 1603570) then
+					tap(66, 1280)
+					usleep(2000000)
+				end
+				tapimg("xnok.jpg", 1, 1000000)
+				tapimg("skip.jpg", 1, 1000000)
+				tapimg("skip.jpg", 1, 1000000)
+				tapimg("skip.jpg", 1, 1000000)
+				tapimg("skip.jpg", 1, 1000000)
+				x = waitcolor(394, 444, 1603570, 395, 508, 1603570, 707, 500, 1603570, 525, 506, 1603570, 708, 469, 1603570, 2, 0)
+				local test1 = tapimg("addmail.jpg", 1, 1)
+				if (test1 ~= 1) then
+					test2 = tapimg("xnmail.jpg", 1, 1)
+				else
+					test2 = 0
+				end
+				i = i + 1;
+			until(i == 5 or test1 == 1 or test2 == 1)
+		end
 		return id.."|"..matkhau
 	else
 		return clone
