@@ -1270,11 +1270,11 @@ function login(filelistclone, loginclonenovery)
 	until(x == 35 or x == 139)
 	if (loginclonenovery == "1") then
 		tap(66, 1280)
-		usleep(2000000)
+		usleep(3000000)
 		tap(66, 1280)
-		usleep(2000000)
+		usleep(3000000)
 		tap(66, 1280)
-		usleep(2000000)
+		usleep(3000000)
 		return id.."|"..matkhau
 	else
 		return clone
