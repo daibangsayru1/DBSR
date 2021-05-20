@@ -1,4 +1,4 @@
----222
+---333
 function doiten(id, matkhau)
 	---usleep(2000000)
 	---appKill("com.facebook.Facebook")
@@ -1168,7 +1168,7 @@ function mailninja()
 	until(string.find(response, "temp_mail") ~= nil)
 end
 ------
-function login(file list clone, login clone novery)
+function login(filelistclone, loginclonenovery)
 	usleep(4000000)
 	a = appState("com.ienthach.XoaInfo")
 	if (a == "ACTIVATED") then
@@ -1199,10 +1199,10 @@ function login(file list clone, login clone novery)
 	j = 1
 	repeat
 		repeat
-			clone = laydong1(file list clone)
+			clone = laydong1(filelistclone)
 			writetxt("clone đã chạy.txt", clone, "a", 1, 1)
 			if (clone == nil) then
-				alert(file list clone.." trống")
+				alert(filelistclone.." trống")
 				stop();
 			end
 			test = checkuid(string.sub(clone, 1, string.find(clone, "|")-1))
@@ -1268,7 +1268,7 @@ function login(file list clone, login clone novery)
 			return 0, 0
 		end
 	until(x == 35 or x == 139)
-	if (login clone novery == "1") then
+	if (loginclonenovery == "1") then
 		tap(66, 1280)
 		usleep(2000000)
 		tap(66, 1280)
