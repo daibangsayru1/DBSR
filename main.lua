@@ -102,7 +102,7 @@ function main(loginclonefull, loginclonenovery, restorerrs, filelistclone, filel
 		end
 	else
 		if (restorerrs == "1") then
-			io.popen("mv var/mobile/Media/XoaInfo/"..id.."/ var/mobile/Media/RRSLOI")
+			io.popen("mv var/mobile/Media/XoaInfo/"..uid.."/ var/mobile/Media/RRSLOI")
 		else
 			resetdata()
 		end
