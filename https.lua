@@ -1342,7 +1342,7 @@ function goimail(apikeydongvan)
 	end
 end
 ------
-function chiveri(apikeydongvan)
+function chiveri(apikeydongvan, uid)
 	copyText(0)
 	if (getColor(35, 88) == 1603570 or getColor(139, 90) == 1603570) then
 		tap(66, 1280)
