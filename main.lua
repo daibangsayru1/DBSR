@@ -56,9 +56,9 @@ function main(loginclonefull, loginclonenovery, restorerrs, filelistclone, filel
 			local f = io.popen("ls var/mobile/Media/XoaInfo")
 			local a = f:read("all")
 			f:close()
+			openURL("XoaInfo://DelRRS?listRRS="..ten[1])
 			repeat
 				toast("Đang xóa RRS")
-				io.popen("rm -rf var/mobile/Media/XoaInfo/"..ten[1])
 				local f = io.popen("ls var/mobile/Media/XoaInfo")
 				local b = f:read("all")
 				f:close()
@@ -75,6 +75,8 @@ function main(loginclonefull, loginclonenovery, restorerrs, filelistclone, filel
 	if (chayvery == "1") then
 		mail, mkmail, total = goimail(apikeydongvan)
 		testvr, cookie = chiveri(apikeydongvan, apiotp)
+	else
+		cookie, mail, mkmail = "", "", ""
 	end
 	----------------------
 	if (testvr == 1) then
