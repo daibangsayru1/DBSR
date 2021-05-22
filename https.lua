@@ -1337,18 +1337,9 @@ function login(filelistclone, loginclonenovery)
 	end
 end
 -----
-function goimail(apimail)
+function goimail(apikeydongvan)
 	toast("Đang lấy mail")
-	if (apimail ~= "0") then
-		if (string.find(apimail, "txt") ~= nil) then
-			local temp = laydong1(apimail)
-			if (temp == nil) then
-				alert("Hết mail") stop()
-			end
-			local temp2 = tachchuoi(temp)
-			mail, mkmail, total = temp2[1], temp2[2], 1
-			return mail, mkmail, total
-		end
+	if (apikeydongvan ~= "0") then
 		local f = io.open(currentPath().."/hotmail.txt", "r")
 		local temp = f:read("*line")
 		f:close()
@@ -1362,7 +1353,7 @@ function goimail(apimail)
 			mail, mkmail, total = temp2[1], temp2[2], 1
 			return mail, mkmail, total
 		end
-		local body = request(apimail)
+		local body = request("http://dongvanfb.com/api/buyaccount.php?apiKey="..apikeydongvan.."&type=1&amount=1")
 		if (string.find(body, ".com") == nil) then
 			io.popen("activator send switch-on.com.a3tweaks.switch.wifi")
 			repeat
@@ -1371,29 +1362,26 @@ function goimail(apimail)
 			until(string.find(body, ".com") ~= nil)
 			io.popen("activator send switch-off.com.a3tweaks.switch.wifi")
 		end
-		if (string.find(apimail, "dongvanfb") == nil) then
-			mail = string.sub(body, 1, string.find(body, "|")-1);
-			mkmail = string.sub(body, string.find(body, "|")+ 1, string.len(body)-1);
-			total = "100000"
-			return mail, mkmail, total
-		else
-			local json = require("json")
-			local te = json.decode(body)
-			local te2 = tachchuoi(te["accounts"])
-			mail = te2[1]
-			mkmail = te2[2]
-			temp = string.sub(body, string.find(body, "balance")+9, string.len(body)-1);
-			total = math.floor(tonumber(temp)/50)
-			return mail, mkmail, total
-		end
+		local json = require("json")
+		local te = json.decode(body)
+		local te2 = tachchuoi(te["accounts"])
+		mail = te2[1]
+		mkmail = te2[2]
+		temp = string.sub(body, string.find(body, "balance")+9, string.len(body)-1);
+		total = math.floor(tonumber(temp)/50)
+		return mail, mkmail, total
 	else
-		mail, mkmail = mailninja();
-		total = "DBSR"
+		local temp = laydong1("hotmail.txt")
+		if (temp == nil) then
+			alert("Hết mail") stop()
+		end
+		local temp2 = tachchuoi(temp)
+		mail, mkmail, total = temp2[1], temp2[2], 1
 		return mail, mkmail, total
 	end
 end
 ------
-function chiveri(apimail, apiotp)
+function chiveri(apikeydongvan)
 	copyText(0)
 	local x = waitcolor(354, 327, 1603570, 395, 329, 1603570, 20, 0);
 	if (x ~= 354 and x ~= 395) then
@@ -1466,7 +1454,7 @@ function chiveri(apimail, apiotp)
 			waitcolor(139, 1185, 1603570, 272, 1187, 1603570, 20, 1)
 			tap(559, 1184)
 			usleep(2000000)
-			urlotp = apiotp..mail.."&pass="..mkmail
+			urlotp = "http://14.225.27.38/api/getcode.php?apiKey=2sadasd&type=1&user="..mail.."&pass="..mkmail
 			local i = 1;
 			repeat
 				toast("Chờ otp.. "..i)
@@ -1526,72 +1514,34 @@ function chiveri(apimail, apiotp)
 	cookie = clipText();
 	copyText("")
 	---lấy otp
-	if (total == "DBSR") then
-		i = 1
-		repeat
-			a = modulecurl('https://tempmail.ninja/api/get-all-events?temp_mail='..mail..'&password='..mkmail..'&language=en&timezone=-25200', 'GET', {'referer: https://tempmail.ninja/'}, {})
-			usleep(1000000)
-			test = checkuid(id)
-			if (test == 1) then
-				writetxt("Clone DIE.txt", id.."|"..matkhau, "a", 1, 1)
-				return 0, 0
-			end
-			local text = string.find(a, "Facebook");
-			if (text ~= nil) then
-				otp = string.sub(a, string.find(a, "asunto")+9, string.find(a, "asunto")+13)
-				tap(359, 364);
-				tap(359, 364);
-				usleep(500000);
-				inputText(otp);
-				usleep(500000);
-				tap(379, 474);
-				usleep(1000000)
-			end
-			i = i + 1
-			if (i == 12) then
-				writetxt("Lỗi OTP.txt", id.."|"..matkhau, "a", 1, 1)
-				return 0, 0
-			end
-		until(text ~= nil);
-	else
-		if (string.find(apiotp, "fbvip") == nil) then
-			urlotp = apiotp..mail.."&pass="..mkmail
-		else
-			local url1 = request(apiotp..mail.."&pass="..mkmail)
-			local json = require("json")
-			local a = json.decode(url1)
-			local idotp = a["id"]
-			toast(idotp)
-			urlotp = "http://fbvip.org/api/getcode.php?apiKey=4899f91b66ac003005852ef69cbbafc8&id="..idotp
+	urlotp = "http://14.225.27.38/api/getcode.php?apiKey=2sadasd&type=1&user="..mail.."&pass="..mkmail
+	local i = 1;
+	repeat
+		toast("Chờ otp.. "..i)
+		local body = request(urlotp)
+		local text = string.find(body, "Facebook");
+		if (string.find(body, "Facebook") ~= nil) then
+			otp = string.sub(body, string.find(body, "code")+7, string.find(body, "sender")-4)
+			toast("OTP: "..otp)
+			tap(359, 364);
+			tap(359, 364);
+			usleep(500000);
+			inputText(otp);
+			usleep(500000);
+			tap(379, 474);
+			usleep(1000000) 
 		end
-		local i = 1;
-		repeat
-			toast("Chờ otp.. "..i)
-			local body = request(urlotp)
-			local text = string.find(body, "Facebook");
-			if (string.find(body, "Facebook") ~= nil) then
-				otp = string.sub(body, string.find(body, "code")+7, string.find(body, "sender")-4)
-				toast("OTP: "..otp)
-				tap(359, 364);
-				tap(359, 364);
-				usleep(500000);
-				inputText(otp);
-				usleep(500000);
-				tap(379, 474);
-				usleep(1000000) 
-			end
-			test = checkuid(id)
-			if (test == 1) then
-				writetxt("Clone DIE.txt", clone, "a", 1, 1)
-				return 0, 0
-			end
-			i = i + 1
-			if (i == 12) then
-				writetxt("Lỗi OTP.txt", clone, "a", 1, 1)
-				return 0, 0
-			end
-		until(text ~= nil);
-	end
+		test = checkuid(id)
+		if (test == 1) then
+			writetxt("Clone DIE.txt", clone, "a", 1, 1)
+			return 0, 0
+		end
+		i = i + 1
+		if (i == 12) then
+			writetxt("Lỗi OTP.txt", clone, "a", 1, 1)
+			return 0, 0
+		end
+	until(text ~= nil);
 	x = waitcolor(620, 907, 1603570, 610, 907, 1603570, 213, 785, 31487, 249, 788, 31487, 511, 788, 31487, 34, 89, 1603570, 139, 93, 1603570, 20, 1)
 	test = checkuid(id)
 	if (test == 1) then
