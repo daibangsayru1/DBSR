@@ -14,7 +14,10 @@ function main(loginclonefull, loginclonenovery, restorerrs, filelistclone, filel
 			f:close()
 			repeat
 				toast("Đang xóa RRS")
-				io.popen("rm -rf var/mobile/Media/XoaInfo/"..ten[1])
+				local e = io.popen("rm -rf var/mobile/Media/XoaInfo/"..ten[1])
+				local h = f:read("all")
+				e:close()
+				alert(h)
 				local f = io.popen("ls var/mobile/Media/XoaInfo")
 				local b = f:read("all")
 				f:close()
