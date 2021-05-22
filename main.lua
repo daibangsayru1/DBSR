@@ -75,6 +75,8 @@ function main(loginclonefull, loginclonenovery, restorerrs, filelistclone, filel
 	----------------------
 	if (cl2 == 0) then return end
 	----------------------
+	local id = tachchuoi(clone)
+	local uid = id[1]
 	if (chayvery == "1") then
 		mail, mkmail, total = goimail(apikeydongvan)
 		testvr, cookie = chiveri(apikeydongvan)
