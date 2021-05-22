@@ -27,7 +27,7 @@ function main(loginclonefull, loginclonenovery, restorerrs, filelistclone, filel
 		usleep(4000000)
 		appRun("com.facebook.Facebook")
 		usleep(2000000)
-		if (chayvery == "1") then
+		if (chayvery ~= "1") then
 			x = waitcolor(399, 1260, 15201279, 515, 777, 31487, 287, 774, 31487, 355, 767, 31487, 362, 767, 31487, 354, 136, 1603570, 394, 136, 1603570, 496, 1261, 1603570, 594, 1267, 1603570, 10, 1)
 			tapimg("xnok.jpg", 1, 1)
 			if (x == 355 or x == 362 or x == 354 or x == 394) then
