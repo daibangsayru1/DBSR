@@ -111,18 +111,10 @@ function main(loginclonefull, loginclonenovery, restorerrs, filelistclone, filel
 	---lưu lại ghi chú
 	if (restorerrs == "1") then
 		if(chayvery == "1" or bac2fa == "1") then
-			local f = io.open("var/mobile/Media/XoaInfo/"..ten[1].."/GhiChu", "r")
-			local a = f:read("all")
-			f:close()
-			repeat
-				toast("Đang lưu ghi chú")
-				local f = io.open("var/mobile/Media/XoaInfo/GhiChu.txt", "w") f:write(clone) f:close()
-				local f = io.popen("mv var/mobile/Media/XoaInfo/GhiChu.txt var/mobile/Media/XoaInfo/GhiChu") f:close()
-				local f = io.popen("mv var/mobile/Media/XoaInfo/GhiChu var/mobile/Media/XoaInfo/"..ten[1].."/GhiChu") f:close()
-				local f = io.open("var/mobile/Media/XoaInfo/"..ten[1].."/GhiChu", "r")
-				local b = f:read("all")
-				f:close()
-			until(#b > #a)
+			toast("Đang lưu ghi chú")
+			local f = io.open("var/mobile/Media/XoaInfo/GhiChu.txt", "w") f:write(clone) f:close()
+			local f = io.popen("mv var/mobile/Media/XoaInfo/GhiChu.txt var/mobile/Media/XoaInfo/GhiChu") f:close()
+			local f = io.popen("mv var/mobile/Media/XoaInfo/GhiChu var/mobile/Media/XoaInfo/"..ten[1].."/GhiChu") f:close()
 		end
 	end
 	-------------------------------
