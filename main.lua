@@ -27,47 +27,49 @@ function main(loginclonefull, loginclonenovery, restorerrs, filelistclone, filel
 		usleep(4000000)
 		appRun("com.facebook.Facebook")
 		usleep(2000000)
-		x = waitcolor(399, 1260, 15201279, 515, 777, 31487, 287, 774, 31487, 355, 767, 31487, 362, 767, 31487, 354, 136, 1603570, 394, 136, 1603570, 496, 1261, 1603570, 594, 1267, 1603570, 10, 1)
-		tapimg("xnok.jpg", 1, 1)
-		if (x == 355 or x == 362 or x == 354 or x == 394) then
-			tapimg("ok.jpg", 1, 2000000)
-			tapimg("ok2.jpg", 1, 2000000)
-			test = loginlai(temp[1],temp[2], temp[3])
-			tap(66, 1280)
-			usleep(2000000)
-			tap(66, 1280)
-			usleep(2000000)
-		else
-			local test2 = tapimg("dangnhap2.jpg", 1, 1000000)
-			if (test2 == 1) then
+		if (chayvery == "1") then
+			x = waitcolor(399, 1260, 15201279, 515, 777, 31487, 287, 774, 31487, 355, 767, 31487, 362, 767, 31487, 354, 136, 1603570, 394, 136, 1603570, 496, 1261, 1603570, 594, 1267, 1603570, 10, 1)
+			tapimg("xnok.jpg", 1, 1)
+			if (x == 355 or x == 362 or x == 354 or x == 394) then
+				tapimg("ok.jpg", 1, 2000000)
+				tapimg("ok2.jpg", 1, 2000000)
 				test = loginlai(temp[1],temp[2], temp[3])
 				tap(66, 1280)
 				usleep(2000000)
 				tap(66, 1280)
 				usleep(2000000)
+			else
+				local test2 = tapimg("dangnhap2.jpg", 1, 1000000)
+				if (test2 == 1) then
+					test = loginlai(temp[1],temp[2], temp[3])
+					tap(66, 1280)
+					usleep(2000000)
+					tap(66, 1280)
+					usleep(2000000)
+				end
 			end
-		end
-		local testlogin = waitcolor(35, 88, 1603570, 139, 90, 1603570, 496, 1261, 1603570, 594, 1267, 1603570, 20, 1)
-		local testok = tapimg("xnok.jpg", 1, 2000000)
-		if (testok == 1) then
-			testlogin = waitcolor(35, 88, 1603570, 139, 90, 1603570, 496, 1261, 1603570, 594, 1267, 1603570, 20, 1)
-		end
-		if (testlogin ~= 35 and testlogin ~= 139) then
-			toast("Ko login dc")
-			local f = io.popen("ls var/mobile/Media/XoaInfo")
-			local a = f:read("all")
-			f:close()
-			openURL("XoaInfo://DelRRS?listRRS="..ten[1])
-			repeat
-				toast("Đang xóa RRS")
+			local testlogin = waitcolor(35, 88, 1603570, 139, 90, 1603570, 496, 1261, 1603570, 594, 1267, 1603570, 20, 1)
+			local testok = tapimg("xnok.jpg", 1, 2000000)
+			if (testok == 1) then
+				testlogin = waitcolor(35, 88, 1603570, 139, 90, 1603570, 496, 1261, 1603570, 594, 1267, 1603570, 20, 1)
+			end
+			if (testlogin ~= 35 and testlogin ~= 139) then
+				toast("Ko login dc")
 				local f = io.popen("ls var/mobile/Media/XoaInfo")
-				local b = f:read("all")
+				local a = f:read("all")
 				f:close()
-			until(#a > #b)
-			return
-		else
-			toast("Login ok")
-			testvr = 1
+				openURL("XoaInfo://DelRRS?listRRS="..ten[1])
+				repeat
+					toast("Đang xóa RRS")
+					local f = io.popen("ls var/mobile/Media/XoaInfo")
+					local b = f:read("all")
+					f:close()
+				until(#a > #b)
+				return
+			else
+				toast("Login ok")
+				testvr = 1
+			end
 		end
 	end
 	----------------------
