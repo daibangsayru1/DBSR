@@ -5,7 +5,7 @@ function main(loginclonefull, loginclonenovery, restorerrs, filelistclone, filel
 	else
 	-----------------------restore RRS
 		clone = laydong1(filelistrrs)
-		writetxt("RRS đã chạy.txt", line, "a", 1, 1)
+		writetxt("RRS đã chạy.txt", clone, "a", 1, 1)
 		ten = tachchuoi(clone)
 		local check = checkuid(ten[1])
 		if (check == 1) then
