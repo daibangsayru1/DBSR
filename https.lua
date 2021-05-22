@@ -420,6 +420,23 @@ function likepage(sl)
 		tapimg("likepage.jpg", 1, 500000)
 	end
 end
+function vuotnew()
+	touchDown(3, 393.10, 932.05);
+	usleep(16438.96);
+	touchMove(3, 393.10, 878.08);
+	usleep(16646.92);
+	touchMove(3, 393.10, 801.71);
+	usleep(16673.17);
+	touchMove(3, 393.10, 719.25);
+	usleep(14974.17);
+	touchUp(3, 393.10, 715.18);
+	usleep(434912.25);
+
+	touchDown(1, 393.10, 594.01);
+	usleep(9858.58);
+	touchUp(1, 393.10, 594.01);
+	usleep(1000000)
+end
 function luotnew(slvuot, sllike, slbl, slcs)
 	vuot, like, bl, cs = 0, 0, 0, 0
 	if (vuot == slvuot) then return end
@@ -438,7 +455,7 @@ function luotnew(slvuot, sllike, slbl, slcs)
 		if (test1 == 1) then
 			loginlai(matkhau, key2fa)
 		end
-		keoxuong(8000)
+		vuotnew()
 		usleep(1000000)
 		if (like ~= sllike) then
 			local test1 = tapimg("like.jpg", 1, 1000000)
