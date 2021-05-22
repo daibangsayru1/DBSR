@@ -12,11 +12,9 @@ function main(loginclonefull, loginclonenovery, restorerrs, filelistclone, filel
 			local f = io.popen("ls var/mobile/Media/XoaInfo")
 			local a = f:read("all")
 			f:close()
-			io.popen("rm -rf var/mobile/Media/XoaInfo/"..ten[1])
-			usleep(2000000)
+			openURL("XoaInfo://DelRRS?listRRS="..ten[1])
 			repeat
-				toast("Đang xóa RRS "..ten[1])
-				usleep(2000000)
+				toast("Đang xóa RRS")
 				local f = io.popen("ls var/mobile/Media/XoaInfo")
 				local b = f:read("all")
 				f:close()
