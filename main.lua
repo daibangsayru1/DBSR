@@ -5,13 +5,14 @@ function main(loginclonefull, loginclonenovery, restorerrs, filelistclone, filel
 	else
 	-----------------------restore RRS
 		clone = laydong1(filelistrrs)
-		writetxt("RRS đã chạy.txt", clone, "a", 1, 1)
+		local f = io.popen("ls var/mobile/Media/XoaInfo")
+		local a = f:read("all")
+		f:close()
 		ten = tachchuoi(clone)
+		if (string.find(a, ten[1]) == nil) then toast("Ko có RRS") return end
+		writetxt("RRS đã chạy.txt", clone, "a", 1, 1)
 		local check = checkuid(ten[1])
 		if (check == 1) then
-			local f = io.popen("ls var/mobile/Media/XoaInfo")
-			local a = f:read("all")
-			f:close()
 			openURL("XoaInfo://DelRRS?listRRS="..ten[1])
 			repeat
 				toast("Đang xóa RRS")
