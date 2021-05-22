@@ -1286,51 +1286,12 @@ function login(filelistclone, loginclonenovery)
 		end
 	until(x == 35 or x == 139)
 	if (loginclonenovery == "1") then
-		if (getColor(35, 88) == 1603570 or getColor(139, 90) == 1603570) then
-			tap(66, 1280)
-		end
-		x = waitcolor(394, 444, 1603570, 395, 508, 1603570, 707, 500, 1603570, 525, 506, 1603570, 708, 469, 1603570, 4, 0)
-		tapimg("skip.jpg", 1, 1000000)
-		tapimg("skip.jpg", 1, 1000000)
-		tapimg("skip.jpg", 1, 1000000)
-		tapimg("skip.jpg", 1, 1000000)
-	---
-		local test1 = tapimg("addmail.jpg", 1, 1)
-		if (test1 ~= 1) then
-			test2 = tapimg("xnmail.jpg", 1, 1)
-		else
-			test2 = 0
-		end
-		if (test1 ~= 1 and test2 ~= 1) then
-			local i = 1
-			repeat
-				appRun("com.apple.SpringBoard");
-				usleep(1000000)
-				appRun("com.facebook.Facebook");
-				usleep(2000000)
-				if (getColor(35, 88) == 1603570 or getColor(139, 90) == 1603570) then
-					tap(66, 1280) 
-					usleep(2000000)
-				end
-				if (getColor(35, 88) == 1603570 or getColor(139, 90) == 1603570) then
-					tap(66, 1280)
-					usleep(2000000)
-				end
-				tapimg("xnok.jpg", 1, 1000000)
-				tapimg("skip.jpg", 1, 1000000)
-				tapimg("skip.jpg", 1, 1000000)
-				tapimg("skip.jpg", 1, 1000000)
-				tapimg("skip.jpg", 1, 1000000)
-				x = waitcolor(394, 444, 1603570, 395, 508, 1603570, 707, 500, 1603570, 525, 506, 1603570, 708, 469, 1603570, 2, 0)
-				local test1 = tapimg("addmail.jpg", 1, 1)
-				if (test1 ~= 1) then
-					test2 = tapimg("xnmail.jpg", 1, 1)
-				else
-					test2 = 0
-				end
-				i = i + 1;
-			until(i == 5 or test1 == 1 or test2 == 1)
-		end
+		tap(66, 1280)
+		usleep(3000000)
+		tap(66, 1280)
+		usleep(3000000)
+		tap(66, 1280)
+		usleep(3000000)
 		return id.."|"..matkhau
 	else
 		return clone
@@ -1383,120 +1344,160 @@ end
 ------
 function chiveri(apikeydongvan)
 	copyText(0)
-	local x = waitcolor(354, 327, 1603570, 395, 329, 1603570, 20, 0);
-	if (x ~= 354 and x ~= 395) then
-		repeat
-			openURL("fb://profile")
-			usleep(1000000)
-			cookie = clipText()
-		until (string.find(cookie, "c_user=") ~= nil)
-		tap(691, 1289);
-		usleep(1000000)
-		keoxuong(2000)
-		tapimg("xnok.jpg", 1, 2000000)
-		tap(285, 1085);
+	if (getColor(35, 88) == 1603570 or getColor(139, 90) == 1603570) then
+		tap(66, 1280)
+	end
+	x = waitcolor(394, 444, 1603570, 395, 508, 1603570, 707, 500, 1603570, 525, 506, 1603570, 708, 469, 1603570, 4, 0)
+	tapimg("skip.jpg", 1, 1000000)
+	tapimg("skip.jpg", 1, 1000000)
+	tapimg("skip.jpg", 1, 1000000)
+	tapimg("skip.jpg", 1, 1000000)
+	---
+	local test1 = tapimg("addmail.jpg", 1, 1)
+	if (test1 ~= 1) then
+		test2 = tapimg("xnmail.jpg", 1, 1)
+	else
+		test2 = 0
+	end
+	---if (x ~= 395 and x ~= 707 and x ~= 708 and x ~= 525 and x ~= 394) then
+	if (test1 ~= 1 and test2 ~= 1) then
 		local i = 1
 		repeat
+			appRun("com.apple.SpringBoard");
+			usleep(1000000)
+			appRun("com.facebook.Facebook");
 			usleep(2000000)
-			local test1 = tapimg("caidat.jpg", 1, 1000000)
-			local test2 = tapimg("caidat2.jpg", 1, 1000000)
-			i = i + 1
-			if (i == 3) then
-				tap(166, 643)
+			if (getColor(35, 88) == 1603570 or getColor(139, 90) == 1603570) then
+				tap(66, 1280) 
+				usleep(2000000)
 			end
-		until(test1 == 1 or test2 == 1 or i == 3)
-		tes = checkuid(id)
-		if (tes == 1) then
-			writetxt("Clone DIE.txt", id.."|"..matkhau, "a", 1, 1)
-			resetdata();
-			return 0
-		end
-	---
-		x = waitcolor(62, 1047, 13556448, 69, 1196, 13556448, 83, 694, 13556448, 20, 1)
-		if (getColor(62, 1047) ~= 13556448 and getColor(69, 1196) ~= 13556448 and getColor(83, 694) ~= 13556448) then
-			tap(43, 89);
-			usleep(2000000);
-			if (getColor(300, 655) == 16777215) then
-				tap(273, 649);
+			if (getColor(35, 88) == 1603570 or getColor(139, 90) == 1603570) then
+				tap(66, 1280)
+				usleep(2000000)
+			end
+			tapimg("xnok.jpg", 1, 1000000)
+			tapimg("skip.jpg", 1, 1000000)
+			tapimg("skip.jpg", 1, 1000000)
+			tapimg("skip.jpg", 1, 1000000)
+			tapimg("skip.jpg", 1, 1000000)
+			x = waitcolor(394, 444, 1603570, 395, 508, 1603570, 707, 500, 1603570, 525, 506, 1603570, 708, 469, 1603570, 2, 0)
+			local test1 = tapimg("addmail.jpg", 1, 1)
+			if (test1 ~= 1) then
+				test2 = tapimg("xnmail.jpg", 1, 1)
 			else
-				tap(273, 770);
+				test2 = 0
 			end
-			x = waitcolor(62, 1047, 13556448, 69, 1196, 13556448, 83, 694, 13556448, 20, 1)
-		end
-		tapimg("baomat.jpg", 1, 1000000)
-		waitcolor(580, 591, 1603570, 643, 662, 1603570, 580, 662, 1603570, 639, 682, 1603570, 643, 622, 1603570, 5, 1)
-		---tap xem tấc cả
-		tap(642, 595)
-		usleep(3000000)
-		local test = tapimg("dangxuattb.jpg", 1, 2000000)
-		if (test ~= 1) then
-			keoxuong(1000)
-			local test = tapimg("dangxuattb.jpg", 1, 2000000)
-		end
-		local x = waitcolor(268, 494, 4227327, 500, 494, 4227327, 20, 0)
-		if (x ~= 268 and x ~= 500) then
-			alert("Lỗi")
-			stop()
-		end
-		tap(300, 494)
-		local x = waitcolor(273, 465, 1603570, 466, 465, 1603570, 20, 1)
-		if (x == 273 or x == 466) then
-			usleep(1000000)
-			tap(378, 587)
-			usleep(2000000)
-			tap(373, 589)
-			usleep(2000000)
-			tap(300, 257)
-			usleep(1000000)
-			inputText(mail)
-			usleep(1000000)
-			tap(377, 367)
-			waitcolor(139, 1185, 1603570, 272, 1187, 1603570, 20, 1)
-			tap(559, 1184)
-			usleep(2000000)
-			urlotp = "http://14.225.27.38/api/getcode.php?apiKey=2sadasd&type=1&user="..mail.."&pass="..mkmail
-			local i = 1;
-			repeat
-				toast("Chờ otp.. "..i)
-				local body = request(urlotp)
-				local text = string.find(body, "Facebook");
-				if (string.find(body, "Facebook") ~= nil) then
-					otp = string.sub(body, string.find(body, "code")+7, string.find(body, "sender")-4)
-					toast("OTP: "..otp)
-					tap(409, 390);
-					usleep(1000000);
-					inputText(otp);
-					usleep(500000);
-					tap(370, 509);
-					usleep(6000000)
+			i = i + 1;
+			if (i == 5) then
+				repeat
+					openURL("fb://profile")
+					usleep(1000000)
+					cookie = clipText()
+				until (string.find(cookie, "c_user=") ~= nil)
+				tap(691, 1289);
+				usleep(1000000)
+				keoxuong(2000)
+				tapimg("xnok.jpg", 1, 2000000)
+				tap(285, 1085);
+				repeat
+					usleep(2000000)
+					local test1 = tapimg("caidat.jpg", 1, 1000000)
+					local test2 = tapimg("caidat2.jpg", 1, 1000000)
+				until(test1 == 1 or test2 == 1)
+				tes = checkuid(id)
+				if (tes == 1) then
+					writetxt("Clone DIE.txt", id.."|"..matkhau, "a", 1, 1)
+					resetdata();
+					return 0
+				end
+	---
+				x = waitcolor(62, 1047, 13556448, 69, 1196, 13556448, 83, 694, 13556448, 20, 1)
+				if (getColor(62, 1047) ~= 13556448 and getColor(69, 1196) ~= 13556448 and getColor(83, 694) ~= 13556448) then
+					tap(43, 89);
+					usleep(2000000);
+					if (getColor(300, 655) == 16777215) then
+						tap(273, 649);
+					else
+						tap(273, 770);
+					end
+					x = waitcolor(62, 1047, 13556448, 69, 1196, 13556448, 83, 694, 13556448, 20, 1)
+				end
+				tapimg("baomat.jpg", 1, 1000000)
+				waitcolor(580, 591, 1603570, 643, 662, 1603570, 580, 662, 1603570, 639, 682, 1603570, 643, 622, 1603570, 5, 1)
+				---tap xem tấc cả
+				tap(642, 613)
+				usleep(3000000)
+				local test = tapimg("dangxuattb.jpg", 1, 2000000)
+				if (test ~= 1) then
+					local test = tapimg("dangxuattb.jpg", 1, 2000000)
+				end
+				local x = waitcolor(268, 494, 4227327, 500, 494, 4227327, 20, 0)
+				if (x ~= 268 and x ~= 500) then
+					alert("Lỗi")
+					stop()
+				end
+				tap(300, 494)
+				local x = waitcolor(273, 465, 1603570, 466, 465, 1603570, 20, 1)
+				if (x == 273 or x == 466) then
+					usleep(1000000)
+					tap(378, 587)
+					usleep(2000000)
+					tap(373, 589)
+					usleep(2000000)
+					tap(300, 257)
+					usleep(1000000)
+					inputText(mail)
+					usleep(1000000)
+					tap(377, 367)
+					waitcolor(139, 1185, 1603570, 272, 1187, 1603570, 20, 1)
+					tap(559, 1184)
+					usleep(2000000)
+					urlotp = "http://14.225.27.38/api/getcode.php?apiKey=2sadasd&type=1&user="..mail.."&pass="..mkmail
+					local i = 1;
+					repeat
+						toast("Chờ otp.. "..i)
+						local body = request(urlotp)
+						local text = string.find(body, "Facebook");
+						if (string.find(body, "Facebook") ~= nil) then
+							otp = string.sub(body, string.find(body, "code")+7, string.find(body, "sender")-4)
+							toast("OTP: "..otp)
+							tap(409, 390);
+							usleep(1000000);
+							inputText(otp);
+							usleep(500000);
+							tap(370, 509);
+							usleep(6000000)
+							---appKill("com.facebook.Facebook");
+							--usleep(2000000)
+							---appRun("com.facebook.Facebook");
+							---usleep(3000000)
+						end
+						test = checkuid(id)
+						if (test == 1) then
+							writetxt("Clone DIE.txt", clone, "a", 1, 1)
+							return 0, 0
+						end
+						i = i + 1
+						if (i == 12) then
+							writetxt("Lỗi OTP.txt", clone, "a", 1, 1)
+							return 0, 0
+						end
+					until(text ~= nil);
+				else
+					writetxt("hotmail.txt", mail.."|"..mkmail, "a", 1, 1)
 					appKill("com.facebook.Facebook");
 					usleep(2000000)
 					appRun("com.facebook.Facebook");
 					usleep(3000000)
+					return 1, cookie
 				end
-				test = checkuid(id)
-				if (test == 1) then
-					writetxt("Clone DIE.txt", clone, "a", 1, 1)
-					return 0, 0
-				end
-				i = i + 1
-				if (i == 12) then
-					writetxt("Lỗi OTP.txt", clone, "a", 1, 1)
-					return 0, 0
-				end
-			until(text ~= nil);
-		else
-			writetxt("hotmail.txt", mail.."|"..mkmail, "a", 1, 1)
-			appKill("com.facebook.Facebook");
-			usleep(2000000)
-			appRun("com.facebook.Facebook");
-			usleep(3000000)
-			return 1, cookie
-		end
-		cookie = clipText()
-		return 1, cookie
+				cookie = clipText()
+				return 1, cookie
+			end
+		until(i == 5 or test1 == 1 or test2 == 1)
 	end
 	---nếu hiện very sdt
+	waitcolor(354, 327, 1603570, 395, 329, 1603570, 20, 0);
 	tap(700, 219);
 	tap(700, 219)
 	usleep(500000);
