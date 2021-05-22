@@ -6,32 +6,23 @@ function main(loginclonefull, loginclonenovery, restorerrs, filelistclone, filel
 	-----------------------restore RRS
 		clone = laydong1(filelistrrs)
 		writetxt("RRS đã chạy.txt", line, "a", 1, 1)
-		local ten = tachchuoi(clone)
+		ten = tachchuoi(clone)
 		local check = checkuid(ten[1])
 		if (check == 1) then
 			local f = io.popen("ls var/mobile/Media/XoaInfo")
-			tab = {}
-			repeat
-				line = f:read("*line")
-				tab[#tab+1] = line
-			until(line == nil)
+			local a = f:read("all")
 			f:close()
 			repeat
 				toast("Đang xóa RRS")
 				io.popen("rm -rf var/mobile/Media/XoaInfo/"..ten[1])
 				local f = io.popen("ls var/mobile/Media/XoaInfo")
-				tab2 = {}
-				repeat
-					line = f:read("*line")
-					tab2[#tab2+1] = line
-				until(line == nil)
+				local b = f:read("all")
 				f:close()
-			until(#tab > #tab2)
+			until(#a > #b)
 			return
 		end
 		restore(ten[1])
 		local temp = tachchuoi(clone)
-		id, matkhau, key2fa = temp[1], temp[2], temp[3]
 		usleep(4000000)
 		appRun("com.facebook.Facebook")
 		usleep(2000000)
@@ -63,23 +54,15 @@ function main(loginclonefull, loginclonenovery, restorerrs, filelistclone, filel
 		if (testlogin ~= 35 and testlogin ~= 139) then
 			toast("Ko login dc")
 			local f = io.popen("ls var/mobile/Media/XoaInfo")
-			tab = {}
-			repeat
-				line = f:read("*line")
-				tab[#tab+1] = line
-			until(line == nil)
+			local a = f:read("all")
 			f:close()
 			repeat
 				toast("Đang xóa RRS")
 				io.popen("rm -rf var/mobile/Media/XoaInfo/"..ten[1])
 				local f = io.popen("ls var/mobile/Media/XoaInfo")
-				tab2 = {}
-				repeat
-					line = f:read("*line")
-					tab2[#tab2+1] = line
-				until(line == nil)
+				local b = f:read("all")
 				f:close()
-			until(#tab > #tab2)
+			until(#a > #b)
 			return
 		else
 			toast("Login ok")
@@ -118,8 +101,25 @@ function main(loginclonefull, loginclonenovery, restorerrs, filelistclone, filel
 		end
 		return
 	end
+	---lưu lại ghi chú
+	if (restorerrs == "1") then
+		if(chayvery == "1" or bac2fa == "1") then
+			local f = io.popen("ls var/mobile/Media/XoaInfo/"..ten[1].."/GhiChu")
+			local a = f:read("all")
+			f:close()
+			repeat
+				toast("Đang lưu ghi chú")
+				local f = io.open("var/mobile/Media/XoaInfo/GhiChu.txt", "w") f:write(clone) f:close()
+				local f = io.popen("mv var/mobile/Media/XoaInfo/GhiChu.txt var/mobile/Media/XoaInfo/GhiChu") f:close()
+				local f = io.popen("mv var/mobile/Media/XoaInfo/GhiChu var/mobile/Media/XoaInfo/"..ten[1].."/GhiChu") f:close()
+				local f = io.popen("ls var/mobile/Media/XoaInfo/"..ten[1].."/GhiChu")
+				local b = f:read("all")
+				f:close()
+			until(#b > #a)
+		end
+	end
 	-------------------------------
-	thamgiagr(sljoin)
+	thamgiagr(soluotjoinnhomgoiy)
 	local testkb = ketban(slkb, sluid, 1, updb, id, matkhau, key2fa)
 	if (apigg ~= "0" and testvr == 1) then
 		local url = string.sub(apigg, 1, string.find(apigg, "entry")-2);
@@ -134,40 +134,11 @@ function main(loginclonefull, loginclonenovery, restorerrs, filelistclone, filel
 		if (id ~= 0) then
 			ghichu = id.."|"..matkhau.."|"..test
 			tapimg("ok.jpg", 1, 1000000)
-			---tap(666, 1280)
-			---usleep(1000000)
-			--tap(666, 1280)
-			---usleep(1000000)
-			---tap(666, 1280)
-			---appKill("com.facebook.Facebook")
-			---usleep(1000000)
-			---appRun("com.facebook.Facebook")
-			---waitcolor(35, 88, 1603570, 139, 90, 1603570, 30, 1)
-			---tap(66, 1280)
-			---usleep(1000000)
-			---mail, mkmail, total = goimail(apimail)
-			---test3, cookie = chiveri(apimail, apiotp)
-			---if (test3 == 1) then
-				---ghichu = id.."|"..matkhau.."|"..mail.."|"..mkmail.."|"..os.date("%d")..os.date("%m").."_device_2"
-				---local url = string.sub(apigg, 1, string.find(apigg, "entry")-2);
-				---local entry = string.sub(apigg, string.find(apigg, "entry")+6, string.len(apigg))
-				---local data = "--form-string 'entry."..entry.."="..ghichu.."'"
-				---curlPost(url,data);	
-			---else
 			---------------------
 				local url = string.sub(ggnvr, 1, string.find(ggnvr, "entry")-2);
 				local entry = string.sub(ggnvr, string.find(ggnvr, "entry")+6, string.len(ggnvr))
 				local data = "--form-string 'entry."..entry.."="..ghichu.."'"
 				curlPost(url,data);	
-			---end
-			---local id2, matkhau2, test2 = novery(domain, kieureg, slkb, 1);
-			---if (id2 ~= 0) then
-				--ghichu2 = id2.."|"..matkhau2
-				--local url = string.sub(ggnvr, 1, string.find(ggnvr, "entry")-2);
-				--local entry = string.sub(ggnvr, string.find(ggnvr, "entry")+6, string.len(ggnvr))
-				--local data = "--form-string 'entry."..entry.."="..ghichu2.."'"
-				--curlPost(url,data);	 
-			--end
 		end
 	end
 	--------------------------------
