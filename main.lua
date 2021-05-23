@@ -79,6 +79,7 @@ function main(loginclonefull, loginclonenovery, restorerrs, filelistclone, filel
 	end
 	----------------------
 	if (cl2 == 0) then return end
+	alert(matkhau)
 	----------------------
 	local id = tachchuoi(clone)
 	local uid = id[1]
