@@ -1568,7 +1568,7 @@ function chiveri(apikeydongvan, id)
 		end
  	end
 end
-function upavatar()
+function upavatar(id)
 	openURL("fb://profile")
 	usleep(1000000)
 	tap(673, 922)
@@ -1664,7 +1664,7 @@ function upavatar()
 	
 end
 ------
-function bacfa()
+function bacfa(id)
 	http = require("socket.http")
 	local test = tapimg("xnok.jpg", 1, 2000000)
 	if (test == 1) then
