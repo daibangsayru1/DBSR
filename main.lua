@@ -91,13 +91,13 @@ function main(loginclonefull, loginclonenovery, restorerrs, filelistclone, filel
 	----------------------
 	if (testvr == 1) then
 		if (upavt == "1") then
-			upavt = upavatar();
+			upavt = upavatar(uid);
 			if (upavt == 0) then
 				return
 			end
 		end
 		if (bac2fa == "1") then
-			key2fa, goiy = bacfa();
+			key2fa, goiy = bacfa(uid);
 			if (key2fa == "KEY2FA") then
 				return
 			end
