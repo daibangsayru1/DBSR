@@ -28,9 +28,12 @@ function main(loginclonefull, loginclonenovery, restorerrs, filelistclone, filel
 		appRun("com.facebook.Facebook")
 		usleep(2000000)
 		if (chayvery ~= "1") then
-			x = waitcolor(399, 1260, 15201279, 515, 777, 31487, 287, 774, 31487, 355, 767, 31487, 362, 767, 31487, 354, 136, 1603570, 394, 136, 1603570, 496, 1261, 1603570, 594, 1267, 1603570, 10, 1)
+			---TH hiện màn add mail: 395, 508, 1603570, 707, 500, 1603570, 525, 506, 1603570, 708, 469, 1603570
+			toast("chờ kết quả 1")
+			x = waitcolor(395, 508, 1603570, 707, 500, 1603570, 525, 506, 1603570, 708, 469, 1603570, 399, 1260, 15201279, 515, 777, 31487, 287, 774, 31487, 355, 767, 31487, 362, 767, 31487, 354, 136, 1603570, 394, 136, 1603570, 496, 1261, 1603570, 594, 1267, 1603570, 10, 1)
 			tapimg("xnok.jpg", 1, 1)
 			if (x == 355 or x == 362 or x == 354 or x == 394) then
+				toast("out cookie")
 				tapimg("ok.jpg", 1, 2000000)
 				tapimg("ok2.jpg", 1, 2000000)
 				test = loginlai(temp[1],temp[2], temp[3])
@@ -39,6 +42,7 @@ function main(loginclonefull, loginclonenovery, restorerrs, filelistclone, filel
 				tap(66, 1280)
 				usleep(2000000)
 			else
+				toast("out uid")
 				local test2 = tapimg("dangnhap2.jpg", 1, 1000000)
 				if (test2 == 1) then
 					test = loginlai(temp[1],temp[2], temp[3])
@@ -48,13 +52,17 @@ function main(loginclonefull, loginclonenovery, restorerrs, filelistclone, filel
 					usleep(2000000)
 				end
 			end
-			local testlogin = waitcolor(35, 88, 1603570, 139, 90, 1603570, 496, 1261, 1603570, 594, 1267, 1603570, 20, 1)
+			toast("chờ kết quả 2")
+			local testlogin = waitcolor(395, 508, 1603570, 707, 500, 1603570, 525, 506, 1603570, 708, 469, 1603570, 35, 88, 1603570, 139, 90, 1603570, 496, 1261, 1603570, 594, 1267, 1603570, 20, 1)
 			local testok = tapimg("xnok.jpg", 1, 2000000)
 			if (testok == 1) then
 				testlogin = waitcolor(35, 88, 1603570, 139, 90, 1603570, 496, 1261, 1603570, 594, 1267, 1603570, 20, 1)
 			end
-			if (testlogin ~= 35 and testlogin ~= 139) then
-				toast("Ko login dc")
+			if (testlogin == 35 or testlogin == 139 or testlogin == 395 or testlogin == 707 or testlogin == 525 or testlogin == 708) then
+				toast("login ok")
+				testvr = 1
+			else
+				toast("RRS lỗi")
 				local f = io.popen("ls var/mobile/Media/XoaInfo")
 				local a = f:read("all")
 				f:close()
@@ -66,9 +74,6 @@ function main(loginclonefull, loginclonenovery, restorerrs, filelistclone, filel
 					f:close()
 				until(#a > #b)
 				return
-			else
-				toast("Login ok")
-				testvr = 1
 			end
 		end
 	end
