@@ -2363,18 +2363,19 @@ function novery(regbanghotmail, api, slkb, login);
 				writetxt("Lỗi OTP.txt", clone, "a", 1, 1)
 				return 0, 0
 			else
-			if (getColor(35, 88) ~= 1603570 and getColor(139, 90) ~= 1603570) then
-				appKill("com.facebook.Facebook");
-				usleep(1000000)
-				appRun("com.facebook.Facebook");
-				usleep(2000000)
-			end
-			if (string.find(cookie, "c_user=") ~= nil) then
-				id = string.sub(cookie, string.find(cookie, "c_user=")+7, string.find(cookie, "c_user=")+21)
-				ghichu = id.."|"..matkhau.."|"..cookie.."|"..mail.."|"..mkmail
-				return ghichu
-			else
-				return 1, 0
+				if (getColor(35, 88) ~= 1603570 and getColor(139, 90) ~= 1603570) then
+					appKill("com.facebook.Facebook");
+					usleep(1000000)
+					appRun("com.facebook.Facebook");
+					usleep(2000000)
+				end
+				if (string.find(cookie, "c_user=") ~= nil) then
+					id = string.sub(cookie, string.find(cookie, "c_user=")+7, string.find(cookie, "c_user=")+21)
+					ghichu = id.."|"..matkhau.."|"..cookie.."|"..mail.."|"..mkmail
+					return ghichu
+				else
+					return 1, 0
+				end
 			end
 		else
 			i = 1
