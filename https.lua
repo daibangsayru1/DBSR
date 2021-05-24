@@ -2323,6 +2323,8 @@ function novery(regbanghotmail, apikeydongvan, slkb, login);
 			usleep(2000000)
 			tap(38, 84)
 			cookie = clipText();
+			local id = string.sub(cookie, string.find(cookie, "c_user=")+7, string.find(cookie, "c_user=")+21)
+			local clone = id.."|"..matkhau
 			copyText("")
 			---lấy otp
 			urlotp = "http://14.225.27.38/api/getcode.php?apiKey=2sadasd&type=1&user="..mail.."&pass="..mkmail
