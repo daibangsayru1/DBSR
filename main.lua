@@ -1,4 +1,4 @@
-function main(loginclonefull, loginclonenovery, restorerrs, filelistclone, filelistrrs, chayvery, apikeydongvan, linklayotp, updanhba, upavt, upanhbia, upinfo, bac2fa, soluotkbtheogoiy, soluotkbtheouid, dongyketban, soluotxemthongbao, soluotjoinnhomgoiy, soluotjoinnhomtheolist, filelistnhom, likepage, filelistpage, soluotvuotnew, soluotlikenew, soluotbinhluan, tenfilechuanoidungbl, slchiaselentuong, dangstatus, statuskemanh, xuatclonesaukhiauto, linksheetluuclonefull, regnoverysaukhichay, linksheetluunovery, luurrssaukhichay);
+function main(loginclonefull, loginclonenovery, restorerrs, filelistclone, filelistrrs, chayvery, apikeydongvan, linklayotp, updanhba, upavt, upanhbia, upinfo, bac2fa, soluotkbtheogoiy, soluotkbtheouid, dongyketban, soluotxemthongbao, soluotjoinnhomgoiy, soluotjoinnhomtheolist, filelistnhom, sllikepage, filelistpage, soluotvuotnew, soluotlikenew, soluotbinhluan, tenfilechuanoidungbl, slchiaselentuong, dangstatus, statuskemanh, xuatclonesaukhiauto, linksheetluuclonefull, regnoverysaukhichay, linksheetluunovery, luurrssaukhichay);
 	contair = require("socket.https")
 	if (loginclonefull == "1" or loginclonenovery == "1") then
 		clone, cl2 = login(filelistclone, loginclonenovery);---login
@@ -124,7 +124,7 @@ function main(loginclonefull, loginclonenovery, restorerrs, filelistclone, filel
 	end
 	-------------------------------
 	thamgiagr(tonumber(soluotjoinnhomgoiy))
-	likepage(tonumber(likepage), filelistpage)
+	likepage(tonumber(sllikepage), filelistpage)
 	local testkb = ketban(slkb, sluid, 1, updb, id, matkhau, key2fa)
 	if (apigg ~= "0" and testvr == 1) then
 		local url = string.sub(apigg, 1, string.find(apigg, "entry")-2);
