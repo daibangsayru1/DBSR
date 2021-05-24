@@ -683,6 +683,10 @@ function thamgiagr(sl)
 			tapimg("thamgia.jpg", 1, 1000000)
 		end
 	end
+	appKill("com.facebook.Facebook");
+	usleep(2000000)
+	appRun("com.facebook.Facebook");
+	waitcolor(35, 88, 1603570, 139, 90, 1603570, 60, 0)
 end
 ---
 function tachchuoi(chuoi);
