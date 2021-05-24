@@ -1,4 +1,4 @@
-function main(loginclonefull, loginclonenovery, restorerrs, filelistclone, filelistrrs, chayvery, apikeydongvan, linklayotp, updanhba, upavt, upanhbia, upinfo, bac2fa, soluotkbtheogoiy, soluotkbtheouid, dongyketban, soluotxemthongbao, soluotjoinnhomgoiy, soluotjoinnhomtheolist, filelistnhom, sllikepage, filelistpage, soluotvuotnew, soluotlikenew, soluotbinhluan, tenfilechuanoidungbl, slchiaselentuong, dangstatus, statuskemanh, xuatclonesaukhiauto, linksheetluuclonefull, regnoverysaukhichay, linksheetluunovery, luurrssaukhichay);
+function main(loginclonefull, loginclonenovery, restorerrs, filelistclone, filelistrrs, chayvery, apikeydongvan, linklayotp, updanhba, upavt, upanhbia, upinfo, bac2fa, soluotkbtheogoiy, soluotkbtheouid, dongyketban, soluotxemthongbao, soluotjoinnhomgoiy, soluotjoinnhomtheolist, filelistnhom, sllikepage, filelistpage, soluotvuotnew, soluotlikenew, soluotbinhluan, tenfilechuanoidungbl, slchiaselentuong, dangstatus, statuskemanh, xuatclonesaukhiauto, linksheetluuclonefull, regnoverysaukhichay, regbanghotmail, linksheetluunovery, luurrssaukhichay);
 	contair = require("socket.https")
 	if (loginclonefull == "1" or loginclonenovery == "1") then
 		clone, cl2 = login(filelistclone, loginclonenovery);---login
@@ -135,13 +135,13 @@ function main(loginclonefull, loginclonenovery, restorerrs, filelistclone, filel
 	doctb(tonumber(soluotxemthongbao))
 	luotnew(tonumber(soluotvuotnew), tonumber(soluotlikenew), tonumber(soluotbinhluan), tonumber(slchiaselentuong))
 	if (regnoverysaukhichay == "1") then
-		local id, matkhau, test = novery(domain, kieureg, slkb, 1);
+		local id, matkhau, test = novery(regbanghotmail, apikeydongvan, slkb, 1);
 		if (id ~= 0) then
-			ghichu = id.."|"..matkhau.."|"..test
+			ghichu = id
 			tapimg("ok.jpg", 1, 1000000)
 			---------------------
-				local url = string.sub(ggnvr, 1, string.find(ggnvr, "entry")-2);
-				local entry = string.sub(ggnvr, string.find(ggnvr, "entry")+6, string.len(ggnvr))
+				local url = string.sub(linksheetluunovery, 1, string.find(linksheetluunovery, "entry")-2);
+				local entry = string.sub(linksheetluunovery, string.find(linksheetluunovery, "entry")+6, string.len(linksheetluunovery))
 				local data = "--form-string 'entry."..entry.."="..ghichu.."'"
 				curlPost(url,data);	
 		end
