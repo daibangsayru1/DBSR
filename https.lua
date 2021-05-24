@@ -497,6 +497,14 @@ function tapimg(img, sl, time)
 	end
 	return 0
 end
+function findimg(img, sl, time)
+	local img = findImage("/var/mobile/Library/AutoTouch/Scripts/facebook/img/"..img, sl, 0.99, nil)
+	for i, v in pairs(img) do
+		usleep(time)
+		return 1
+	end
+	return 0
+end
 function tapimg2(img, sl, time, regon)
 	local img = findImage("/var/mobile/Library/AutoTouch/Scripts/facebook/img/"..img, sl, 0.99, regon)
 	for i, v in pairs(img) do
@@ -2283,9 +2291,9 @@ function novery(regbanghotmail, apikeydongvan, slkb, login);
 			tapimg("skip.jpg", 1, 1000000)
 			tapimg("skip.jpg", 1, 1000000)
 			---
-			local test1 = tapimg("addmail.jpg", 1, 1)
+			local test1 = findimg("addmail.jpg", 1, 1)
 			if (test1 ~= 1) then
-				test2 = tapimg("xnmail.jpg", 1, 1)
+				test2 = findimg("xnmail.jpg", 1, 1)
 			else
 				test2 = 0
 			end
@@ -2311,9 +2319,9 @@ function novery(regbanghotmail, apikeydongvan, slkb, login);
 					tapimg("skip.jpg", 1, 1000000)
 					tapimg("skip.jpg", 1, 1000000)
 					x = waitcolor(394, 444, 1603570, 395, 508, 1603570, 707, 500, 1603570, 525, 506, 1603570, 708, 469, 1603570, 2, 0)
-					local test1 = tapimg("addmail.jpg", 1, 1)
+					local test1 = findimg("addmail.jpg", 1, 1)
 					if (test1 ~= 1) then
-						test2 = tapimg("xnmail.jpg", 1, 1)
+						test2 = findimg("xnmail.jpg", 1, 1)
 					else
 						test2 = 0
 					end
