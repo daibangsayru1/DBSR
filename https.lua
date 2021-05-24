@@ -411,12 +411,11 @@ function ketban(slkb, sluid, time, updb, id, matkhau, key2fa)
 	end
 end
 ------
-function likepage(sl)
+function likepage(sl, file)
 	for i = 1, sl do
-		local page, cont = readtxt("page.txt")
-		writetxt2("page.txt", cont, page, "w", 1)
+		local page = daodong(file)
 		openURL("fb://profile?id="..page)
-		usleep(3000000)
+		waitcolor(141, 803, 1603570, 400, 803, 1603570, 60, 1)
 		tapimg("likepage.jpg", 1, 500000)
 	end
 end
