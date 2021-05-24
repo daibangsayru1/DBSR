@@ -660,49 +660,27 @@ function thamgiagr(sl)
 		tapimg("gr3.jpg", 1, 1000000)
 		tapimg("gr2.jpg", 1, 1000000)
 	end
-	for i = 1, 3 do
-		tapimg("xnok.jpg", 1, 2000000)
-		keoxuong(8000)
-		usleep(1000000)
-		img = findImage("/var/mobile/Library/AutoTouch/Scripts/facebook/img/thamgia.jpg", 5, 0.99, nil)
-		for i, v in pairs(img) do
-			tap(v[1], v[2])
-			usleep(2000000)
-			soluot = soluot + 1
-			tapimg("x.jpg", 1, 1000000)
-			tapimg("x.jpg", 1, 1000000)
-			tapimg("thoat2.jpg", 1, 2000000)
-			local test1 = tapimg("ok.jpg", 1, 2000000)
-			if (test1 == 1) then
-				loginlai(matkhau, key2fa)
-			end
-			if (soluot == sl) then return end
-		end
-	end
-	if (soluot ~= sl) then
+	tapimg("xnok.jpg", 1, 2000000)
+	keoxuong(8000)
+	usleep(1000000)
+	local test = tapimg("thamgia.jpg", 1, 1000000)
+	tapimg("thamgia.jpg", 1, 1000000)
+	tapimg("thamgia.jpg", 1, 1000000)
+	tapimg("thamgia.jpg", 1, 1000000)
+	if (test ~= 1) then
 		keolen(1000)
 		keolen(1000)
 		keolen(1000)
 		usleep(1000000)
 		tapimg("khampha.jpg", 1, 1000000)
-		for i = 1, 5 do
+		for i = 1, 1 do
 			tapimg("xnok.jpg", 1, 2000000)
 			keoxuong(8000)
 			usleep(1000000)
-			img = findImage("/var/mobile/Library/AutoTouch/Scripts/facebook/img/thamgia.jpg", 5, 0.99, nil)
-			for i, v in pairs(img) do
-				tap(v[1], v[2])
-				usleep(2000000)
-				soluot = soluot + 1
-				tapimg("x.jpg", 1, 1000000)
-				tapimg("x.jpg", 1, 1000000)
-				tapimg("thoat2.jpg", 1, 2000000)
-				local test1 = tapimg("ok.jpg", 1, 2000000)
-				if (test1 == 1) then
-					loginlai(matkhau, key2fa)
-				end
-				if (soluot == sl) then return end
-			end
+			tapimg("thamgia.jpg", 1, 1000000)
+			tapimg("thamgia.jpg", 1, 1000000)
+			tapimg("thamgia.jpg", 1, 1000000)
+			tapimg("thamgia.jpg", 1, 1000000)
 		end
 	end
 end
