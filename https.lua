@@ -1998,7 +1998,7 @@ function novery(regbanghotmail, apikeydongvan, slkb, login);
 		tap(382, 622);
 		usleep(1000000)
 		tap(218, 398);
-		mail, mkmail, total = goimail("http://dongvanfb.com/api/buyaccount.php?apiKey=d6cd8202e075ef02b4f84e01b9ad9bb5&type=1&amount=1")
+		mail, mkmail, total = goimail(apikeydongvan)
 		inputText(mail.."a");
 		usleep(300000);
 		tap(709, 1174);
