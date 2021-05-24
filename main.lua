@@ -41,6 +41,7 @@ function main(loginclonefull, loginclonenovery, restorerrs, filelistclone, filel
 				usleep(2000000)
 				tap(66, 1280)
 				usleep(2000000)
+				testrrs = 0
 			else
 				toast("out uid")
 				local test2 = tapimg("dangnhap2.jpg", 1, 1000000)
@@ -50,6 +51,7 @@ function main(loginclonefull, loginclonenovery, restorerrs, filelistclone, filel
 					usleep(2000000)
 					tap(66, 1280)
 					usleep(2000000)
+					testrrs = 0
 				end
 			end
 			toast("chờ kết quả 2")
@@ -153,6 +155,22 @@ function main(loginclonefull, loginclonenovery, restorerrs, filelistclone, filel
 	else
 		if (restorerrs ~= "1") then
 			resetdata()
+		else
+			if (testrrs == 0) then
+				local f = io.popen("ls var/mobile/Media/XoaInfo")
+				local a = f:read("all")
+				f:close()
+				openURL("XoaInfo://DelRRS?listRRS="..ten[1])
+				repeat
+					toast("Đang xóa RRS")
+					local f = io.popen("ls var/mobile/Media/XoaInfo")
+					local b = f:read("all")
+					f:close()
+				until(#a > #b)
+				local name = tachchuoi(clone)
+				toast("lưu rrs lại", 7)
+				luurrs(name[1], clone)
+			end
 		end
 	end
 end
