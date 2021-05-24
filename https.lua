@@ -1812,7 +1812,7 @@ function bacfa(id)
 	end
 end
 ---
-function novery(regbanghotmail, api, slkb, login);
+function novery(regbanghotmail, apikeydongvan, slkb, login);
 	ktdb = {"!", "@", "#", "%", "?", "~", "-", "+", ":"}
 	local abc ={"q","w","e","r","t","y","u","i","o","p","a","s","d","f","g","h","j","k","l","z","x","c","v","b","n","m"}
 	local dsdt = {"097","098","096","032","033","034","035","036","037","038","090","091","092","093","094","095","099","070","078","085","081","082","083","084"};
@@ -1998,7 +1998,7 @@ function novery(regbanghotmail, api, slkb, login);
 		tap(382, 622);
 		usleep(1000000)
 		tap(218, 398);
-		mail, mkmail, total = goimail("http://dongvanfb.com/api/buyaccount.php?apiKey="..api.."&type=1&amount=1")
+		mail, mkmail, total = goimail("http://dongvanfb.com/api/buyaccount.php?apiKey="..apikeydongvan.."&type=1&amount=1")
 		inputText(mail.."a");
 		usleep(300000);
 		tap(709, 1174);
