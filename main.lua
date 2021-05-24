@@ -133,7 +133,7 @@ function main(loginclonefull, loginclonenovery, restorerrs, filelistclone, filel
 		curlPost(url,data);
 	end
 	doctb(sltb)
-	luotnew(slvuot, sllike, slbl, slcs)
+	luotnew(soluotvuotnew, soluotlikenew, soluotbinhluan, slchiaselentuong)
 	if (slreg ~= 0) then
 		local id, matkhau, test = novery(domain, kieureg, slkb, 1);
 		if (id ~= 0) then
