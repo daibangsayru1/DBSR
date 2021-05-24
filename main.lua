@@ -156,7 +156,7 @@ function main(loginclonefull, loginclonenovery, restorerrs, filelistclone, filel
 		if (restorerrs ~= "1") then
 			resetdata()
 		else
-			if (testrrs == 0) then
+			if (testrrs == 0 and regnoverysaukhichay == "0") then
 				local f = io.popen("ls var/mobile/Media/XoaInfo")
 				local a = f:read("all")
 				f:close()
