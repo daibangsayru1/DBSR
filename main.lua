@@ -125,14 +125,14 @@ function main(loginclonefull, loginclonenovery, restorerrs, filelistclone, filel
 	-------------------------------
 	thamgiagr(tonumber(soluotjoinnhomgoiy))
 	likepage(tonumber(sllikepage), filelistpage)
-	local testkb = ketban(slkb, sluid, 1, updb, id, matkhau, key2fa)
-	if (apigg ~= "0" and testvr == 1) then
+	local testkb = ketban(tonumber(soluotkbtheogoiy), sluid, 1, updb, id, matkhau, key2fa)
+	if (linksheetluuclonefull ~= "0" and testvr == 1) then
 		local url = string.sub(apigg, 1, string.find(apigg, "entry")-2);
 		local entry = string.sub(apigg, string.find(apigg, "entry")+6, string.len(apigg))
 		local data = "--form-string 'entry."..entry.."="..clone.."'"
 		curlPost(url,data);
 	end
-	doctb(sltb)
+	doctb(tonumber(soluotxemthongbao))
 	luotnew(tonumber(soluotvuotnew), tonumber(soluotlikenew), tonumber(soluotbinhluan), tonumber(slchiaselentuong))
 	if (regnoverysaukhichay == "1") then
 		local id, matkhau, test = novery(domain, kieureg, slkb, 1);
