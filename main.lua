@@ -123,8 +123,8 @@ function main(loginclonefull, loginclonenovery, restorerrs, filelistclone, filel
 		end
 	end
 	-------------------------------
-	thamgiagr(soluotjoinnhomgoiy)
-	likepage(likepage, filelistpage)
+	thamgiagr(tonumber(soluotjoinnhomgoiy))
+	likepage(tonumber(likepage), filelistpage)
 	local testkb = ketban(slkb, sluid, 1, updb, id, matkhau, key2fa)
 	if (apigg ~= "0" and testvr == 1) then
 		local url = string.sub(apigg, 1, string.find(apigg, "entry")-2);
@@ -133,7 +133,7 @@ function main(loginclonefull, loginclonenovery, restorerrs, filelistclone, filel
 		curlPost(url,data);
 	end
 	doctb(sltb)
-	luotnew(soluotvuotnew, soluotlikenew, soluotbinhluan, slchiaselentuong)
+	luotnew(tonumber(soluotvuotnew), tonumber(soluotlikenew), tonumber(soluotbinhluan), tonumber(slchiaselentuong))
 	if (slreg ~= 0) then
 		local id, matkhau, test = novery(domain, kieureg, slkb, 1);
 		if (id ~= 0) then
