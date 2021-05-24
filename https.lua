@@ -1305,12 +1305,10 @@ function goimail(apikeydongvan)
 		end
 		local body = request("http://dongvanfb.com/api/buyaccount.php?apiKey="..apikeydongvan.."&type=1&amount=1")
 		if (string.find(body, ".com") == nil) then
-			io.popen("activator send switch-on.com.a3tweaks.switch.wifi")
 			repeat
 				toast("Hết mail")
 				body = request(apimail)
 			until(string.find(body, ".com") ~= nil)
-			io.popen("activator send switch-off.com.a3tweaks.switch.wifi")
 		end
 		local json = require("json")
 		local te = json.decode(body)
