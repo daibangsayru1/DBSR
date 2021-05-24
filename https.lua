@@ -1412,7 +1412,8 @@ function chiveri(apikeydongvan, id)
 				tapimg("baomat.jpg", 1, 1000000)
 				waitcolor(580, 591, 1603570, 643, 662, 1603570, 580, 662, 1603570, 639, 682, 1603570, 643, 622, 1603570, 5, 1)
 				---tap xem tấc cả
-				tap(642, 613)
+				---tap(642, 613)
+				tapimg("xemtacca.jpg", 1, 1)
 				usleep(3000000)
 				local test = tapimg("dangxuattb.jpg", 1, 2000000)
 				if (test ~= 1) then
@@ -2327,7 +2328,6 @@ function novery(regbanghotmail, apikeydongvan, slkb, login);
 				until(i == 5)
 			end
 			usleep(2000000)
-			tap(38, 84)
 			cookie = clipText();
 			local id = string.sub(cookie, string.find(cookie, "c_user=")+7, string.find(cookie, "c_user=")+21)
 			local clone = id.."|"..matkhau
