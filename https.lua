@@ -1812,7 +1812,7 @@ function bacfa(id)
 	end
 end
 ---
-function novery(domain, regvr, slkb, login);
+function novery(regbanghotmail, api, slkb, login);
 	ktdb = {"!", "@", "#", "%", "?", "~", "-", "+", ":"}
 	local abc ={"q","w","e","r","t","y","u","i","o","p","a","s","d","f","g","h","j","k","l","z","x","c","v","b","n","m"}
 	local dsdt = {"097","098","096","032","033","034","035","036","037","038","090","091","092","093","094","095","099","070","078","085","081","082","083","084"};
@@ -1994,20 +1994,12 @@ function novery(domain, regvr, slkb, login);
 		usleep(1000000);
 	end
 	waitcolor(170, 298, 1603570, 15, 1);
-	if (regvr == 1) then
+	if (regbanghotmail == "1") then
 		tap(382, 622);
 		usleep(1000000)
 		tap(218, 398);
-		local first, cont = readtxt("mail1.txt");
-		writetxt2("mail1.txt", cont, first, "w", 500000)
-		local last, cont = readtxt("mail2.txt", 1)
-		writetxt2("mail2.txt", cont, last, "w", 500000)
-		local devi = readtxt("device.txt")
-		local tem = tachchuoi(devi)
-		device = tem[1]..tem[2]
-		local mail = first..math.random(999)..abc[math.random(26)]..tem[2]..math.random(99)..last.."@gmail.com "
-		test = "gmail.com"
-		inputText(mail);
+		mail, mkmail, total = goimail("http://dongvanfb.com/api/buyaccount.php?apiKey="..api.."&type=1&amount=1")
+		inputText(mail.."a");
 		usleep(300000);
 		tap(709, 1174);
 		usleep(300000);
@@ -2279,54 +2271,128 @@ function novery(domain, regvr, slkb, login);
 	local x6 = getColor(550, 1081);---1538034
 	---nếu reg ok th&#236; xử l&#253; tếp
 	if (x == 35 or x == 139 or x1 == 1603570 or x2 == 1668851 or x3 == 1603570 or x4 == 1603570 or x5 == 1603570 or x6 == 1603570 or x5 == 1603571 or x6 == 1538034) then
-		copyText(1111)
-		-------------------------------
-		---openURL("photos-redirect://")
-		---waitcolor(53, 84, 31487, 557, 284, 31487, 466, 1278, 31487, 20, 1)
-		---tap(450, 1280)
-		---tap(450, 1280)
-		---usleep(1000000);
-		---tap(196, 490);
-		---usleep(1500000);
-		---tap(125, 1099);
-		---waitcolor(694, 1287, 31487, 365, 1272, 31487, 55, 1281, 31487, 7, 1)
-		---tap(696, 1284);
-		---usleep(1500000);
-		---tap(375, 1133);
-		---usleep(1500000);
-		---appRun("com.facebook.Facebook")
-		---usleep(2000000);
-		-------------------------------------
-		---tap(361, 1142)
-		---waitcolor(668, 83, 31487, 695, 86, 31487, 20, 0)
-		---tap(88, 230)
-		---usleep(2000000)
-		---tap(122, 1214)
-		---usleep(2000000)
-		---tap(668, 83)
-		----------------------------------
-		---tap(667, 95);
-		---waitcolor(338, 221, 13449787, 363, 655, 3889560, 5, 1)
-		---tap(371, 1101)
-		---x = waitcolor(697, 368, 1603570, 700, 470, 1603570, 331, 648, 12501705, 409, 637, 12501705, 50, 1)
-		---tap(667, 95);
-		---usleep(1500000);
-		---tapimg("xong.jpg", 1, 1000000)
-		i = 1
-		repeat
-			openURL("fb://profile");
-			usleep(1000000);
+		if (regbanghotmail == "1") then
+			if (getColor(35, 88) == 1603570 or getColor(139, 90) == 1603570) then
+				tap(66, 1280)
+			end
+			x = waitcolor(394, 444, 1603570, 395, 508, 1603570, 707, 500, 1603570, 525, 506, 1603570, 708, 469, 1603570, 4, 0)
+			tapimg("skip.jpg", 1, 1000000)
+			tapimg("skip.jpg", 1, 1000000)
+			tapimg("skip.jpg", 1, 1000000)
+			tapimg("skip.jpg", 1, 1000000)
+			---
+			local test1 = tapimg("addmail.jpg", 1, 1)
+			if (test1 ~= 1) then
+				test2 = tapimg("xnmail.jpg", 1, 1)
+			else
+				test2 = 0
+			end
+			---if (x ~= 395 and x ~= 707 and x ~= 708 and x ~= 525 and x ~= 394) then
+			if (test1 ~= 1 and test2 ~= 1) then
+				local i = 1
+				repeat
+					appRun("com.apple.SpringBoard");
+					usleep(1000000)
+					appRun("com.facebook.Facebook");
+					usleep(2000000)
+					if (getColor(35, 88) == 1603570 or getColor(139, 90) == 1603570) then
+						tap(66, 1280) 
+						usleep(2000000)
+					end
+					if (getColor(35, 88) == 1603570 or getColor(139, 90) == 1603570) then
+						tap(66, 1280)
+						usleep(2000000)
+					end
+					tapimg("xnok.jpg", 1, 1000000)
+					tapimg("skip.jpg", 1, 1000000)
+					tapimg("skip.jpg", 1, 1000000)
+					tapimg("skip.jpg", 1, 1000000)
+					tapimg("skip.jpg", 1, 1000000)
+					x = waitcolor(394, 444, 1603570, 395, 508, 1603570, 707, 500, 1603570, 525, 506, 1603570, 708, 469, 1603570, 2, 0)
+					local test1 = tapimg("addmail.jpg", 1, 1)
+					if (test1 ~= 1) then
+						test2 = tapimg("xnmail.jpg", 1, 1)
+					else
+						test2 = 0
+					end
+					i = i + 1;
+				until(i == 5)
+			end
+			usleep(2000000)
+			tap(38, 84)
 			cookie = clipText();
+			copyText("")
+			---lấy otp
+			urlotp = "http://14.225.27.38/api/getcode.php?apiKey=2sadasd&type=1&user="..mail.."&pass="..mkmail
+			local i = 1;
+			repeat
+				toast("Chờ otp.. "..i)
+				local body = request(urlotp)
+				local text = string.find(body, "Facebook");
+				if (string.find(body, "Facebook") ~= nil) then
+					otp = string.sub(body, string.find(body, "code")+7, string.find(body, "sender")-4)
+					toast("OTP: "..otp)
+					tap(359, 364);
+					tap(359, 364);
+					usleep(500000);
+					inputText(otp);
+					usleep(500000);
+					tap(379, 474);
+					usleep(1000000) 
+				end
+				test = checkuid(id)
+				if (test == 1) then
+					writetxt("Clone DIE.txt", clone, "a", 1, 1)
+					return 0, 0
+				end
+				i = i + 1
+				if (i == 12) then
+					writetxt("Lỗi OTP.txt", clone, "a", 1, 1)
+					return 0, 0
+				end
+			until(text ~= nil);
+			x = waitcolor(620, 907, 1603570, 610, 907, 1603570, 213, 785, 31487, 249, 788, 31487, 511, 788, 31487, 34, 89, 1603570, 139, 93, 1603570, 20, 1)
+			test = checkuid(id)
+			if (test == 1) then
+				writetxt("Clone DIE.txt", clone, "a", 1, 1)
+				return 0, 0
+			end
+			---
+  			if (x == 213 or x == 249 or x == 511) then
+				stop()
+				writetxt("Lỗi OTP.txt", clone, "a", 1, 1)
+				return 0, 0
+			else
+			if (getColor(35, 88) ~= 1603570 and getColor(139, 90) ~= 1603570) then
+				appKill("com.facebook.Facebook");
+				usleep(1000000)
+				appRun("com.facebook.Facebook");
+				usleep(2000000)
+			end
 			if (string.find(cookie, "c_user=") ~= nil) then
 				id = string.sub(cookie, string.find(cookie, "c_user=")+7, string.find(cookie, "c_user=")+21)
+				ghichu = id.."|"..matkhau.."|"..cookie.."|"..mail.."|"..mkmail
+				return ghichu
+			else
+				return 1, 0
+			end
+		else
+			i = 1
+			repeat
+				openURL("fb://profile");
+				usleep(1000000);
 				cookie = clipText();
-				return id, matkhau, cookie
-			end
-			i = i + 1;
-			if (i == 5) then
-				return 0
-			end
-		until(string.find(cookie, "c_user=") ~= nil)
+				if (string.find(cookie, "c_user=") ~= nil) then
+					id = string.sub(cookie, string.find(cookie, "c_user=")+7, string.find(cookie, "c_user=")+21)
+					cookie = clipText();
+					return id, matkhau, cookie
+				end
+				i = i + 1;
+				if (i == 5) then
+					return 0
+				end
+			until(string.find(cookie, "c_user=") ~= nil)
+		end
 	else
 		return 0
 	end
