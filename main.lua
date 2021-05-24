@@ -125,7 +125,7 @@ function main(loginclonefull, loginclonenovery, restorerrs, filelistclone, filel
 	-------------------------------
 	thamgiagr(tonumber(soluotjoinnhomgoiy))
 	likepage(tonumber(sllikepage), filelistpage)
-	local testkb = ketban(tonumber(soluotkbtheogoiy), soluotkbtheouid, 1, updb, id, matkhau, key2fa)
+	local testkb = ketban(tonumber(soluotkbtheogoiy), tonumber(soluotkbtheouid), 1, updb, id, matkhau, key2fa)
 	if (linksheetluuclonefull ~= "0" and testvr == 1) then
 		local url = string.sub(apigg, 1, string.find(apigg, "entry")-2);
 		local entry = string.sub(apigg, string.find(apigg, "entry")+6, string.len(apigg))
