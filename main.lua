@@ -134,7 +134,7 @@ function main(loginclonefull, loginclonenovery, restorerrs, filelistclone, filel
 	end
 	doctb(sltb)
 	luotnew(tonumber(soluotvuotnew), tonumber(soluotlikenew), tonumber(soluotbinhluan), tonumber(slchiaselentuong))
-	if (slreg ~= 0) then
+	if (regnoverysaukhichay == "1") then
 		local id, matkhau, test = novery(domain, kieureg, slkb, 1);
 		if (id ~= 0) then
 			ghichu = id.."|"..matkhau.."|"..test
