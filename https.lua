@@ -1998,7 +1998,7 @@ function novery(regbanghotmail, apikeydongvan, slkb, login);
 		tap(382, 622);
 		usleep(1000000)
 		tap(218, 398);
-		mail, mkmail, total = goimail(apikeydongvan)
+		mail, mkmail, total = goimail(apikeydongvan)---hihi
 		inputText(mail.."a");
 		usleep(300000);
 		tap(709, 1174);
