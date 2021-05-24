@@ -124,6 +124,7 @@ function main(loginclonefull, loginclonenovery, restorerrs, filelistclone, filel
 	end
 	-------------------------------
 	thamgiagr(soluotjoinnhomgoiy)
+	likepage(likepage, filelistpage)
 	local testkb = ketban(slkb, sluid, 1, updb, id, matkhau, key2fa)
 	if (apigg ~= "0" and testvr == 1) then
 		local url = string.sub(apigg, 1, string.find(apigg, "entry")-2);
