@@ -1994,6 +1994,8 @@ function novery(regbanghotmail, apikeydongvan, slkb, login);
 		usleep(1000000);
 	end
 	waitcolor(170, 298, 1603570, 15, 1);
+	local first = daodong("mail1.txt")
+	local last = daodong("mail2.txt")
 	if (regbanghotmail == "1") then
 		tap(382, 622);
 		usleep(1000000)
