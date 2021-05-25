@@ -1303,7 +1303,8 @@ function goimail(apikeydongvan)
 			mail, mkmail, total = temp2[1], temp2[2], 1
 			return mail, mkmail, total
 		end
-		local body = request("http://dongvanfb.com/api/buyaccount.php?apiKey="..apikeydongvan.."&type=1&amount=1")
+		local http = require("socket.http")
+		local body = http.request("http://dongvanfb.com/api/buyaccount.php?apiKey="..apikeydongvan.."&type=1&amount=1")
 		if (string.find(body, ".com") == nil) then
 			repeat
 				toast("Hết mail")
