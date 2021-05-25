@@ -2,6 +2,7 @@ function main(loginclonefull, loginclonenovery, restorerrs, filelistclone, filel
 	contair = require("socket.https")
 	if (loginclonefull == "1" or loginclonenovery == "1") then
 		clone, cl2 = login(filelistclone, loginclonenovery);---login
+		testvr = 1
 	else
 	-----------------------restore RRS
 		clone = laydong1(filelistrrs)
