@@ -80,7 +80,6 @@ function main(loginclonefull, loginclonenovery, restorerrs, filelistclone, filel
 		end
 	end
 	----------------------
-	if (cl2 == 0) then return end
 	----------------------
 	local id = tachchuoi(clone)
 	local uid = id[1]
