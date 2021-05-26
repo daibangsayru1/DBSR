@@ -2031,54 +2031,6 @@ function novery(regbanghotmail, apikeydongvan, regbanggmailao, login);
 		tap(695, 1176);
 	end
 	if (regbanggmailao == "1") then
-		tap(99, 398);
-		usleep(2000000);
-		tap(225, 176);
-		usleep(1000000);
-		local line, cont = readtxt("sdt ngoai.txt")
-		test = line
-		writetxt2("sdt ngoai.txt", cont, line, "w", 500000)
-		tab = tachchuoi(line)
-		inputText(tab[1])
-		usleep(2000000);
-		tap(187, 195);
-		usleep(2000000)
-		tap(357, 400);
-		inputText(tab[2]);	
-		local a1 = tab[3]
-		local c1 = tonumber(a1)
-		local b1 = math.random(0,9)
-		for i = 1, c1-1 do
-			b1 = b1..math.random(0,9)
-		end
-		inputText(b1)
-		usleep(300000);
-		usleep(300000);
-		tap(709, 1274);
-		usleep(300000);
-		tap(663, 868);
-		usleep(2000000)
-		---.Điền mật khẩu---
-		local ten = {"nhung","lan","cam","tu","chau","ngoc","loan","thuy","ngoc","duyen","chi","nu","phan","trinh","thao","tuyet","ngan","dieu","mai","yen","tam","cuc","yen","duyen","tuyen","tuyen","nga","le","thuy","thuy"}; 
-		local tendem = {"trang","ngoc","hong","cam","to","uyen","hong","diem","thuy","ha","kim","ngoc","chau","hong","da","minh","thanh","ngoc","pham","ngoc","nhu","kim","thanh","cam","minh","ngoc","trang","hong","diem","thi"}; 
-		local ten = ten[math.random(27)];
-		local tendem = tendem[math.random(#tendem)];
-		local x = os.date '%X'
-		local giay = string.sub(x, 7, 8)
-		local phut = string.sub(x, 4, 5)
-		local gio = string.sub(x, 1, 2)
-		local date = os.date("%d");
-		tap(136, 354);
-		usleep(1000000)
-		local test = tendem..ten..giay..phut
-		matkhau = string.upper(string.sub(test, 1, 1))..string.upper(abc[math.random(26)])..string.sub(test, 2, string.len(test))
-		inputText(matkhau);
-		usleep(500000);
-		inputText("A");
-		usleep(500000);
-		tap(695, 1176);
-	end
-	if (regvr == 3) then
 		tap(382, 622);
 		usleep(1000000)
 		tap(218, 398);
