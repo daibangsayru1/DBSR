@@ -1309,7 +1309,7 @@ function goimail(apikeydongvan)
 		if (string.find(body, ".com") == nil) then
 			repeat
 				toast("Hết mail")
-				body = https.request(http://dongvanfb.com/api/buyaccount.php?apiKey="..apikeydongvan.."&type=1&amount=1)
+				body = https.request("http://dongvanfb.com/api/buyaccount.php?apiKey="..apikeydongvan.."&type=1&amount=1")
 			until(string.find(body, ".com") ~= nil)
 		end
 		local json = require("json")
