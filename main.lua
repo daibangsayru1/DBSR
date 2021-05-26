@@ -15,12 +15,7 @@ function main(loginclonefull, loginclonenovery, restorerrs, filelistclone, filel
 		local check = checkuid(ten[1])
 		if (check == 1) then
 			openURL("XoaInfo://DelRRS?listRRS="..ten[1])
-			repeat
-				toast("Đang xóa RRS")
-				local f = io.popen("ls var/mobile/Media/XoaInfo")
-				local b = f:read("all")
-				f:close()
-			until(#a > #b)
+			toast("Đang xóa RRS")
 			return
 		end
 		restore(ten[1])
@@ -70,12 +65,7 @@ function main(loginclonefull, loginclonenovery, restorerrs, filelistclone, filel
 				local a = f:read("all")
 				f:close()
 				openURL("XoaInfo://DelRRS?listRRS="..ten[1])
-				repeat
-					toast("Đang xóa RRS")
-					local f = io.popen("ls var/mobile/Media/XoaInfo")
-					local b = f:read("all")
-					f:close()
-				until(#a > #b)
+				toast("Đang xóa RRS")
 				return
 			end
 		end
@@ -161,12 +151,7 @@ function main(loginclonefull, loginclonenovery, restorerrs, filelistclone, filel
 				local a = f:read("all")
 				f:close()
 				openURL("XoaInfo://DelRRS?listRRS="..ten[1])
-				repeat
-					toast("Đang xóa RRS")
-					local f = io.popen("ls var/mobile/Media/XoaInfo")
-					local b = f:read("all")
-					f:close()
-				until(#a > #b)
+				toast("Đang xóa RRS")
 				local name = tachchuoi(clone)
 				toast("lưu rrs lại", 7)
 				luurrs(name[1], clone)
