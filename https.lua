@@ -1343,7 +1343,6 @@ function chiveri(apikeydongvan, id)
 	tapimg("skip.jpg", 1, 1000000)
 	---
 	local test1 = tapimg("addmail.jpg", 1, 1000000)
-	local test1 = tapimg("addmail.jpg", 1, 1000000)
 	if (test1 ~= 1) then
 		test2 = tapimg("xnmail.jpg", 1, 1000000)
 	else
@@ -1493,7 +1492,11 @@ function chiveri(apikeydongvan, id)
 		until(i == 5 or test1 == 1 or test2 == 1)
 	end
 	---nếu hiện very sdt
-	waitcolor(354, 327, 1603570, 395, 329, 1603570, 20, 0);
+	local x = waitcolor(354, 327, 1603570, 395, 329, 1603570, 20, 0);
+	if (x ~= 354 and x ~= 395) then
+		local test1 = tapimg("addmail.jpg", 1, 1000000)
+		local x = waitcolor(354, 327, 1603570, 395, 329, 1603570, 20, 0);
+	end
 	tap(700, 219);
 	tap(700, 219)
 	usleep(500000);
