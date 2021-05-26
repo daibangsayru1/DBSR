@@ -1305,6 +1305,7 @@ function goimail(apikeydongvan)
 		end
 		https = require("ssl.https")
 		local body = https.request("http://dongvanfb.com/api/buyaccount.php?apiKey="..apikeydongvan.."&type=1&amount=1")
+		if (body == nil) then alert("nill") end
 		if (string.find(body, ".com") == nil) then
 			repeat
 				toast("Hết mail")
