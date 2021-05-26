@@ -106,9 +106,8 @@ function main(loginclonefull, loginclonenovery, restorerrs, filelistclone, filel
 			if (#id == 2) then
 				clone = clone.."|"..key2fa.."|"..cookie.."|"..mail.."|"..mkmail
 			else
-				local clone = id[1]
-				table.insert(id, 3, key2fa)
-				for i = 2, #id do
+				local clone = id[1].."|"..id[2].."|"..key2fa
+				for i = 3, #id do
 					clone = clone.."|"..id[i]
 				end
 			end
