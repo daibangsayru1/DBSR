@@ -1826,7 +1826,7 @@ function bacfa(id)
 	end
 end
 ---
-function novery(regbanghotmail, apikeydongvan, slkb, login);
+function novery(regbanghotmail, apikeydongvan, regbanggmailao, login);
 	ktdb = {"!", "@", "#", "%", "?", "~", "-", "+", ":"}
 	local abc ={"q","w","e","r","t","y","u","i","o","p","a","s","d","f","g","h","j","k","l","z","x","c","v","b","n","m"}
 	local dsdt = {"097","098","096","032","033","034","035","036","037","038","090","091","092","093","094","095","099","070","078","085","081","082","083","084"};
@@ -2030,7 +2030,7 @@ function novery(regbanghotmail, apikeydongvan, slkb, login);
 		usleep(500000);
 		tap(695, 1176);
 	end
-	if (regvr == 2) then
+	if (regbanggmailao == "1") then
 		tap(99, 398);
 		usleep(2000000);
 		tap(225, 176);
@@ -2082,56 +2082,14 @@ function novery(regbanghotmail, apikeydongvan, slkb, login);
 		tap(382, 622);
 		usleep(1000000)
 		tap(218, 398);
-		usleep(500000)
-		local a = string.gsub(ten..math.random(99).."g"..ho, " ", "")
-		local b = string.gsub(ten..ho..math.random(99).."g", " ", "")
-		local c = string.gsub(ho..math.random(99).."g"..ten, " ", "")
-		local d = string.gsub(ho..ten..math.random(99).."g", " ", "")
-		rand = math.random(1,4)
-		local x1 = string.gsub(domain, "%.", "|")
-		temp = tachchuoi(x1)
-		if (temp[1] == "abc") then a1 = abc[math.random(#abc)] else a1 = temp[1] end
-		if (temp[2] == "abc") then 
-			b1 = abc[math.random(#abc)] 
-		else
-			if (temp[2] == "0") then
-				b1 = ""
-			else
-				b1 = math.random(1,9) 
-			end
-		end
-		if (temp[3] == "abc") then 
-			c1 = abc[math.random(#abc)] 
-		else
-			if (temp[3] == "0") then
-				c1 = ""
-			else
-				c1 = math.random(1,9) 
-			end
-		end
-		if (temp[4] == "abc") then 
-			d1 = abc[math.random(#abc)] 
-		else
-			if (temp[4] ~= "0") then
-				d1 = math.random(1,9)
-			else
-				d1 = ""
-			end
-		end
-		domain = a1..b1..c1..d1.."."..temp[5].." "
-		test = domain
-		if (rand == 1) then
-			mail = a.."@"..test
-		end
-		if (rand == 2) then
-			mail = b.."@"..test
-		end
-		if (rand == 3) then
-			mail = c.."@"..test
-		end
-		if (rand == 4) then
-			mail = d.."@"..test
-		end
+		local first, cont = readtxt("mail1.txt");
+		writetxt2("mail1.txt", cont, first, "w", 500000)
+		local last, cont = readtxt("mail2.txt", 1)
+		writetxt2("mail2.txt", cont, last, "w", 500000)
+		local devi = readtxt("device.txt")
+		local tem = tachchuoi(devi)
+		device = tem[1]..tem[2]
+		local mail = first..math.random(999)..abc[math.random(26)]..tem[2]..math.random(99)..last.."@gmail.com "
 		inputText(mail);
 		usleep(300000);
 		tap(709, 1174);
@@ -2140,9 +2098,7 @@ function novery(regbanghotmail, apikeydongvan, slkb, login);
 		---.Điền mật khẩu---
 		waitcolor(273, 245, 1603570, 5, 0);
 		tap(136, 354);
-		local a = ten..ho
-		local b = string.gsub(a, " ", "")
-		matkhau = string.upper(abc[math.random(26)])..b..math.random(99)..ktdb[math.random(#ktdb)]
+		matkhau = string.upper(abc[math.random(26)])..first..last..math.random(999)..ktdb[math.random(#ktdb)]
 		inputText(matkhau);
 		usleep(500000);
 		inputText("A");
