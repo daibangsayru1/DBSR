@@ -144,7 +144,7 @@ function main(loginclonefull, loginclonenovery, restorerrs, filelistclone, filel
 	doctb(tonumber(soluotxemthongbao))
 	luotnew(tonumber(soluotvuotnew), tonumber(soluotlikenew), tonumber(soluotbinhluan), tonumber(slchiaselentuong))
 	if (regnoverysaukhichay == "1") then
-		local id, matkhau, test = novery(regbanghotmail, apikeydongvan, slkb, 1);
+		local id, matkhau, test = novery(regbanghotmail, apikeydongvan, regbanggmailao, 1);
 		if (id ~= 0) then
 			ghichu = id
 			tapimg("ok.jpg", 1, 1000000)
