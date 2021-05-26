@@ -103,7 +103,14 @@ function main(loginclonefull, loginclonenovery, restorerrs, filelistclone, filel
 			if (key2fa == "KEY2FA") then
 				return
 			end
-			clone = clone.."|"..key2fa.."|"..cookie.."|"..mail.."|"..mkmail
+			if (#id == 2) then
+				clone = clone.."|"..key2fa.."|"..cookie.."|"..mail.."|"..mkmail
+			else
+				table.insert(id, 3, key2fa)
+				for i = 2, #id do
+					clone = id[1].."|"..id[i]
+				end
+			end
 		else
 			clone = clone.."|"..cookie.."|"..mail.."|"..mkmail
 		end
