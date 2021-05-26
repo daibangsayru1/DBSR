@@ -110,6 +110,8 @@ function main(loginclonefull, loginclonenovery, restorerrs, filelistclone, filel
 				for i = 2, #id do
 					clone = id[1].."|"..id[i]
 				end
+				alert(clone)
+				stop()
 			end
 		else
 			clone = clone.."|"..cookie.."|"..mail.."|"..mkmail
