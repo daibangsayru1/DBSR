@@ -1342,9 +1342,10 @@ function chiveri(apikeydongvan, id)
 	tapimg("skip.jpg", 1, 1000000)
 	tapimg("skip.jpg", 1, 1000000)
 	---
-	local test1 = tapimg("addmail.jpg", 1, 1)
+	local test1 = tapimg("addmail.jpg", 1, 1000000)
+	local test1 = tapimg("addmail.jpg", 1, 1000000)
 	if (test1 ~= 1) then
-		test2 = tapimg("xnmail.jpg", 1, 1)
+		test2 = tapimg("xnmail.jpg", 1, 1000000)
 	else
 		test2 = 0
 	end
