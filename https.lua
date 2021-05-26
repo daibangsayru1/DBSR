@@ -2311,7 +2311,7 @@ function novery(regbanghotmail, apikeydongvan, regbanggmailao, login);
 				if (string.find(cookie, "c_user=") ~= nil) then
 					id = string.sub(cookie, string.find(cookie, "c_user=")+7, string.find(cookie, "c_user=")+21)
 					cookie = clipText();
-					return id, matkhau, cookie
+					return id.."|"..matkhau.."|"..cookie
 				end
 				i = i + 1;
 				if (i == 5) then
