@@ -454,7 +454,7 @@ function luotnew(slvuot, sllike, slbl, slcs)
 		if (test1 == 1) then
 			loginlai(matkhau, key2fa)
 		end
-		vuotnew()
+		keoxuong(8000)
 		usleep(1000000)
 		if (like ~= sllike) then
 			local test1 = tapimg("like.jpg", 1, 1000000)
@@ -1303,8 +1303,8 @@ function goimail(apikeydongvan)
 			mail, mkmail, total = temp2[1], temp2[2], 1
 			return mail, mkmail, total
 		end
-		local http = require("socket.http")
-		local body = http.request("http://dongvanfb.com/api/buyaccount.php?apiKey="..apikeydongvan.."&type=1&amount=1")
+		https = require("ssl.https")
+		local body = https.request("http://dongvanfb.com/api/buyaccount.php?apiKey="..apikeydongvan.."&type=1&amount=1")
 		if (string.find(body, ".com") == nil) then
 			repeat
 				toast("Hết mail")
