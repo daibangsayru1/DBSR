@@ -93,7 +93,16 @@ function main(loginclonefull, loginclonenovery, restorerrs, filelistclone, filel
 			if (key2fa == "KEY2FA") then
 				return
 			end
-			clone = clone.."|"..key2fa.."|"..cookie.."|"..mail.."|"..mkmail
+			local tab = tachchuoi(clone)
+			if (#tab ~= 2) then
+				clone = tab[1].."|"..tab[2].."|"..key2fa
+				for i = 3, #tab do
+					clone = clone.."|"..tab[i]
+				end
+				alert(clone)
+			else
+				clone = clone.."|"..key2fa.."|"..cookie.."|"..mail.."|"..mkmail
+			end
 		else
 			clone = clone.."|"..cookie.."|"..mail.."|"..mkmail
 		end
