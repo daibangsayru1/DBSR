@@ -89,7 +89,7 @@ function main(loginclonefull, loginclonenovery, restorerrs, filelistclone, filel
 			end
 		end
 		if (bac2fa == "1") then
-			key2fa, goiy = bacfa(uid);
+			key2fa, goiy = bacfa(uid, matkhau);
 			if (key2fa == "KEY2FA") then
 				return
 			end
