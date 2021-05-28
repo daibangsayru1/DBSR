@@ -1202,6 +1202,7 @@ function login(filelistclone, loginclonenovery)
 		local x = waitcolor(399, 1260, 15201279, 515, 777, 31487, 287, 774, 31487, 20, 0);
 	end
 	tap(267, 541);
+	usleep(1000000)
 	j = 1
 	repeat
 		repeat
