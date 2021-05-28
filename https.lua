@@ -1664,7 +1664,7 @@ function upavatar(id)
 	
 end
 ------
-function bacfa(id)
+function bacfa(id, matkhau)
 	http = require("socket.http")
 	local test = tapimg("xnok.jpg", 1, 2000000)
 	if (test == 1) then
