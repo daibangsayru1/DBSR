@@ -100,7 +100,6 @@ function main(loginclonefull, loginclonenovery, restorerrs, filelistclone, filel
 				for i = 3, #tab do
 					clone = clone.."|"..tab[i]
 				end
-				alert(clone)
 			else
 				clone = clone.."|"..key2fa.."|"..cookie.."|"..mail.."|"..mkmail
 			end
