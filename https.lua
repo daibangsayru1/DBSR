@@ -1234,7 +1234,6 @@ function login(filelistclone, loginclonenovery)
 				key2fa = te[3]
 				if (key2fa == nil) then 
 					toast("Ko có Key2fa")
-					stop()
 					return 0, 0
 				else
 					local img = findImage("/var/mobile/Library/AutoTouch/Scripts/facebook/img/ok.jpg", 1, 0.99, nil)
