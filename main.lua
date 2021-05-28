@@ -73,7 +73,7 @@ function main(loginclonefull, loginclonenovery, restorerrs, filelistclone, filel
 	----------------------
 	----------------------
 	local id = tachchuoi(clone)
-	local uid = id[1]
+	local uid, matkhau = id[1], id[2]
 	if (chayvery == "1") then
 		mail, mkmail, total = goimail(apikeydongvan)
 		testvr, cookie = chiveri(apikeydongvan, uid)
