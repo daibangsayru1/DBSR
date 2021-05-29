@@ -16,6 +16,7 @@ function main(loginclonefull, loginclonenovery, restorerrs, filelistclone, filel
 		if (check == 1) then
 			openURL("XoaInfo://DelRRS?listRRS="..ten[1])
 			toast("Đang xóa RRS")
+			writetxt("RRS die.txt", clone, "a", 1, 1)
 			return
 		end
 		restore(ten[1])
