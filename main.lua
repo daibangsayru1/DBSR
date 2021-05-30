@@ -79,8 +79,6 @@ function main(loginclonefull, loginclonenovery, restorerrs, filelistclone, filel
 	if (chayvery == "1") then
 		mail, mkmail, total = goimail(apikeydongvan)
 		testvr, cookie = chiveri(apikeydongvan, uid)
-	else
-		cookie, mail, mkmail = "", "", ""
 	end
 	----------------------
 	if (testvr == 1) then
@@ -102,10 +100,14 @@ function main(loginclonefull, loginclonenovery, restorerrs, filelistclone, filel
 					clone = clone.."|"..tab[i]
 				end
 			else
-				clone = clone.."|"..key2fa.."|"..cookie.."|"..mail.."|"..mkmail
+				if (chayvery == "1") then
+					clone = clone.."|"..key2fa.."|"..cookie.."|"..mail.."|"..mkmail
+				end
 			end
 		else
-			clone = clone.."|"..cookie.."|"..mail.."|"..mkmail
+			if (chayvery == "1") then
+				clone = clone.."|"..cookie.."|"..mail.."|"..mkmail
+			end
 		end
 	else
 		if (restorerrs == "1") then
