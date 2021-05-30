@@ -76,7 +76,9 @@ function main(loginclonefull, loginclonenovery, restorerrs, filelistclone, filel
 	----------------------
 	local id = tachchuoi(clone)
 	local uid, matkhau = id[1], id[2]
-	if (chayvery == "1") then
+	local test1 = findimg("addmail.jpg", 1, 1)
+	local test2 = findimg("xnmail.jpg", 1, 1000000)
+	if (chayvery == "1" or test1 == 1 or test2 == 1) then
 		mail, mkmail, total = goimail(apikeydongvan)
 		testvr, cookie = chiveri(apikeydongvan, uid)
 	end
