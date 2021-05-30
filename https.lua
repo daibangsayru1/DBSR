@@ -1793,6 +1793,7 @@ function bacfa(id, matkhau)
 		---copy key
 		tap(371, 1064);
 	end
+	usleep(1000000)
 	local key2fa = clipText();
 	temp = string.gsub(key2fa, " ", "")
 	local body = http.request("https://2fa.live/tok/"..temp);
