@@ -1,4 +1,4 @@
-function main(loginclonefull, loginclonenovery, restorerrs, filelistclone, filelistrrs, chayvery, apikeydongvan, linklayotp, updanhba, upavt, upanhbia, upinfo, bac2fa, soluotkbtheogoiy, soluotkbtheouid, dongyketban, soluotxemthongbao, soluotjoinnhomgoiy, soluotjoinnhomtheolist, filelistnhom, sllikepage, filelistpage, soluotvuotnew, soluotlikenew, soluotbinhluan, tenfilechuanoidungbl, slchiaselentuong, dangstatus, statuskemanh, xuatclonesaukhiauto, linksheetluuclonefull, regnoverysaukhichay, regbanghotmail, regbangsdtthat, apiotpsim, regbanggmailao, veryhotmail, linksheetluunovery, luurrssaukhichay);
+function main(loginclonefull, loginclonenovery, restorerrs, filelistclone, filelistrrs, chayvery, apikeydongvan, linklayotp, updanhba, upavt, upanhbia, upinfo, bac2fa, changename, soluotkbtheogoiy, soluotkbtheouid, dongyketban, soluotxemthongbao, soluotjoinnhomgoiy, soluotjoinnhomtheolist, filelistnhom, sllikepage, filelistpage, soluotvuotnew, soluotlikenew, soluotbinhluan, tenfilechuanoidungbl, slchiaselentuong, dangstatus, statuskemanh, xuatclonesaukhiauto, linksheetluuclonefull, regnoverysaukhichay, regbanghotmail, regbangsdtthat, apiotpsim, regbanggmailao, veryhotmail, linksheetluunovery, luurrssaukhichay);
 	contair = require("socket.https")
 	if (loginclonefull == "1" or loginclonenovery == "1") then
 		clone, cl2 = login(filelistclone, loginclonenovery);---login
@@ -118,6 +118,9 @@ function main(loginclonefull, loginclonenovery, restorerrs, filelistclone, filel
 		return
 	end
 	clone = string.gsub(clone, "|0|", "|")
+	if (changename == "1") then
+		doiten(uid, matkhau)
+	end
 	---lưu lại ghi chú
 	if (restorerrs == "1") then
 		if(chayvery == "1" or bac2fa == "1") then
