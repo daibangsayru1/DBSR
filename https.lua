@@ -1337,7 +1337,11 @@ end
 function chiveri(dungapilayhotmail, id)
 	local a = readtxt("log.txt")
 	local log = tonumber(a)
-	if (log == 3) then alert("Lỗi very die liên tiếp") stop() end
+	if (log == 3) then 
+		alert("Lỗi very die liên tiếp") 
+		writetxt("log.txt", 0, "w", 0, 0)
+		stop() 
+	end
 	copyText(0)
 	if (getColor(35, 88) == 1603570 or getColor(139, 90) == 1603570) then
 		tap(66, 1280)
