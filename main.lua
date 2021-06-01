@@ -1,4 +1,4 @@
-function main(loginclonefull, loginclonenovery, restorerrs, filelistclone, filelistrrs, chayvery, apikeydongvan, linklayotp, updanhba, upavt, upanhbia, upinfo, bac2fa, changename, soluotkbtheogoiy, soluotkbtheouid, dongyketban, soluotxemthongbao, soluotjoinnhomgoiy, soluotjoinnhomtheolist, filelistnhom, sllikepage, filelistpage, soluotvuotnew, soluotlikenew, soluotbinhluan, tenfilechuanoidungbl, slchiaselentuong, dangstatus, statuskemanh, xuatclonesaukhiauto, linksheetluuclonefull, regnoverysaukhichay, regbanghotmail, regbangsdtthat, apiotpsim, regbanggmailao, veryhotmail, linksheetluunovery, luurrssaukhichay);
+function main(loginclonefull, loginclonenovery, restorerrs, filelistclone, filelistrrs, chayvery, dungapilayhotmail, linklayotp, updanhba, upavt, upanhbia, upinfo, bac2fa, changename, soluotkbtheogoiy, soluotkbtheouid, dongyketban, soluotxemthongbao, soluotjoinnhomgoiy, soluotjoinnhomtheolist, filelistnhom, sllikepage, filelistpage, soluotvuotnew, soluotlikenew, soluotbinhluan, tenfilechuanoidungbl, slchiaselentuong, dangstatus, statuskemanh, xuatclonesaukhiauto, value2, regnoverysaukhichay, regbanghotmail, regbangsdtthat, apiotpsim, regbanggmailao, veryhotmail, value3, luurrssaukhichay);
 	contair = require("socket.https")
 	if (loginclonefull == "1" or loginclonenovery == "1") then
 		clone, cl2 = login(filelistclone, loginclonenovery);---login
@@ -77,8 +77,8 @@ function main(loginclonefull, loginclonenovery, restorerrs, filelistclone, filel
 	local id = tachchuoi(clone)
 	local uid, matkhau = id[1], id[2]
 	if (chayvery == "1") then
-		mail, mkmail, total = goimail(apikeydongvan)
-		testvr, cookie = chiveri(apikeydongvan, uid)
+		mail, mkmail, total = goimail(dungapilayhotmail)
+		testvr, cookie = chiveri(dungapilayhotmail, uid)
 	end
 	----------------------
 	if (testvr == 1) then
