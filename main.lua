@@ -117,6 +117,7 @@ function main(loginclonefull, loginclonenovery, restorerrs, filelistclone, filel
 		end
 		return
 	end
+	clone = string.gsub(clone, "|0|", "|")
 	---lưu lại ghi chú
 	if (restorerrs == "1") then
 		if(chayvery == "1" or bac2fa == "1") then
