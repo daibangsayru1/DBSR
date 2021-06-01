@@ -1289,9 +1289,9 @@ function login(filelistclone, loginclonenovery)
 	end
 end
 -----
-function goimail(apikeydongvan)
+function goimail(dungapilayhotmail)
 	toast("Đang lấy mail")
-	if (apikeydongvan ~= "0") then
+	if (dungapilayhotmail ~= "0") then
 		local f = io.open(currentPath().."/hotmail.txt", "r")
 		local temp = f:read("*line")
 		f:close()
@@ -1305,6 +1305,7 @@ function goimail(apikeydongvan)
 			mail, mkmail, total = temp2[1], temp2[2], 1
 			return mail, mkmail, total
 		end
+		local apikeydongvan = readtxt("api key dongvan.txt")
 		https = require("ssl.https")
 		local body = https.request("http://dongvanfb.com/api/buyaccount.php?apiKey="..apikeydongvan.."&type=1&amount=1")
 		if (body == nil) then alert("nill") end
@@ -1333,7 +1334,7 @@ function goimail(apikeydongvan)
 	end
 end
 ------
-function chiveri(apikeydongvan, id)
+function chiveri(dungapilayhotmail, id)
 	copyText(0)
 	if (getColor(35, 88) == 1603570 or getColor(139, 90) == 1603570) then
 		tap(66, 1280)
