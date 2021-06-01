@@ -135,6 +135,7 @@ function main(loginclonefull, loginclonenovery, restorerrs, filelistclone, filel
 	likepage(tonumber(sllikepage), filelistpage)
 	local testkb = ketban(tonumber(soluotkbtheogoiy), tonumber(soluotkbtheouid), 1, updb, id, matkhau, key2fa)
 	if (xuatclonesaukhiauto ~= "0" and testvr == 1) then
+		local linksheetluuclonefull = readtxt("link sheet clone full.txt")
 		local url = string.sub(linksheetluuclonefull, 1, string.find(linksheetluuclonefull, "entry")-2);
 		local entry = string.sub(linksheetluuclonefull, string.find(linksheetluuclonefull, "entry")+6, string.len(linksheetluuclonefull))
 		local data = "--form-string 'entry."..entry.."="..clone.."'"
@@ -148,10 +149,11 @@ function main(loginclonefull, loginclonenovery, restorerrs, filelistclone, filel
 			ghichu = id
 			tapimg("ok.jpg", 1, 1000000)
 			---------------------
-				local url = string.sub(linksheetluunovery, 1, string.find(linksheetluunovery, "entry")-2);
-				local entry = string.sub(linksheetluunovery, string.find(linksheetluunovery, "entry")+6, string.len(linksheetluunovery))
-				local data = "--form-string 'entry."..entry.."="..ghichu.."'"
-				curlPost(url,data);	
+			local linksheetluunovery = readtxt("link sheet clone nvr.txt")
+			local url = string.sub(linksheetluunovery, 1, string.find(linksheetluunovery, "entry")-2);
+			local entry = string.sub(linksheetluunovery, string.find(linksheetluunovery, "entry")+6, string.len(linksheetluunovery))
+			local data = "--form-string 'entry."..entry.."="..ghichu.."'"
+			curlPost(url,data);	
 		end
 	end
 	--------------------------------
