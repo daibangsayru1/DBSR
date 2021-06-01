@@ -1335,6 +1335,9 @@ function goimail(dungapilayhotmail)
 end
 ------
 function chiveri(dungapilayhotmail, id)
+	local a = readtxt("log.txt")
+	local log = tonumber(a)
+	if (log == 3) then alert("Lỗi very die liên tiếp") stop() end
 	copyText(0)
 	if (getColor(35, 88) == 1603570 or getColor(139, 90) == 1603570) then
 		tap(66, 1280)
@@ -1473,6 +1476,8 @@ function chiveri(dungapilayhotmail, id)
 						end
 						test = checkuid(id)
 						if (test == 1) then
+							log = log + 1
+							writetxt("log.txt", log, "w", 0, 0)
 							writetxt("Clone DIE.txt", clone, "a", 1, 1)
 							return 0, 0
 						end
@@ -1490,6 +1495,7 @@ function chiveri(dungapilayhotmail, id)
 					usleep(3000000)
 					return 1, cookie
 				end
+				writetxt("log.txt", 0, "w", 0, 0)
 				cookie = clipText()
 				return 1, cookie
 			end
@@ -1537,6 +1543,8 @@ function chiveri(dungapilayhotmail, id)
 		end
 		test = checkuid(id)
 		if (test == 1) then
+			log = log + 1
+			writetxt("log.txt", log, "w", 0, 0)
 			writetxt("Clone DIE.txt", clone, "a", 1, 1)
 			return 0, 0
 		end
@@ -1558,6 +1566,7 @@ function chiveri(dungapilayhotmail, id)
 		writetxt("Lỗi OTP.txt", clone, "a", 1, 1)
 		return 0, 0
 	else
+		writetxt("log.txt", 0, "w", 0, 0)
 		if (getColor(35, 88) ~= 1603570 and getColor(139, 90) ~= 1603570) then
 			appKill("com.facebook.Facebook");
 			usleep(1000000)
