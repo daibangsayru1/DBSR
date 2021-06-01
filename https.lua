@@ -1469,10 +1469,10 @@ function chiveri(dungapilayhotmail, id)
 							usleep(500000);
 							tap(370, 509);
 							usleep(6000000)
-							---appKill("com.facebook.Facebook");
-							--usleep(2000000)
-							---appRun("com.facebook.Facebook");
-							---usleep(3000000)
+							appKill("com.facebook.Facebook");
+							usleep(2000000)
+							appRun("com.facebook.Facebook");
+							usleep(3000000)
 						end
 						test = checkuid(id)
 						if (test == 1) then
