@@ -1385,11 +1385,7 @@ function chiveri(dungapilayhotmail, id)
 			end
 			i = i + 1;
 			if (i == 5) then
-				repeat
-					openURL("fb://profile")
-					usleep(1000000)
-					cookie = clipText()
-				until (string.find(cookie, "c_user=") ~= nil)
+				cookie = clipText()
 				tap(691, 1289);
 				usleep(1000000)
 				keoxuong(2000)
