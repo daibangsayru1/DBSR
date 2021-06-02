@@ -142,12 +142,6 @@ function main(loginclonefull, loginclonenovery, restorerrs, filelistclone, filel
 		curlPost(url,data);
 	end
 	doctb(tonumber(soluotxemthongbao))
-	openURL("fb://profile")
-	usleep(1000000)
-	tap(673, 922)
-	tap(673, 922)
-	usleep(1000000)
-	tap(66, 1280)
 	luotnew(tonumber(soluotvuotnew), tonumber(soluotlikenew), tonumber(soluotbinhluan), tonumber(slchiaselentuong))
 	if (regnoverysaukhichay == "1") then
 		local id, matkhau, test = novery(regbanghotmail, apikeydongvan, regbanggmailao, 1);
