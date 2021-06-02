@@ -2052,9 +2052,9 @@ function novery(regbanghotmail, apikeydongvan, regbanggmailao, login);
 		tap(382, 622);
 		usleep(1000000)
 		tap(218, 398);
-		local first, cont = readtxt("mail1.txt");
+		first, cont = readtxt("mail1.txt");
 		writetxt2("mail1.txt", cont, first, "w", 500000)
-		local last, cont = readtxt("mail2.txt", 1)
+		last, cont = readtxt("mail2.txt", 1)
 		writetxt2("mail2.txt", cont, last, "w", 500000)
 		local devi = readtxt("device.txt")
 		local tem = tachchuoi(devi)
@@ -2121,7 +2121,7 @@ function novery(regbanghotmail, apikeydongvan, regbanggmailao, login);
 				local a = ten..math.random(99)..ho
 				local b = string.gsub(a, " ", "")
 				test = abc[math.random(#abc)]..abc[math.random(#abc)]..abc[math.random(#abc)]..abc[math.random(#abc)]..".com "
-				local mail = b.."@"..test
+				local mail = first..math.random(999)..abc[math.random(26)]..tem[2]..math.random(99)..last.."@g"..abc[math.random(26)]..abc[math.random(26)]..".com "
 				inputText(mail);
 				usleep(300000);
 				tap(709, 1174);
