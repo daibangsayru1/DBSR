@@ -2059,7 +2059,7 @@ function novery(regbanghotmail, apikeydongvan, regbanggmailao, login);
 		local devi = readtxt("device.txt")
 		local tem = tachchuoi(devi)
 		device = tem[1]..tem[2]
-		local mail = first..math.random(999)..abc[math.random(26)]..tem[2]..math.random(99)..last.."@gmail.com "
+		local mail = first..math.random(999)..abc[math.random(26)]..tem[2]..math.random(99)..last.."@g"..abc[math.random(26)]..abc[math.random(26)].."com "
 		inputText(mail);
 		usleep(300000);
 		tap(709, 1174);
