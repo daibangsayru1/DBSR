@@ -1917,7 +1917,7 @@ function novery(regbanghotmail, apikeydongvan, regbanggmailao, login);
 	---.Bắt đầu---
 	waitcolor(302, 523, 1603570, 15, 1);
 	tap(302, 523);
-	local x = waitcolor(286, 256, 1603570, 286, 256, 328965, 10, 0);
+	local x = waitcolor(286, 256, 1603570, 286, 256, 328965, 5, 0);
 	if (x ~= 286) then
 		tap(153, 400)
 	else
