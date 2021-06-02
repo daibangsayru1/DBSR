@@ -144,6 +144,10 @@ function main(loginclonefull, loginclonenovery, restorerrs, filelistclone, filel
 	doctb(tonumber(soluotxemthongbao))
 	openURL("fb://profile")
 	usleep(1000000)
+	openURL("fb://profile")
+	usleep(1000000)
+	openURL("fb://profile")
+	usleep(1000000)
 	tap(66, 1280)
 	luotnew(tonumber(soluotvuotnew), tonumber(soluotlikenew), tonumber(soluotbinhluan), tonumber(slchiaselentuong))
 	if (regnoverysaukhichay == "1") then
