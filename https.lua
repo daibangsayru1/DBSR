@@ -1355,6 +1355,7 @@ function chiveri(dungapilayhotmail, id)
 	local test1 = tapimg("addmail.jpg", 1, 1)
 	local test1 = tapimg("addmail.jpg", 1, 1)
 	if (test1 ~= 1) then
+		test2 = tapimg("xnmail.jpg", 1, 1)
 		test2 = tapimg("xnmail.jpg", 1, 1000000)
 	else
 		test2 = 0
@@ -1505,6 +1506,7 @@ function chiveri(dungapilayhotmail, id)
 	local x = waitcolor(354, 327, 1603570, 395, 329, 1603570, 20, 0);
 	if (x ~= 354 and x ~= 395) then
 		local test1 = tapimg("addmail.jpg", 1, 1000000)
+		test2 = tapimg("xnmail.jpg", 1, 1000000)
 		local x = waitcolor(354, 327, 1603570, 395, 329, 1603570, 20, 0);
 	end
 	tap(700, 219);
