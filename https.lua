@@ -1231,7 +1231,7 @@ function login(filelistclone, loginclonenovery)
 		if (x == 353 or x == 73) then
 			if (getColor(206, 604) == 0 or getColor(543, 607) == 0) then
 				local te = tachchuoi(clone)
-				key2fa = te[3]
+				key2fa = string.gsub(te[3], " ", "")
 				if (key2fa == nil) then 
 					toast("Ko có Key2fa")
 					return 0, 0
