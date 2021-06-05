@@ -1424,6 +1424,7 @@ function chiveri(dungapilayhotmail, id)
 				---tap xem tấc cả
 				---tap(642, 613)
 				tapimg("xemtacca.jpg", 1, 1)
+				tap(642, 595)
 				usleep(3000000)
 				local test = tapimg("dangxuattb.jpg", 1, 2000000)
 				if (test ~= 1) then
