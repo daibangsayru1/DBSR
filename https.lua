@@ -1441,14 +1441,21 @@ function chiveri(dungapilayhotmail, id)
 					stop()
 				end
 				tap(300, 494)
-				local x = waitcolor(273, 465, 1603570, 466, 465, 1603570, 20, 1)
-				if (x == 273 or x == 466) then
-					usleep(1000000)
-					tap(378, 587)
-					usleep(2000000)
-					tap(373, 589)
-					usleep(2000000)
-					tap(300, 257)
+				local x = waitcolor(100, 188, 3889560, 273, 465, 1603570, 466, 465, 1603570, 20, 1)
+				if (x == 273 or x == 466 or x == 100) then
+					if (x == 100) then
+						usleep(1000000)
+						tap(378, 708)
+						usleep(1000000)
+						tap(363, 511)
+					else
+						usleep(1000000)
+						tap(378, 587)
+						usleep(2000000)
+						tap(373, 589)
+						usleep(2000000)
+						tap(300, 257)
+					end
 					usleep(1000000)
 					inputText(mail)
 					usleep(1000000)
