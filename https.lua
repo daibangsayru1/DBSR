@@ -20,7 +20,7 @@ function doiten(id, matkhau)
 	---TH hiện m&#224;n
 	keoxuong(1000)
 	keoxuong(1000)
-	---tap(285, 1085);
+	tap(285, 1085);
 	usleep(2000000)
 	tapimg("caidat.jpg", 1, 1000000)
 	tapimg("caidat2.jpg", 1, 1000000)
