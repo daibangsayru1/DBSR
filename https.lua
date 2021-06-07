@@ -1065,20 +1065,28 @@ function restore(uid)
 	usleep(2000000)
 	io.popen("activator send switch-off.com.a3tweaks.switch.airplane-mode")
 	usleep(2000000)
-	---f = assert(io.popen("curl ident.me"))
-	---ip = f:read("all")
-	---if (string.find(ip, ".") == nil and string.find(ip, ":") == nil) then
 	io.popen("activator send switch-off.com.a3tweaks.switch.airplane-mode")
 	usleep(4000000)
 	check3g()
-	openURL("XoaInfo://Restore?"..uid)
-	usleep(4000000)
-	i = 1
 	repeat
-		a = appState("com.ienthach.XoaInfo")
-		usleep(2000000);
-		i = i + 1
-	until (i == 20 or a == "NOT RUNNING")
+		openURL("XoaInfo://Restore?"..uid)
+		usleep(4000000)
+		i = 1
+		repeat
+			local a = appState("com.ienthach.XoaInfo")
+			usleep(2000000);
+			i = i + 1
+		until (i == 20 or a == "NOT RUNNING")
+		local a = appState("com.ienthach.XoaInfo")
+		if (a ~= "NOT RUNNING") then
+			toast("Lỗi xóa info")
+			keyDown(KEY_TYPE.HOME_BUTTON);
+			usleep(79712.00);
+			keyUp(KEY_TYPE.HOME_BUTTON);
+			usleep(119447.25);
+			usleep(5000000)
+		end
+	until (a == "NOT RUNNING")
 end
 function Danhba()
 	local f = io.open("/var/mobile/Library/AutoTouch/danhba.vcf", "w");
