@@ -20,10 +20,14 @@ function doiten(id, matkhau)
 	---TH hiện m&#224;n
 	keoxuong(1000)
 	keoxuong(1000)
-	tap(285, 1085);
-	usleep(2000000)
-	tapimg("caidat.jpg", 1, 1000000)
-	tapimg("caidat2.jpg", 1, 1000000)
+	local a = tapimg("caidat.jpg", 1, 1000000)
+	local b = tapimg("caidat2.jpg", 1, 1000000)
+	if (a ~= 1 and b ~= 1) then
+		tap(285, 1085);
+		usleep(2000000)
+		tapimg("caidat.jpg", 1, 1000000)
+		tapimg("caidat2.jpg", 1, 1000000)
+	end
 	x = waitcolor(62, 1047, 13556448, 69, 1196, 13556448, 83, 694, 13556448, 20, 1)
 	if (getColor(62, 1047) ~= 13556448 and getColor(69, 1196) ~= 13556448 and getColor(83, 694) ~= 13556448) then
 		tap(43, 89);
