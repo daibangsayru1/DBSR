@@ -1066,6 +1066,7 @@ function restore(uid)
 	---if (string.find(ip, ".") == nil and string.find(ip, ":") == nil) then
 	io.popen("activator send switch-off.com.a3tweaks.switch.airplane-mode")
 	usleep(4000000)
+	check3g()
 	openURL("XoaInfo://Restore?"..uid)
 	usleep(4000000)
 	i = 1
