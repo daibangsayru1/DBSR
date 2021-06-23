@@ -1,4 +1,8 @@
 ---1
+function tapabc(abc)
+	local tem = tachchuoi(abc)
+	tap(tem[1], tem[2])
+end
 function doiten(id, matkhau)
 	---usleep(2000000)
 	---appKill("com.facebook.Facebook")
