@@ -6,9 +6,7 @@ function tapchu(text, space)
 		for j = 1, #tababc do
 			local tem = tachchuoi(tababc[j])
 			if (abc == tem[1]) then
-				if (abc ~= " " and space == 0) then
-					tap(tem[2], tem[3])
-				end
+				tap(tem[2], tem[3])
 			end
 		end
 	end
