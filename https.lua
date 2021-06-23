@@ -1927,19 +1927,6 @@ function novery(regbanghotmail, apikeydongvan, regbanggmailao, login);
 		---.Tạo tk mới---
 		x = waitcolor(399, 1260, 15201279, 515, 777, 31487, 287, 774, 31487, 20, 0);
 		---đoạn tút sai
-		local id = abc[math.random(#abc)]..abc[math.random(#abc)]..abc[math.random(#abc)]..abc[math.random(#abc)]..abc[math.random(#abc)]..abc[math.random(#abc)]..abc[math.random(#abc)]..abc[math.random(#abc)]..abc[math.random(#abc)]..abc[math.random(#abc)]..math.random(999).."@gmail.com"
-		local matkhau = abc[math.random(#abc)]..abc[math.random(#abc)]..abc[math.random(#abc)]..abc[math.random(#abc)]..abc[math.random(#abc)]..abc[math.random(#abc)]..abc[math.random(#abc)]..abc[math.random(#abc)]..abc[math.random(#abc)]..abc[math.random(#abc)]
-		tap(267, 541);
-		inputText(id)
-		usleep(500000)
-		tap(229, 417);
-		usleep(500000)
-		inputText(matkhau)
-		usleep(500000)
-		tap(270, 520);
-		x, y = waitcolor(572, 86, 4351922, 580, 40, 4351922, 661, 1263, 1603570, 35, 88, 1603570, 139, 90, 1603570, 525, 506, 1603570, 708, 469, 1603570, 353, 326, 1269698, 73, 767, 1269698, 60, 1)
-		tapimg("ok.jpg", 1, 2000000)
-		tap(367, 825)
 	end
 	---waitcolor(356, 134, 1603570, 372, 1259, 1603570, 15, 1)
 	tap(399, 1260);
