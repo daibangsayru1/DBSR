@@ -1,12 +1,14 @@
 ---1
-function tapchu(text)
+function tapchu(text, space)
 	local tababc = {"q|35|960", "w|111|960", "e|187|960", "r|259|960", "t|334|960", "y|412|960", "u|488|960", "i|564|960", "o|638|960", "p|713|960", "a|72|1070", "s|145|1070", "d|223|1070", "f|300|1070", "g|373|1070", "h|450|1070", "j|525|1070", "k|599|1070", "l|676|1070", "z|147|1170", "x|221|1170", "c|299|1170", "v|374|1170", "b|451|1170", "n|527|1170", "m|599|1170", " |315|1280"}																				
 	for i = 1, #text do
 		local abc = string.sub(text, i, i)
 		for j = 1, #tababc do
 			local tem = tachchuoi(tababc[j])
 			if (abc == tem[1]) then
-				tap(tem[2], tem[3])
+				if (abc ~= " " and space == 0) then
+					tap(tem[2], tem[3])
+				end
 			end
 		end
 	end
