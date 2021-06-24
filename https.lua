@@ -1771,31 +1771,7 @@ function bacfa(id, matkhau)
 	---end
 	waitcolor(580, 591, 1603570, 643, 662, 1603570, 580, 662, 1603570, 639, 682, 1603570, 643, 622, 1603570, 8, 1)
 	--tap xem tấc cả
-	tapimg("xemtacca.jpg", 1, 1)
-	tap(642, 595)
-	usleep(3000000)
-	local test = tapimg("dangxuattb.jpg", 1, 2000000)
-	if (test ~= 1) then
-		local test = tapimg("dangxuattb.jpg", 1, 2000000)
-		if (test ~= 1) then
-			keoxuong(1000)
-			usleep(1000000)
-			local test = tapimg("dangxuattb.jpg", 1, 2000000)
-		end
-	end
-	local x = waitcolor(268, 494, 4227327, 500, 494, 4227327, 20, 0)
-	if (x ~= 268 and x ~= 500) then
-		alert("Lỗi")
-		stop()
-	end
-	tap(300, 494)
-	usleep(4000000)
-	tap(38, 94)
-	usleep(1000000)
-	tap(38, 94)
-	usleep(1000000)
-	tap(38, 94)
-	usleep(1000000)
+	
 	------------------
 	touchDown(4, 517.30, 1102.07);
 	usleep(14515.92);
