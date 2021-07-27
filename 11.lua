@@ -556,7 +556,7 @@ io.popen("activator send switch-off.com.a3tweaks.switch.wifi")
 ---------
 resetdata();
 if (very == 0) then
-	local sdt = laydong1("sdt ok.txt")
+	sdt = laydong1("sdt ok.txt")
 	testsdt = 1
 	if (sdt == nil) then
 		testsdt = 2
