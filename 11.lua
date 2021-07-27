@@ -906,18 +906,16 @@ if (gd1 == 1799396 or x == 35 or x == 139 or x1 == 1603570 or x2 == 1668851 or x
 				openURL("fb://profile");
 				usleep(1000000);
 				cookie = clipText();
-				if (cookie ~= "11") then
-					id = string.sub(cookie, string.find(cookie, "c_user=")+7, string.find(cookie, "c_user=")+21)
-					local link = readtxt("link sheet clone nvr.txt")
-					local url = string.sub(link, 1, string.find(link, "entry")-2);
-					local entry = string.sub(link, string.find(link, "entry")+6, string.len(link))
-					local data = "--form-string 'entry."..entry.."="..id.."|"..matkhau.."|"..cookie.."'"
-					curlPost(url,data);
-					toast("Lỗi vr, lưu nvr")
-				end
 				i = i + 1
 			until(cookie ~= "11" or i == 4)
 		end
+		id = string.sub(cookie, string.find(cookie, "c_user=")+7, string.find(cookie, "c_user=")+21)
+		local link = readtxt("link sheet clone nvr.txt")
+		local url = string.sub(link, 1, string.find(link, "entry")-2);
+		local entry = string.sub(link, string.find(link, "entry")+6, string.len(link))
+		local data = "--form-string 'entry."..entry.."="..id.."|"..matkhau.."|"..cookie.."'"
+		curlPost(url,data);
+		toast("Lỗi vr, lưu nvr")
 	else
 		if (cookie == "11") then
 			tap(372, 791)
