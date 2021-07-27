@@ -349,12 +349,11 @@ end
 ---
 function getotp(site, sdt)
 	if (site == 1) then
-		local api = readtxt("api textnow.txt")
 		local i = 1;
 		repeat
 			toast("Chờ otp.. "..i)
 			sleep(4)
-			local body = http.request("http://codetextnow.com/api.php?apikey="..api.."&action=data-request&requestId="..requestId)
+			local body = http.request("http://codetextnow.com/api.php?apikey="..keycodetext.."&action=data-request&requestId="..requestId)
 			if (body ~= nil) then
 				if (string.find(body, "%[") ~= nil) then
 					local a = string.sub(body, string.find(body, "%[")+1, string.len(body))
@@ -376,31 +375,46 @@ function getotp(site, sdt)
 			end
 		until(i == 12);
 	else
-		local api = readtxt("api otpmmo.txt")
-		local i = 1;
-		repeat
-			toast("Chờ otp.. "..i)
-			sleep(4)
-			local body = http.request("https://otpmmo.xyz/textnow/api.php?apikey="..api.."&type=getotp&sdt="..sdt)
-			if (body ~= nil) then
-				if (string.len(body) > 3) then
-					local tem = string.sub(body, 2, string.len(body)-1)
-					local json = require("json")
-					local tem2 = json.decode(tem)
-					local tem3 = tem2["otp"]
-					local otp = string.sub(tem3, 1, string.find(tem3, " "))
-					return otp
+		if (site == 2)
+			local i = 1;
+			repeat
+				toast("Chờ otp.. "..i)
+				sleep(4)
+				local body = http.request("https://otpmmo.xyz/textnow/api.php?apikey="..keyotpmmo.."&type=getotp&sdt="..sdt)
+				if (body ~= nil) then
+					if (string.len(body) > 3) then
+						local tem = string.sub(body, 2, string.len(body)-1)
+						local json = require("json")
+						local tem2 = json.decode(tem)
+						local tem3 = tem2["otp"]
+						local otp = string.sub(tem3, 1, string.find(tem3, " "))
+						return otp
+					else
+					end
 				else
+					alert("body2")
+					stop()
 				end
-			else
-				alert("body2")
-				stop()
-			end
-			i = i + 1
-			if (i == 12) then
-				return 0
-			end
-		until(i == 12);
+				i = i + 1
+				if (i == 12) then
+					return 0
+				end
+			until(i == 12);
+		else
+			local i = 1;
+			repeat
+				toast("Chờ otp.. "..i)
+				sleep(4)
+				local body = http.request("https://access.simfast.vn/api/ig/code?api_token="..keysimfast.."&sessionId="..seson)
+				local b = string.sub(body, string.find(body, "data")+6, string.find(body, "}"))
+				local a = json.decode(b)
+				if (a["sms"] ~= nil) then return a["sms"] end
+				i = i + 1
+				if (i == 12) then
+					return 0
+				end
+			until(i == 12);
+		end
 	end
 end
 ----------
