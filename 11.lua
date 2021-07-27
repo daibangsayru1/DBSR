@@ -31,13 +31,23 @@ function writetxt(file, content, style, time, enter)
 		f:close();
 	end
 end
-local http = require("socket.http")
-local body = http.request("https://raw.githubusercontent.com/daibangsayru1/DBSR/main/11.lua")
-writetxt("11.lua", body, "w", 1, 0)
+keyDown(KEY_TYPE.HOME_BUTTON);
+usleep(79712.00);
+keyUp(KEY_TYPE.HOME_BUTTON);
+usleep(119447.25);
+usleep(2000000)
+
+keyDown(KEY_TYPE.HOME_BUTTON);
+usleep(79712.00);
+keyUp(KEY_TYPE.HOME_BUTTON);
+usleep(119447.25);
+usleep(2000000)
 ---
-repeat
 	for i = 1, 3 do
 		usleep(2000000)
 		toast("ahihi"..i)
 	end
-until (1 == 2)
+local http = require("socket.http")
+local body = http.request("https://raw.githubusercontent.com/daibangsayru1/DBSR/main/11.lua")
+writetxt("11.lua", body, "w", 1, 0)
+io.popen("killall -9 SpringBoard")
