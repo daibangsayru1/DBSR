@@ -38,6 +38,6 @@ writetxt("11.lua", body, "w", 1, 0)
 repeat
 	for i = 1, 3 do
 		usleep(2000000)
-		toast(i)
+		toast("ahihi"..i)
 	end
 until (1 == 2)
