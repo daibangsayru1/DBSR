@@ -469,14 +469,14 @@ if (sdt == nil) then
 	line = daodong("data.txt")
 	sdt = string.sub(line, 1, 7)..os.date("%d")..math.random(0, 9)
 end
-local a = getsdt(api)
+local a = getsdt(keycodetext)
 if (a ~= 0) then
 	toast("Get sdt codetextnow")
 	writetxt("sdt ok.txt", a, "a", 1, 1)
 	writetxt("data.txt", "", "a", 1, 1)
 	writetxt("data.txt", a, "a", 1, 0)
 else
-	local b = getsdt2(api)
+	local b = getsdt2(keyotpmmo)
 	if (b ~= 0) then
 		toast("Get sdt otpmmo")
 		writetxt("sdt ok.txt", b, "a", 1, 1)
