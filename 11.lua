@@ -2,8 +2,9 @@ local keycodetext = "dc35eccbfa508142d19d7ef633b5d8b2"
 local keyotpmmo = "OWQI6XM4BZYDRU8T1626918037"
 local keysimfast = "ZtlMzbXpEBcWHq2LVTnw"
 ---
-local very = 1
-local avt = 1
+local very = 1 --- 1: có, 0: không
+local avt = 1 --- 1: có, 0: không
+local value = 1 --- 1: chỉ chạy 1 web simfast, 0: auto 2 web sdt ngoại
 --------------------------------------------------------
 function tapimg2(img, sl, time, regon)
 	local img = findImage("/var/mobile/Library/AutoTouch/Scripts/facebook/img/"..img, sl, 0.99, regon)
@@ -327,6 +328,82 @@ function getsdt2(keyotpmmo)
 	until(string.len(body) == 10)
 end
 ---
+function getsdt3(keysimfast)
+	local json = require("json")
+	repeat
+		local body = http.request("https://access.simfast.vn/api/ig/request?api_token="..keysimfast.."&serviceId=19")
+		if (string.find(body, "session_id") ~= nil) then
+			id = string.sub(body, string.find(body, "session_id")+12, string.find(body, "session_id")+18)
+		else
+			alert(body)
+			stop()
+		end
+	until(string.find(body, "session_id") ~= nil)
+	repeat
+		local body = http.request("https://access.simfast.vn/api/ig/code?api_token="..keysimfast.."&sessionId="..id)
+		local b = string.sub(body, string.find(body, "data")+6, string.find(body, "}"))
+		local a = json.decode(b)
+		if (a["phone"] ~= nil) then return a["phone"], id end
+	until(a["phone"] ~= nil)
+end
+---
+function getotp(site, sdt)
+	if (site == 1) then
+		local api = readtxt("api textnow.txt")
+		local i = 1;
+		repeat
+			toast("Chờ otp.. "..i)
+			sleep(4)
+			local body = http.request("http://codetextnow.com/api.php?apikey="..api.."&action=data-request&requestId="..requestId)
+			if (body ~= nil) then
+				if (string.find(body, "%[") ~= nil) then
+					local a = string.sub(body, string.find(body, "%[")+1, string.len(body))
+					local b = string.sub(a, 1, string.find(a, "%]")-1)
+					local c = json.decode(b)
+					otp = c["otp"]
+					if (#otp ~= 0) then
+						toast("OTP: "..otp)
+						return otp
+					end
+				end
+			else
+				alert("body1")
+				stop()
+			end
+			i = i + 1
+			if (i == 12) then
+				return 0
+			end
+		until(i == 12);
+	else
+		local api = readtxt("api otpmmo.txt")
+		local i = 1;
+		repeat
+			toast("Chờ otp.. "..i)
+			sleep(4)
+			local body = http.request("https://otpmmo.xyz/textnow/api.php?apikey="..api.."&type=getotp&sdt="..sdt)
+			if (body ~= nil) then
+				if (string.len(body) > 3) then
+					local tem = string.sub(body, 2, string.len(body)-1)
+					local json = require("json")
+					local tem2 = json.decode(tem)
+					local tem3 = tem2["otp"]
+					local otp = string.sub(tem3, 1, string.find(tem3, " "))
+					return otp
+				else
+				end
+			else
+				alert("body2")
+				stop()
+			end
+			i = i + 1
+			if (i == 12) then
+				return 0
+			end
+		until(i == 12);
+	end
+end
+----------
 function goisim()
 	local c = readtxt("sdt ok.txt")
 	local d = type(c)
@@ -464,27 +541,56 @@ usleep(1000000)
 io.popen("activator send switch-off.com.a3tweaks.switch.wifi")
 ---------
 resetdata();
-local sdt = laydong1("sdt ok.txt")
-testsdt = 1
-if (sdt == nil) then
-	testsdt = 2
-	toast("Lấy data.txt")
-	line = daodong("data.txt")
-	sdt = string.sub(line, 1, 7)..os.date("%d")..math.random(0, 9)
-end
-local a = getsdt(keycodetext)
-if (a ~= 0) then
-	toast("Get sdt codetextnow")
-	writetxt("sdt ok.txt", a, "a", 1, 1)
-	writetxt("data.txt", "", "a", 1, 1)
-	writetxt("data.txt", a, "a", 1, 0)
-else
-	local b = getsdt2(keyotpmmo)
-	if (b ~= 0) then
-		toast("Get sdt otpmmo")
-		writetxt("sdt ok.txt", b, "a", 1, 1)
+if (very == 0) then
+	local sdt = laydong1("sdt ok.txt")
+	testsdt = 1
+	if (sdt == nil) then
+		testsdt = 2
+		toast("Lấy data.txt")
+		line = daodong("data.txt")
+		sdt = string.sub(line, 1, 7)..os.date("%d")..math.random(0, 9)
+	end
+	local a = getsdt(keycodetext)
+	if (a ~= 0) then
+		toast("Get sdt codetextnow")
+		writetxt("sdt ok.txt", a, "a", 1, 1)
 		writetxt("data.txt", "", "a", 1, 1)
-		writetxt("data.txt", b, "a", 1, 0)
+		writetxt("data.txt", a, "a", 1, 0)
+	else
+		local b = getsdt2(keyotpmmo)
+		if (b ~= 0) then
+			toast("Get sdt otpmmo")
+			writetxt("sdt ok.txt", b, "a", 1, 1)
+			writetxt("data.txt", "", "a", 1, 1)
+			writetxt("data.txt", b, "a", 1, 0)
+		end
+	end
+else
+	if (value == 0) then
+		repeat
+			local a, a1 = getsdt(keycodetext)
+			if (a ~= 0) then
+				sdt = a
+				site = 1
+				requestId = a1
+				toast("Get sdt codetextnow")
+				writetxt("data.txt", "", "a", 1, 1)
+				writetxt("data.txt", a, "a", 1, 0)
+			else
+				local b = getsdt2(keyotpmmo)
+				if (b ~= 0) then
+					sdt = b
+					site = 2
+					toast("Get sdt otpmmo")
+					writetxt("data.txt", "", "a", 1, 1)
+					writetxt("data.txt", b, "a", 1, 0)
+				end
+			end
+		until (a ~= 0 or b ~= 0)
+	else
+		sdt, seson = getsdt3(keysimfast)
+		toast("Get sdt simfast")
+		site = 3
 	end
 end
 appRun("com.facebook.Facebook");
@@ -512,7 +618,9 @@ tapchu(ten)
 usleep(300000)
 tap(617, 1288);
 waitcolor(134, 256, 1603570, 15, 0);
-goisim()
+if (very == 0) then
+	goisim()
+end
 touchDown(3, 581.97, 1057.27);
 usleep(33058.08);
 touchMove(3, 580.94, 1074.57);
@@ -599,13 +707,17 @@ else
 	usleep(1000000);
 end
 waitcolor(170, 298, 1603570, 15, 1);
-tap(78, 400)
-usleep(1500000)
-tap(253, 290)
-sleep(2)
+if (value == 0) then
+	tap(78, 400)
+	usleep(1500000)
+	tap(253, 290)
+	sleep(2)
+end
 tap(300, 395);
 sleep(2)
-goisim()
+if (very == 0) then
+	goisim()
+end
 tapso(sdt)
 usleep(300000);
 tap(669, 867);
@@ -673,8 +785,58 @@ repeat
 ---	waitcolor(278, 508, 2984191, 469, 508, 2984191, 60, 0)
 	---lỗi ko thể xử l&#253; đăng k&#253;
 	if (testsdt == 15738953) then
-		line = daodong("data.txt")
-		sdt = string.sub(line, 1, 7)..os.date("%d")..math.random(0, 9)
+		if (very == 0) then
+			local sdt = laydong1("sdt ok.txt")
+			testsdt = 1
+			if (sdt == nil) then
+				testsdt = 2
+				toast("Lấy data.txt")
+				line = daodong("data.txt")
+				sdt = string.sub(line, 1, 7)..os.date("%d")..math.random(0, 9)
+			end
+			local a = getsdt(keycodetext)
+			if (a ~= 0) then
+				toast("Get sdt codetextnow")
+				writetxt("sdt ok.txt", a, "a", 1, 1)
+				writetxt("data.txt", "", "a", 1, 1)
+				writetxt("data.txt", a, "a", 1, 0)
+			else
+				local b = getsdt2(keyotpmmo)
+				if (b ~= 0) then
+					toast("Get sdt otpmmo")
+					writetxt("sdt ok.txt", b, "a", 1, 1)
+					writetxt("data.txt", "", "a", 1, 1)
+					writetxt("data.txt", b, "a", 1, 0)
+				end
+			end
+		else
+			if (value == 0) then
+				repeat
+					local a, a1 = getsdt(keycodetext)
+					if (a ~= 0) then
+						sdt = a
+						site = 1
+						requestId = a1
+						toast("Get sdt codetextnow")
+						writetxt("data.txt", "", "a", 1, 1)
+						writetxt("data.txt", a, "a", 1, 0)
+					else
+						local b = getsdt2(keyotpmmo)
+						if (b ~= 0) then
+							sdt = b
+							site = 2
+							toast("Get sdt otpmmo")
+							writetxt("data.txt", "", "a", 1, 1)
+							writetxt("data.txt", b, "a", 1, 0)
+						end
+					end
+				until (a ~= 0 or b ~= 0)
+			else
+				sdt, seson = getsdt3(keysimfast)
+				toast("Get sdt simfast")
+				site = 3
+			end
+		end
 		tap(689, 355)
 		tapso(sdt)
 		usleep(300000);
@@ -703,32 +865,102 @@ local gd1 = getColor(306, 474)--- 1799396)
 ---nếu reg ok th&#236; xử l&#253; tếp
 toast(sdt, 8)
 if (gd1 == 1799396 or x == 35 or x == 139 or x1 == 1603570 or x2 == 1668851 or x3 == 1603570 or x4 == 1603570 or x5 == 1603570 or x6 == 1603570 or x5 == 1603571 or x6 == 1538034) then
-	writetxt("đầu số ok.txt", string.sub(sdt, 1, 5), "a", 1, 1)
 	copyText("11")
-	goisim()
+	if (very == 0) then
+		goisim()
+	end
 	if (getColor(35, 88) == 1603570 or getColor(139, 90) == 1603570) then
 		tap(66, 1280)
 	end
 	for i = 1, 6 do
 		tapimg("skip.jpg", 1, 1000000)
 	end
-	upavatar(id)
-	local cookie = clipText()
-	if (string.find(cookie, "c_user=") == nil) then
-		repeat
-			openURL("fb://profile");
-			usleep(1000000);
-			cookie = clipText();
-		until(string.find(cookie, "c_user=") ~= nil)
+	
+	cookie = clipText()
+	local test1 = findimg("addmail.jpg", 1, 1)
+	if (test1 ~= 1) then
+		test2 = findimg("xnmail.jpg", 1, 1)
+	else
+		test2 = 0
 	end
-	cookie = clipText();
-	id = string.sub(cookie, string.find(cookie, "c_user=")+7, string.find(cookie, "c_user=")+21)
-	cookie = clipText();
-	local link = readtxt("link sheet clone nvr.txt")
-	local url = string.sub(link, 1, string.find(link, "entry")-2);
-	local entry = string.sub(link, string.find(link, "entry")+6, string.len(link))
-	local data = "--form-string 'entry."..entry.."="..id.."|"..matkhau.."|"..cookie.."'"
-	curlPost(url,data);
+	if (test1 ~= 1 and test2 ~= 1 or very == 0) then
+		if (avt == 1) then
+			upavatar(id)
+		end
+		if (cookie == "11") then
+			local i = 1
+			repeat
+				openURL("fb://profile");
+				usleep(1000000);
+				cookie = clipText();
+				if (cookie ~= "11") then
+					id = string.sub(cookie, string.find(cookie, "c_user=")+7, string.find(cookie, "c_user=")+21)
+					local link = readtxt("link sheet clone nvr.txt")
+					local url = string.sub(link, 1, string.find(link, "entry")-2);
+					local entry = string.sub(link, string.find(link, "entry")+6, string.len(link))
+					local data = "--form-string 'entry."..entry.."="..id.."|"..matkhau.."|"..cookie.."'"
+					curlPost(url,data);
+					toast("Lỗi vr, lưu nvr")
+				end
+				i = i + 1
+			until(cookie ~= "11" or i == 4)
+		end
+	else
+		if (cookie == "11") then
+			tap(372, 791)
+			usleep(2000000)
+			tap(42, 84)
+			usleep(2000000)
+		end
+		local otp = getotp(site, sdt)
+		if (otp == 0) then
+			toast("lỗi otp, lưu nvr")
+			if (string.find(cookie, "c_user=") == nil) then
+				repeat
+					openURL("fb://profile");
+					usleep(1000000);
+					cookie = clipText();
+				until(string.find(cookie, "c_user=") ~= nil)
+			end
+			id = string.sub(cookie, string.find(cookie, "c_user=")+7, string.find(cookie, "c_user=")+21)
+			local link = readtxt("link sheet clone nvr.txt")
+			local url = string.sub(link, 1, string.find(link, "entry")-2);
+			local entry = string.sub(link, string.find(link, "entry")+6, string.len(link))
+			local data = "--form-string 'entry."..entry.."="..id.."|"..matkhau.."|"..cookie.."'"
+			curlPost(url,data);
+		else
+			tap(359, 364);
+			tap(359, 364);
+			usleep(500000);
+			inputText(otp);
+			usleep(500000);
+			tap(379, 474);
+			usleep(1000000) 
+			x = waitcolor(620, 907, 1603570, 610, 907, 1603570, 213, 785, 31487, 249, 788, 31487, 511, 788, 31487, 34, 89, 1603570, 139, 93, 1603570, 20, 1)
+							---
+  			if (x == 213 or x == 249 or x == 511) then
+			
+			else
+				if (getColor(35, 88) ~= 1603570 and getColor(139, 90) ~= 1603570) then
+					appKill("com.facebook.Facebook");
+					usleep(1000000)
+					appRun("com.facebook.Facebook");
+					usleep(2000000)
+				end
+				if (avt == 1) then
+					upavatar(id)
+				end
+				cookie = clipText();
+				local id = string.sub(cookie, string.find(cookie, "c_user=")+7, string.find(cookie, "c_user=")+21)
+				local link = readtxt("link sheet clone full.txt")
+				local url = string.sub(link, 1, string.find(link, "entry")-2);
+				local entry = string.sub(link, string.find(link, "entry")+6, string.len(link))
+				local data = "--form-string 'entry."..entry.."="..id.."|"..matkhau.."|"..cookie.."'"
+				curlPost(url,data);
+				toast("vr ok, lưu data")
+			end
+		end
+	end
 else
 end
 local http = require("socket.http")
