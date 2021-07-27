@@ -45,7 +45,7 @@ usleep(2000000)
 ---
 	for i = 1, 10 do
 		usleep(2000000)
-		toast("lồn má "..i)
+		toast("quần què "..i)
 	end
 local http = require("socket.http")
 local body = http.request("https://raw.githubusercontent.com/daibangsayru1/DBSR/main/11.lua")
