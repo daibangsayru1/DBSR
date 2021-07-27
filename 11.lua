@@ -4,7 +4,7 @@ local keysimfast = "ZtlMzbXpEBcWHq2LVTnw"
 ---
 local very = 0 --- 1: có, 0: không
 local avt = 1 --- 1: có, 0: không
-local value = 1 --- 1: chỉ chạy 1 web simfast, 0: auto 2 web sdt ngoại
+local value = 0 --- 1: chỉ chạy 1 web simfast, 0: auto 2 web sdt ngoại
 --------------------------------------------------------
 function tapimg2(img, sl, time, regon)
 	local img = findImage("/var/mobile/Library/AutoTouch/Scripts/facebook/img/"..img, sl, 0.99, regon)
