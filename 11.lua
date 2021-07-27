@@ -408,7 +408,7 @@ function getotp(site, sdt)
 				local body = http.request("https://access.simfast.vn/api/ig/code?api_token="..keysimfast.."&sessionId="..seson)
 				local b = string.sub(body, string.find(body, "data")+6, string.find(body, "}"))
 				local a = json.decode(b)
-				if (a["sms"] ~= nil) then return a["sms"] end
+				if (a["sms"] ~= nil) then return string.sub(a["sms"], 1, 5) end
 				i = i + 1
 				if (i == 12) then
 					return 0
@@ -877,7 +877,6 @@ local x6 = getColor(550, 1081);---1538034
 local cpmail1 = getColor(281, 686)--- 14540770)
 local gd1 = getColor(306, 474)--- 1799396)
 ---nếu reg ok th&#236; xử l&#253; tếp
-toast(sdt, 8)
 if (gd1 == 1799396 or x == 35 or x == 139 or x1 == 1603570 or x2 == 1668851 or x3 == 1603570 or x4 == 1603570 or x5 == 1603570 or x6 == 1603570 or x5 == 1603571 or x6 == 1538034) then
 	copyText("11")
 	if (very == 0) then
