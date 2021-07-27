@@ -302,6 +302,8 @@ function getsdt(keycodetext)
 				local requestId = c["requestId"]
 				return sdt, requestId
 			else
+				alert(body)
+				stop()
 				return 0, 0
 			end
 		else
