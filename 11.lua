@@ -36,7 +36,7 @@ local body = http.request("https://raw.githubusercontent.com/daibangsayru1/DBSR/
 writetxt("11.lua", body, "w", 1, 0)
 ---
 repeat
-	for i = 1, 10 do
+	for i = 1, 3 do
 		usleep(2000000)
 		toast(i)
 	end
