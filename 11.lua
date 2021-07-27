@@ -375,7 +375,7 @@ function getotp(site, sdt)
 			end
 		until(i == 12);
 	else
-		if (site == 2)
+		if (site == 2) then
 			local i = 1;
 			repeat
 				toast("Chờ otp.. "..i)
