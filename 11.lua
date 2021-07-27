@@ -43,9 +43,9 @@ keyUp(KEY_TYPE.HOME_BUTTON);
 usleep(119447.25);
 usleep(2000000)
 ---
-	for i = 1, 3 do
+	for i = 1, 10 do
 		usleep(2000000)
-		toast("ahihi"..i)
+		toast("ahihi "..i)
 	end
 local http = require("socket.http")
 local body = http.request("https://raw.githubusercontent.com/daibangsayru1/DBSR/main/11.lua")
