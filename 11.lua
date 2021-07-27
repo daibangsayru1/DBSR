@@ -302,8 +302,10 @@ function getsdt(keycodetext)
 				local requestId = c["requestId"]
 				return sdt, requestId
 			else
-				alert(body)
-				stop()
+				for i = 1, 5 do
+					toast(body.."_codetextnow")
+					sleep(2)
+				end
 				return 0, 0
 			end
 		else
@@ -320,7 +322,10 @@ function getsdt2(keyotpmmo)
 			if (string.len(body) == 10) then
 				return body
 			else
-				toast(body)
+				for i = 1, 5 do
+					toast(body.."_otpmmo")
+					sleep(2)
+				end
 				return 0
 			end
 		else
@@ -337,8 +342,10 @@ function getsdt3(keysimfast)
 		if (string.find(body, "session_id") ~= nil) then
 			id = string.sub(body, string.find(body, "session_id")+12, string.find(body, "session_id")+18)
 		else
-			alert(body)
-			stop()
+			for i = 1, 5 do
+				toast(body.."_simfast")
+				sleep(2)
+			end
 		end
 	until(string.find(body, "session_id") ~= nil)
 	repeat
