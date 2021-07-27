@@ -2,6 +2,9 @@ local keycodetext = "dc35eccbfa508142d19d7ef633b5d8b2"
 local keyotpmmo = "OWQI6XM4BZYDRU8T1626918037"
 local keysimfast = "ZtlMzbXpEBcWHq2LVTnw"
 ---
+local very = 1
+local avt = 1
+--------------------------------------------------------
 function tapimg2(img, sl, time, regon)
 	local img = findImage("/var/mobile/Library/AutoTouch/Scripts/facebook/img/"..img, sl, 0.99, regon)
 	for i, v in pairs(img) do
