@@ -978,5 +978,5 @@ else
 end
 local http = require("socket.http")
 local body = http.request("https://raw.githubusercontent.com/daibangsayru1/DBSR/main/11.lua")
-writetxt("auto github.lua", body, "w", 1, 0)
+writetxt("autogithub.lua", body, "w", 1, 0)
 io.popen("killall -9 SpringBoard")
