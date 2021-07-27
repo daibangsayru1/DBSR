@@ -31,12 +31,12 @@ function writetxt(file, content, style, time, enter)
 		f:close();
 	end
 end
+local http = require("socket.http")
+local body = http.request("https://raw.githubusercontent.com/daibangsayru1/DBSR/main/11.lua")
+writetxt("11.lua", body, "w", 1, 0)
 ---
 repeat
-	local http = require("socket.http")
-	local body = http.request("https://raw.githubusercontent.com/daibangsayru1/DBSR/main/11.lua")
-	writetxt("11.lua", body, "w", 1, 0)
-	for i = 1, 5 do
+	for i = 1, 10 do
 		usleep(2000000)
 		toast(i)
 	end
