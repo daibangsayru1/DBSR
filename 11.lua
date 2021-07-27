@@ -738,7 +738,7 @@ tap(669, 867);
 ---.Điền mật khẩu---
 waitcolor(273, 245, 1603570, 5, 0);
 tap(136, 354);
-local b = math.random(999)
+local b = os.date("%M")..os.date("%S")
 matkhau = tem..b
 tapchu(matkhau)
 usleep(500000);
