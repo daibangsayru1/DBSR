@@ -4,7 +4,7 @@ local keysimfast = "ZtlMzbXpEBcWHq2LVTnw"
 ---
 local very = 0 --- 1: có, 0: không
 local avt = 1 --- 1: có, 0: không
-local value = 0 --- 1: chỉ chạy 1 web simfast, 0: auto 2 web sdt ngoại
+local value = 0 --- 0: chạy số offline, 1: chỉ chạy 1 web simfast, 2: auto 2 web sdt ngoại
 --------------------------------------------------------
 function tapimg2(img, sl, time, regon)
 	local img = findImage("/var/mobile/Library/AutoTouch/Scripts/facebook/img/"..img, sl, 0.99, regon)
@@ -556,31 +556,37 @@ io.popen("activator send switch-off.com.a3tweaks.switch.wifi")
 ---------
 resetdata();
 if (very == 0) then
-	sdt = laydong1("sdt ok.txt")
-	testsdt = 1
-	if (sdt == nil) then
-		testsdt = 2
+	if (value == 0) then
 		toast("Lấy data.txt")
 		line = daodong("data.txt")
 		sdt = string.sub(line, 1, 7)..os.date("%d")..math.random(0, 9)
-	end
-	local a = getsdt(keycodetext)
-	if (a ~= 0) then
-		toast("Get sdt codetextnow")
-		writetxt("sdt ok.txt", a, "a", 1, 1)
-		writetxt("data.txt", "", "a", 1, 1)
-		writetxt("data.txt", a, "a", 1, 0)
 	else
-		local b = getsdt2(keyotpmmo)
-		if (b ~= 0) then
-			toast("Get sdt otpmmo")
-			writetxt("sdt ok.txt", b, "a", 1, 1)
+		sdt = laydong1("sdt ok.txt")
+		testsdt = 1
+		if (sdt == nil) then
+			testsdt = 2
+			toast("Lấy data.txt")
+			line = daodong("data.txt")
+			sdt = string.sub(line, 1, 7)..os.date("%d")..math.random(0, 9)
+		end
+		local a = getsdt(keycodetext)
+		if (a ~= 0) then
+			toast("Get sdt codetextnow")
+			writetxt("sdt ok.txt", a, "a", 1, 1)
 			writetxt("data.txt", "", "a", 1, 1)
-			writetxt("data.txt", b, "a", 1, 0)
+			writetxt("data.txt", a, "a", 1, 0)
+		else
+			local b = getsdt2(keyotpmmo)
+			if (b ~= 0) then
+				toast("Get sdt otpmmo")
+				writetxt("sdt ok.txt", b, "a", 1, 1)
+				writetxt("data.txt", "", "a", 1, 1)
+				writetxt("data.txt", b, "a", 1, 0)
+			end
 		end
 	end
 else
-	if (value == 0) then
+	if (value == 2) then
 		repeat
 			local a, a1 = getsdt(keycodetext)
 			if (a ~= 0) then
@@ -632,7 +638,7 @@ tapchu(ten)
 usleep(300000)
 tap(617, 1288);
 waitcolor(134, 256, 1603570, 15, 0);
-if (very == 0) then
+if (very == 0 and value ~= 0) then
 	goisim()
 end
 touchDown(3, 581.97, 1057.27);
@@ -729,7 +735,7 @@ if (value == 0) then
 end
 tap(300, 395);
 sleep(2)
-if (very == 0) then
+if (very == 0 and value ~= 0) then
 	goisim()
 end
 tapso(sdt)
@@ -800,31 +806,37 @@ repeat
 	---lỗi ko thể xử l&#253; đăng k&#253;
 	if (testsdt == 15738953) then
 		if (very == 0) then
-			sdt = laydong1("sdt ok.txt")
-			testsdt = 1
-			if (sdt == nil) then
-				testsdt = 2
+			if (value == 0) then
 				toast("Lấy data.txt")
 				line = daodong("data.txt")
 				sdt = string.sub(line, 1, 7)..os.date("%d")..math.random(0, 9)
-			end
-			local a = getsdt(keycodetext)
-			if (a ~= 0) then
-				toast("Get sdt codetextnow")
-				writetxt("sdt ok.txt", a, "a", 1, 1)
-				writetxt("data.txt", "", "a", 1, 1)
-				writetxt("data.txt", a, "a", 1, 0)
 			else
-				local b = getsdt2(keyotpmmo)
-				if (b ~= 0) then
-					toast("Get sdt otpmmo")
-					writetxt("sdt ok.txt", b, "a", 1, 1)
+				sdt = laydong1("sdt ok.txt")
+				testsdt = 1
+				if (sdt == nil) then
+					testsdt = 2
+					toast("Lấy data.txt")
+					line = daodong("data.txt")
+					sdt = string.sub(line, 1, 7)..os.date("%d")..math.random(0, 9)
+				end
+				local a = getsdt(keycodetext)
+				if (a ~= 0) then
+					toast("Get sdt codetextnow")
+					writetxt("sdt ok.txt", a, "a", 1, 1)
 					writetxt("data.txt", "", "a", 1, 1)
-					writetxt("data.txt", b, "a", 1, 0)
+					writetxt("data.txt", a, "a", 1, 0)
+				else
+					local b = getsdt2(keyotpmmo)
+					if (b ~= 0) then
+						toast("Get sdt otpmmo")
+						writetxt("sdt ok.txt", b, "a", 1, 1)
+						writetxt("data.txt", "", "a", 1, 1)
+						writetxt("data.txt", b, "a", 1, 0)
+					end
 				end
 			end
 		else
-			if (value == 0) then
+			if (value == 2) then
 				repeat
 					local a, a1 = getsdt(keycodetext)
 					if (a ~= 0) then
@@ -879,7 +891,7 @@ local gd1 = getColor(306, 474)--- 1799396)
 ---nếu reg ok th&#236; xử l&#253; tếp
 if (gd1 == 1799396 or x == 35 or x == 139 or x1 == 1603570 or x2 == 1668851 or x3 == 1603570 or x4 == 1603570 or x5 == 1603570 or x6 == 1603570 or x5 == 1603571 or x6 == 1538034) then
 	copyText("11")
-	if (very == 0) then
+	if (very == 0 and value ~= 0) then
 		goisim()
 	end
 	if (getColor(35, 88) == 1603570 or getColor(139, 90) == 1603570) then
