@@ -727,7 +727,7 @@ else
 	usleep(1000000);
 end
 waitcolor(170, 298, 1603570, 15, 1);
-if (value == 0) then
+if (value == 0 or value == 2) then
 	tap(78, 400)
 	usleep(1500000)
 	tap(253, 290)
