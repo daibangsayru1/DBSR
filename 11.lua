@@ -1,6 +1,6 @@
-local keycodetext = "dc35eccbfa508142d19d7ef633b5d8b2_11"
-local keyotpmmo = "OWQI6XM4BZYDRU8T1626918037_11"
-local keysimfast = "ZtlMzbXpEBcWHq2LVTnw_11"
+local keycodetext = "dc35eccbfa508142d19d7ef633b5d8b2"
+local keyotpmmo = "OWQI6XM4BZYDRU8T1626918037"
+local keysimfast = "ZtlMzbXpEBcWHq2LVTnw"
 ---
 local very = 0 --- 1: có, 0: không
 local avt = 1 --- 1: có, 0: không
