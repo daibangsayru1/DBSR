@@ -800,7 +800,7 @@ repeat
 	---lỗi ko thể xử l&#253; đăng k&#253;
 	if (testsdt == 15738953) then
 		if (very == 0) then
-			local sdt = laydong1("sdt ok.txt")
+			sdt = laydong1("sdt ok.txt")
 			testsdt = 1
 			if (sdt == nil) then
 				testsdt = 2
