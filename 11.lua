@@ -553,21 +553,22 @@ function goisim(api_codetextnow, api_otpmmo)
 	local d = type(c)
 	if (d == "nil") then
 		toast("Hết sim")
-		local a = getsdt(api_codetextnow)
-		if (a ~= 0) then
-			toast("Get sdt codetextnow")
-			writetxt("sdt ok.txt", a, "a", 1, 1)
-			writetxt("data.txt", "", "a", 1, 1)
-			writetxt("data.txt", a, "a", 1, 0)
-		else
+		if (value == "codetextnow") then
+			local a = getsdt(api_codetextnow)
+			if (a ~= 0) then
+				toast("Get sdt codetextnow")
+				writetxt("sdt ok.txt", a, "a", 1, 1)
+				writetxt("data.txt", "", "a", 1, 1)
+				writetxt("data.txt", a, "a", 1, 0)
+			end
+		end
+		if (value == "otpmmo") then
 			local b = getsdt2(api_otpmmo)
 			if (b ~= 0) then
 				toast("Get sdt otpmmo")
 				writetxt("sdt ok.txt", b, "a", 1, 1)
 				writetxt("data.txt", "", "a", 1, 1)
 				writetxt("data.txt", b, "a", 1, 0)
-			else
-				toast("Không có sim")
 			end
 		end
 	end
