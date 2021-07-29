@@ -406,8 +406,6 @@ function laydong1(file)
 	return b
 end
 ---
-local http = require("socket.http")
-local json = require("json")
 function getsdt(keycodetext)
 	local i = 1
 	repeat
@@ -420,6 +418,7 @@ function getsdt(keycodetext)
 				local c = json.decode(b)
 				local sdt = c["sdt"]
 				local requestId = c["requestId"]
+				toast("get sdt codetextnow")
 				return sdt, requestId
 			else
 				for i = 1, 5 do
@@ -440,6 +439,7 @@ function getsdt2(keyotpmmo)
 		local body = http.request("https://otpmmo.xyz/textnow/api.php?apikey="..keyotpmmo.."&type=getphone&qty=1")
 		if (body ~= nil) then
 			if (string.len(body) == 10) then
+				toast("get sdt otpmmo")
 				return body
 			else
 				for i = 1, 5 do
@@ -472,7 +472,7 @@ function getsdt3(keysimfast)
 		local body = http.request("https://access.simfast.vn/api/ig/code?api_token="..keysimfast.."&sessionId="..id)
 		local b = string.sub(body, string.find(body, "data")+6, string.find(body, "}"))
 		local a = json.decode(b)
-		if (a["phone"] ~= nil) then return a["phone"], id end
+		if (a["phone"] ~= nil) then  toast("get sdt simfast") return a["phone"], id end
 	until(a["phone"] ~= nil)
 end
 ---
@@ -666,14 +666,11 @@ function upavatar(id)
 	
 end
 ------
-io.popen("activator send switch-off.com.a3tweaks.switch.wifi")
-usleep(1000000)
-io.popen("activator send switch-off.com.a3tweaks.switch.wifi")
 ---------
-function regclone()
+function regclone(reg_clone, value, keycodetext, keyotpmmo, keysimfast, very, avt, 2fa)
 	resetdata();
-	if (very == 0) then
-		if (value == 0) then
+	if (very == "0") then
+		if (value == "0") then
 			toast("Lấy data.txt")
 			line = daodong("data.txt")
 			sdt = string.sub(line, 1, 7)..os.date("%d")..math.random(0, 9)
@@ -682,17 +679,20 @@ function regclone()
 			testsdt = 1
 			if (sdt == nil) then
 				testsdt = 2
-				toast("Lấy data.txt")
+				toast("sdt ok trống, lấy data.txt")
 				line = daodong("data.txt")
 				sdt = string.sub(line, 1, 7)..os.date("%d")..math.random(0, 9)
 			end
-			local a = getsdt(keycodetext)
-			if (a ~= 0) then
-				toast("Get sdt codetextnow")
-				writetxt("sdt ok.txt", a, "a", 1, 1)
-				writetxt("data.txt", "", "a", 1, 1)
-				writetxt("data.txt", a, "a", 1, 0)
-			else
+			if (value == "codetextnow") then
+				local a = getsdt(keycodetext)
+				if (a ~= 0) then
+					toast("Get sdt codetextnow")
+					writetxt("sdt ok.txt", a, "a", 1, 1)
+					writetxt("data.txt", "", "a", 1, 1)
+					writetxt("data.txt", a, "a", 1, 0)
+				end
+			end
+			if (value == "otpmmo") then
 				local b = getsdt2(keyotpmmo)
 				if (b ~= 0) then
 					toast("Get sdt otpmmo")
@@ -703,7 +703,7 @@ function regclone()
 			end
 		end
 	else
-		if (value == 2) then
+		if (value == "codetextnow") then
 			repeat
 				local a, a1 = getsdt(keycodetext)
 				if (a ~= 0) then
@@ -714,17 +714,26 @@ function regclone()
 					writetxt("data.txt", "", "a", 1, 1)
 					writetxt("data.txt", a, "a", 1, 0)
 				else
-					local b = getsdt2(keyotpmmo)
-					if (b ~= 0) then
-						sdt = b
-						site = 2
-						toast("Get sdt otpmmo")
-						writetxt("data.txt", "", "a", 1, 1)
-						writetxt("data.txt", b, "a", 1, 0)
-					end
+					toast("Chờ codetextnow")
+					sleep(2)
 				end
-			until (a ~= 0 or b ~= 0)
-		else
+			until (a ~= 0)
+		if (value == "otpmmo") then
+			repeat
+				local b = getsdt2(keyotpmmo)
+				if (b ~= 0) then
+					sdt = b
+					site = 2
+					toast("Get sdt otpmmo")
+					writetxt("data.txt", "", "a", 1, 1)
+					writetxt("data.txt", b, "a", 1, 0)
+				else
+					toast("Chờ otpmmo")
+					sleep(2)
+				end
+			until (b ~= 0)
+		end
+		if (value == "simfast") then
 			sdt, seson = getsdt3(keysimfast)
 			toast("Get sdt simfast")
 			site = 3
@@ -755,7 +764,7 @@ function regclone()
 	usleep(300000)
 	tap(617, 1288);
 	waitcolor(134, 256, 1603570, 15, 0);
-	if (very == 0 and value ~= 0) then
+	if (very == "0" and value ~= "0") then
 		goisim()
 	end
 	touchDown(3, 581.97, 1057.27);
@@ -844,7 +853,7 @@ function regclone()
 		usleep(1000000);
 	end
 	waitcolor(170, 298, 1603570, 15, 1);
-	if (value == 0 or value == 2) then
+	if (value == "codetextnow" or value == "otpmmo") then
 		tap(78, 400)
 		usleep(1500000)
 		tap(253, 290)
@@ -852,7 +861,7 @@ function regclone()
 	end
 	tap(300, 395);
 	sleep(2)
-	if (very == 0 and value ~= 0) then
+	if (very == "0" and value ~= "0") then
 		goisim()
 	end
 	tapso(sdt)
@@ -922,8 +931,8 @@ function regclone()
 	---	waitcolor(278, 508, 2984191, 469, 508, 2984191, 60, 0)
 		---lỗi ko thể xử l&#253; đăng k&#253;
 		if (testsdt == 15738953) then
-			if (very == 0) then
-				if (value == 0) then
+			if (very == "0") then
+				if (value == "0") then
 					toast("Lấy data.txt")
 					line = daodong("data.txt")
 					sdt = string.sub(line, 1, 7)..os.date("%d")..math.random(0, 9)
@@ -932,17 +941,20 @@ function regclone()
 					testsdt = 1
 					if (sdt == nil) then
 						testsdt = 2
-						toast("Lấy data.txt")
+						toast("sdt ok trống, lấy data.txt")
 						line = daodong("data.txt")
 						sdt = string.sub(line, 1, 7)..os.date("%d")..math.random(0, 9)
 					end
-					local a = getsdt(keycodetext)
-					if (a ~= 0) then
-						toast("Get sdt codetextnow")
-						writetxt("sdt ok.txt", a, "a", 1, 1)
-						writetxt("data.txt", "", "a", 1, 1)
-						writetxt("data.txt", a, "a", 1, 0)
-					else
+					if (value == "codetextnow") then
+						local a = getsdt(keycodetext)
+						if (a ~= 0) then
+							toast("Get sdt codetextnow")
+							writetxt("sdt ok.txt", a, "a", 1, 1)
+							writetxt("data.txt", "", "a", 1, 1)
+							writetxt("data.txt", a, "a", 1, 0)
+						end
+					end
+					if (value == "otpmmo") then
 						local b = getsdt2(keyotpmmo)
 						if (b ~= 0) then
 							toast("Get sdt otpmmo")
@@ -953,7 +965,7 @@ function regclone()
 					end
 				end
 			else
-				if (value == 2) then
+				if (value == "codetextnow") then
 					repeat
 						local a, a1 = getsdt(keycodetext)
 						if (a ~= 0) then
@@ -964,17 +976,26 @@ function regclone()
 							writetxt("data.txt", "", "a", 1, 1)
 							writetxt("data.txt", a, "a", 1, 0)
 						else
-							local b = getsdt2(keyotpmmo)
-							if (b ~= 0) then
-								sdt = b
-								site = 2
-								toast("Get sdt otpmmo")
-								writetxt("data.txt", "", "a", 1, 1)
-								writetxt("data.txt", b, "a", 1, 0)
-							end
+							toast("Chờ codetextnow")
+							sleep(2)
 						end
-					until (a ~= 0 or b ~= 0)
-				else
+					until (a ~= 0)
+				if (value == "otpmmo") then
+					repeat
+						local b = getsdt2(keyotpmmo)
+						if (b ~= 0) then
+							sdt = b
+							site = 2
+							toast("Get sdt otpmmo")
+							writetxt("data.txt", "", "a", 1, 1)
+							writetxt("data.txt", b, "a", 1, 0)
+						else
+							toast("Chờ otpmmo")
+							sleep(2)
+						end
+					until (b ~= 0)
+				end
+				if (value == "simfast") then
 					sdt, seson = getsdt3(keysimfast)
 					toast("Get sdt simfast")
 					site = 3
@@ -1008,7 +1029,7 @@ function regclone()
 	---nếu reg ok th&#236; xử l&#253; tếp
 	if (gd1 == 1799396 or x == 35 or x == 139 or x1 == 1603570 or x2 == 1668851 or x3 == 1603570 or x4 == 1603570 or x5 == 1603570 or x6 == 1603570 or x5 == 1603571 or x6 == 1538034) then
 		copyText("11")
-		if (very == 0 and value ~= 0) then
+		if (very == "0" and value ~= "0") then
 			goisim()
 		end
 		if (getColor(35, 88) == 1603570 or getColor(139, 90) == 1603570) then
@@ -1025,8 +1046,8 @@ function regclone()
 		else
 			test2 = 0
 		end
-		if (test1 ~= 1 and test2 ~= 1 or very == 0) then
-			if (avt == 1) then
+		if (test1 ~= 1 and test2 ~= 1 or very == "0") then
+			if (avt == "1") then
 				upavatar(id)
 			end
 			if (cookie == "11") then
@@ -1090,7 +1111,7 @@ function regclone()
 						appRun("com.facebook.Facebook");
 						usleep(2000000)
 					end
-					if (avt == 1) then
+					if (avt == "1") then
 						upavatar(id)
 					end
 					cookie = clipText();
@@ -1107,3 +1128,31 @@ function regclone()
 	else
 	end
 end
+-------------------------------------------------------
+local http = require("socket.http")
+local json = require("json")
+io.popen("activator send switch-off.com.a3tweaks.switch.wifi")
+usleep(1000000)
+io.popen("activator send switch-off.com.a3tweaks.switch.wifi")
+local data = readtxt("cấu hình.txt")
+local tem = json.decode(data)
+local reg_clone = tem["reg_clone"]
+local web_sim = tem["web_sim"]
+local api_codetextnow = tem["api_codetextnow"]
+local api_otpmmo = tem["api_otpmmo"]
+local api_simfast = tem["api_simfast"]
+local very_reg = tem["very_reg"]
+local up_avatar = tem["up_avatar"]
+repeat
+	if (reg_clone ~= "0") then
+		regclone(reg_clone, web_sim, api_codetextnow, api_otpmmo, api_simfast, very_reg, up_avatar, 2fa)
+	end
+until (1 == 2)
+
+
+
+
+
+
+
+
