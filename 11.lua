@@ -718,6 +718,7 @@ function regclone(reg_clone, value, keycodetext, keyotpmmo, keysimfast, very, av
 					sleep(2)
 				end
 			until (a ~= 0)
+		end
 		if (value == "otpmmo") then
 			repeat
 				local b = getsdt2(keyotpmmo)
@@ -980,6 +981,7 @@ function regclone(reg_clone, value, keycodetext, keyotpmmo, keysimfast, very, av
 							sleep(2)
 						end
 					until (a ~= 0)
+				end
 				if (value == "otpmmo") then
 					repeat
 						local b = getsdt2(keyotpmmo)
