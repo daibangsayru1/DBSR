@@ -405,12 +405,13 @@ function laydong1(file)
 	until(#a == #c)
 	return b
 end
+local http = require("socket.http")
 ---
-function getsdt(keycodetext)
+function getsdt(api_codetextnow)
 	local i = 1
 	repeat
 		sleep(2)
-		local body = http.request("http://codetextnow.com/api.php?apikey="..keycodetext.."&action=create-request&serviceId=1&count=1")
+		local body = http.request("http://codetextnow.com/api.php?apikey="..api_codetextnow.."&action=create-request&serviceId=1&count=1")
 		if (body ~= nil) then
 			if (string.find(body, "sdt") ~= nil) then
 				local a = string.sub(body, string.find(body, "%[")+1, string.len(body))
@@ -434,9 +435,9 @@ function getsdt(keycodetext)
 	until (1 == 2)
 end
 ---
-function getsdt2(keyotpmmo)
+function getsdt2(api_otpmmo)
 	repeat
-		local body = http.request("https://otpmmo.xyz/textnow/api.php?apikey="..keyotpmmo.."&type=getphone&qty=1")
+		local body = http.request("https://otpmmo.xyz/textnow/api.php?apikey="..api_otpmmo.."&type=getphone&qty=1")
 		if (body ~= nil) then
 			if (string.len(body) == 10) then
 				toast("get sdt otpmmo")
@@ -455,10 +456,10 @@ function getsdt2(keyotpmmo)
 	until(string.len(body) == 10)
 end
 ---
-function getsdt3(keysimfast)
+function getsdt3(api_simfast)
 	local json = require("json")
 	repeat
-		local body = http.request("https://access.simfast.vn/api/ig/request?api_token="..keysimfast.."&serviceId=19")
+		local body = http.request("https://access.simfast.vn/api/ig/request?api_token="..api_simfast.."&serviceId=19")
 		if (string.find(body, "session_id") ~= nil) then
 			id = string.sub(body, string.find(body, "session_id")+12, string.find(body, "session_id")+18)
 		else
@@ -469,7 +470,7 @@ function getsdt3(keysimfast)
 		end
 	until(string.find(body, "session_id") ~= nil)
 	repeat
-		local body = http.request("https://access.simfast.vn/api/ig/code?api_token="..keysimfast.."&sessionId="..id)
+		local body = http.request("https://access.simfast.vn/api/ig/code?api_token="..api_simfast.."&sessionId="..id)
 		local b = string.sub(body, string.find(body, "data")+6, string.find(body, "}"))
 		local a = json.decode(b)
 		if (a["phone"] ~= nil) then  toast("get sdt simfast") return a["phone"], id end
@@ -482,7 +483,7 @@ function getotp(site, sdt)
 		repeat
 			toast("Chờ otp.. "..i)
 			sleep(4)
-			local body = http.request("http://codetextnow.com/api.php?apikey="..keycodetext.."&action=data-request&requestId="..requestId)
+			local body = http.request("http://codetextnow.com/api.php?apikey="..api_codetextnow.."&action=data-request&requestId="..requestId)
 			if (body ~= nil) then
 				if (string.find(body, "%[") ~= nil) then
 					local a = string.sub(body, string.find(body, "%[")+1, string.len(body))
@@ -509,7 +510,7 @@ function getotp(site, sdt)
 			repeat
 				toast("Chờ otp.. "..i)
 				sleep(4)
-				local body = http.request("https://otpmmo.xyz/textnow/api.php?apikey="..keyotpmmo.."&type=getotp&sdt="..sdt)
+				local body = http.request("https://otpmmo.xyz/textnow/api.php?apikey="..api_otpmmo.."&type=getotp&sdt="..sdt)
 				if (body ~= nil) then
 					if (string.len(body) > 3) then
 						local tem = string.sub(body, 2, string.len(body)-1)
@@ -534,7 +535,7 @@ function getotp(site, sdt)
 			repeat
 				toast("Chờ otp.. "..i)
 				sleep(4)
-				local body = http.request("https://access.simfast.vn/api/ig/code?api_token="..keysimfast.."&sessionId="..seson)
+				local body = http.request("https://access.simfast.vn/api/ig/code?api_token="..api_simfast.."&sessionId="..seson)
 				local b = string.sub(body, string.find(body, "data")+6, string.find(body, "}"))
 				local a = json.decode(b)
 				if (a["sms"] ~= nil) then return string.sub(a["sms"], 1, 5) end
@@ -547,19 +548,19 @@ function getotp(site, sdt)
 	end
 end
 ----------
-function goisim()
+function goisim(api_codetextnow, api_otpmmo)
 	local c = readtxt("sdt ok.txt")
 	local d = type(c)
 	if (d == "nil") then
 		toast("Hết sim")
-		local a = getsdt(keycodetext)
+		local a = getsdt(api_codetextnow)
 		if (a ~= 0) then
 			toast("Get sdt codetextnow")
 			writetxt("sdt ok.txt", a, "a", 1, 1)
 			writetxt("data.txt", "", "a", 1, 1)
 			writetxt("data.txt", a, "a", 1, 0)
 		else
-			local b = getsdt2(keyotpmmo)
+			local b = getsdt2(api_otpmmo)
 			if (b ~= 0) then
 				toast("Get sdt otpmmo")
 				writetxt("sdt ok.txt", b, "a", 1, 1)
@@ -667,7 +668,7 @@ function upavatar(id)
 end
 ------
 ---------
-function regclone(reg_clone, value, keycodetext, keyotpmmo, keysimfast, very, avt, fa)
+function regclone(reg_clone, value, api_codetextnow, api_otpmmo, api_simfast, very, avt, fa)
 	resetdata();
 	if (very == "0") then
 		if (value == "0") then
@@ -684,7 +685,7 @@ function regclone(reg_clone, value, keycodetext, keyotpmmo, keysimfast, very, av
 				sdt = string.sub(line, 1, 7)..os.date("%d")..math.random(0, 9)
 			end
 			if (value == "codetextnow") then
-				local a = getsdt(keycodetext)
+				local a = getsdt(api_codetextnow)
 				if (a ~= 0) then
 					toast("Get sdt codetextnow")
 					writetxt("sdt ok.txt", a, "a", 1, 1)
@@ -693,7 +694,7 @@ function regclone(reg_clone, value, keycodetext, keyotpmmo, keysimfast, very, av
 				end
 			end
 			if (value == "otpmmo") then
-				local b = getsdt2(keyotpmmo)
+				local b = getsdt2(api_otpmmo)
 				if (b ~= 0) then
 					toast("Get sdt otpmmo")
 					writetxt("sdt ok.txt", b, "a", 1, 1)
@@ -705,7 +706,7 @@ function regclone(reg_clone, value, keycodetext, keyotpmmo, keysimfast, very, av
 	else
 		if (value == "codetextnow") then
 			repeat
-				local a, a1 = getsdt(keycodetext)
+				local a, a1 = getsdt(api_codetextnow)
 				if (a ~= 0) then
 					sdt = a
 					site = 1
@@ -721,7 +722,7 @@ function regclone(reg_clone, value, keycodetext, keyotpmmo, keysimfast, very, av
 		end
 		if (value == "otpmmo") then
 			repeat
-				local b = getsdt2(keyotpmmo)
+				local b = getsdt2(api_otpmmo)
 				if (b ~= 0) then
 					sdt = b
 					site = 2
@@ -735,7 +736,7 @@ function regclone(reg_clone, value, keycodetext, keyotpmmo, keysimfast, very, av
 			until (b ~= 0)
 		end
 		if (value == "simfast") then
-			sdt, seson = getsdt3(keysimfast)
+			sdt, seson = getsdt3(api_simfast)
 			toast("Get sdt simfast")
 			site = 3
 		end
@@ -766,7 +767,7 @@ function regclone(reg_clone, value, keycodetext, keyotpmmo, keysimfast, very, av
 	tap(617, 1288);
 	waitcolor(134, 256, 1603570, 15, 0);
 	if (very == "0" and value ~= "0") then
-		goisim()
+		goisim(api_codetextnow, api_otpmmo)
 	end
 	touchDown(3, 581.97, 1057.27);
 	usleep(33058.08);
@@ -863,7 +864,7 @@ function regclone(reg_clone, value, keycodetext, keyotpmmo, keysimfast, very, av
 	tap(300, 395);
 	sleep(2)
 	if (very == "0" and value ~= "0") then
-		goisim()
+		goisim(api_codetextnow, api_otpmmo)
 	end
 	tapso(sdt)
 	usleep(300000);
@@ -947,7 +948,7 @@ function regclone(reg_clone, value, keycodetext, keyotpmmo, keysimfast, very, av
 						sdt = string.sub(line, 1, 7)..os.date("%d")..math.random(0, 9)
 					end
 					if (value == "codetextnow") then
-						local a = getsdt(keycodetext)
+						local a = getsdt(api_codetextnow)
 						if (a ~= 0) then
 							toast("Get sdt codetextnow")
 							writetxt("sdt ok.txt", a, "a", 1, 1)
@@ -956,7 +957,7 @@ function regclone(reg_clone, value, keycodetext, keyotpmmo, keysimfast, very, av
 						end
 					end
 					if (value == "otpmmo") then
-						local b = getsdt2(keyotpmmo)
+						local b = getsdt2(api_otpmmo)
 						if (b ~= 0) then
 							toast("Get sdt otpmmo")
 							writetxt("sdt ok.txt", b, "a", 1, 1)
@@ -968,7 +969,7 @@ function regclone(reg_clone, value, keycodetext, keyotpmmo, keysimfast, very, av
 			else
 				if (value == "codetextnow") then
 					repeat
-						local a, a1 = getsdt(keycodetext)
+						local a, a1 = getsdt(api_codetextnow)
 						if (a ~= 0) then
 							sdt = a
 							site = 1
@@ -984,7 +985,7 @@ function regclone(reg_clone, value, keycodetext, keyotpmmo, keysimfast, very, av
 				end
 				if (value == "otpmmo") then
 					repeat
-						local b = getsdt2(keyotpmmo)
+						local b = getsdt2(api_otpmmo)
 						if (b ~= 0) then
 							sdt = b
 							site = 2
@@ -998,7 +999,7 @@ function regclone(reg_clone, value, keycodetext, keyotpmmo, keysimfast, very, av
 					until (b ~= 0)
 				end
 				if (value == "simfast") then
-					sdt, seson = getsdt3(keysimfast)
+					sdt, seson = getsdt3(api_simfast)
 					toast("Get sdt simfast")
 					site = 3
 				end
@@ -1032,7 +1033,7 @@ function regclone(reg_clone, value, keycodetext, keyotpmmo, keysimfast, very, av
 	if (gd1 == 1799396 or x == 35 or x == 139 or x1 == 1603570 or x2 == 1668851 or x3 == 1603570 or x4 == 1603570 or x5 == 1603570 or x6 == 1603570 or x5 == 1603571 or x6 == 1538034) then
 		copyText("11")
 		if (very == "0" and value ~= "0") then
-			goisim()
+			goisim(api_codetextnow, api_otpmmo)
 		end
 		if (getColor(35, 88) == 1603570 or getColor(139, 90) == 1603570) then
 			tap(66, 1280)
