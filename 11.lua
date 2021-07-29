@@ -667,7 +667,7 @@ function upavatar(id)
 end
 ------
 ---------
-function regclone(reg_clone, value, keycodetext, keyotpmmo, keysimfast, very, avt, 2fa)
+function regclone(reg_clone, value, keycodetext, keyotpmmo, keysimfast, very, avt, fa)
 	resetdata();
 	if (very == "0") then
 		if (value == "0") then
