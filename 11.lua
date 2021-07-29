@@ -1143,9 +1143,10 @@ local api_otpmmo = tem["api_otpmmo"]
 local api_simfast = tem["api_simfast"]
 local very_reg = tem["very_reg"]
 local up_avatar = tem["up_avatar"]
+local bat_2fa = tem["bat_2fa"]
 repeat
 	if (reg_clone ~= "0") then
-		regclone(reg_clone, web_sim, api_codetextnow, api_otpmmo, api_simfast, very_reg, up_avatar, 2fa)
+		regclone(reg_clone, web_sim, api_codetextnow, api_otpmmo, api_simfast, very_reg, up_avatar, bat_2fa)
 	end
 until (1 == 2)
 
