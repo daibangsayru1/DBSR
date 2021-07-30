@@ -669,9 +669,9 @@ function upavatar(id)
 end
 ------
 ---------
-function regclone(reg_clone, web_sim, api_codetextnow, api_otpmmo, api_simfast, very, avt, fa)
+function regclone(reg_clone, web_sim, api_codetextnow, api_otpmmo, api_simfast, very_acc, avt, fa)
 	resetdata();
-	if (very == "0") then
+	if (very_acc == "0") then
 		if (web_sim == "0") then
 			toast("Lấy data.txt")
 			line = daodong("data.txt")
@@ -767,7 +767,7 @@ function regclone(reg_clone, web_sim, api_codetextnow, api_otpmmo, api_simfast, 
 	usleep(300000)
 	tap(617, 1288);
 	waitcolor(134, 256, 1603570, 15, 0);
-	if (very == "0" and web_sim ~= "0") then
+	if (very_acc == "0" and web_sim ~= "0") then
 		goisim(web_sim, api_codetextnow, api_otpmmo)
 	end
 	touchDown(3, 581.97, 1057.27);
@@ -864,7 +864,7 @@ function regclone(reg_clone, web_sim, api_codetextnow, api_otpmmo, api_simfast, 
 	end
 	tap(300, 395);
 	sleep(2)
-	if (very == "0" and web_sim ~= "0") then
+	if (very_acc == "0" and web_sim ~= "0") then
 		goisim(web_sim, api_codetextnow, api_otpmmo)
 	end
 	tapso(sdt)
@@ -934,7 +934,7 @@ function regclone(reg_clone, web_sim, api_codetextnow, api_otpmmo, api_simfast, 
 	---	waitcolor(278, 508, 2984191, 469, 508, 2984191, 60, 0)
 		---lỗi ko thể xử l&#253; đăng k&#253;
 		if (testsdt == 15738953) then
-			if (very == "0") then
+			if (very_acc == "0") then
 				if (web_sim == "0") then
 					toast("Lấy data.txt")
 					line = daodong("data.txt")
@@ -1033,7 +1033,7 @@ function regclone(reg_clone, web_sim, api_codetextnow, api_otpmmo, api_simfast, 
 	---nếu reg ok th&#236; xử l&#253; tếp
 	if (gd1 == 1799396 or x == 35 or x == 139 or x1 == 1603570 or x2 == 1668851 or x3 == 1603570 or x4 == 1603570 or x5 == 1603570 or x6 == 1603570 or x5 == 1603571 or x6 == 1538034) then
 		copyText("11")
-		if (very == "0" and web_sim ~= "0") then
+		if (very_acc == "0" and web_sim ~= "0") then
 			goisim(web_sim, api_codetextnow, api_otpmmo)
 		end
 		if (getColor(35, 88) == 1603570 or getColor(139, 90) == 1603570) then
@@ -1050,7 +1050,7 @@ function regclone(reg_clone, web_sim, api_codetextnow, api_otpmmo, api_simfast, 
 		else
 			test2 = 0
 		end
-		if (test1 ~= 1 and test2 ~= 1 or very == "0") then
+		if (test1 ~= 1 and test2 ~= 1 or very_acc == "0") then
 			if (avt == "1") then
 				upavatar(id)
 			end
@@ -1147,12 +1147,12 @@ local web_sim = tem["web_sim"]
 local api_codetextnow = tem["api_codetextnow"]
 local api_otpmmo = tem["api_otpmmo"]
 local api_simfast = tem["api_simfast"]
-local very_reg = tem["very_reg"]
+local very_acc = tem["very_acc"]
 local up_avatar = tem["up_avatar"]
 local bat_2fa = tem["bat_2fa"]
 repeat
 	if (reg_clone ~= "0") then
-		regclone(reg_clone, web_sim, api_codetextnow, api_otpmmo, api_simfast, very_reg, up_avatar, bat_2fa)
+		regclone(reg_clone, web_sim, api_codetextnow, api_otpmmo, api_simfast, very_acc, up_avatar, bat_2fa)
 	end
 until (1 == 2)
 
