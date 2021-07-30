@@ -1138,7 +1138,9 @@ local json = require("json")
 io.popen("activator send switch-off.com.a3tweaks.switch.wifi")
 usleep(1000000)
 io.popen("activator send switch-off.com.a3tweaks.switch.wifi")
-local data = readtxt("cấu hình.txt")
+local f = io.open(currentPath().."/cấu hình.txt")
+local data = f:read("all")
+f:close()
 local tem = json.decode(data)
 local reg_clone = tem["reg_clone"]
 local web_sim = tem["web_sim"]
