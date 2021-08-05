@@ -1,3 +1,37 @@
+function readtxt(file);
+	f = io.open(currentPath().."/"..file, "r");
+	local content1 = f:read("*line");
+	local content2 = f:read("all");
+	f:close()
+	if (content1 == nil) then
+		return nil
+	else
+		return content1, content2
+	end
+end
+------
+function writetxt(file, content, style, time, enter)
+	f = io.open(currentPath().."/"..file, style)
+	if (enter == 1) then
+		f:write(content, "\n");
+	else
+		f:write(content);
+	end
+	usleep(time);
+	f:close();
+	x = readtxt(file);
+	if (x == 0) then
+		f = io.open(currentPath().."/"..file, style)
+		if (enter == 1) then
+			f:write(content, "\n");
+		else
+			f:write(content);
+		end
+		usleep(time);
+		f:close();
+	end
+end
+---
 local http = require("socket.http")
 local apitool = readtxt("api key.txt")
 local seri = getSN()
@@ -357,40 +391,6 @@ function keoxuong(time);
 	usleep(1000000)
 end
 --
-function readtxt(file);
-	f = io.open(currentPath().."/"..file, "r");
-	local content1 = f:read("*line");
-	local content2 = f:read("all");
-	f:close()
-	if (content1 == nil) then
-		return nil
-	else
-		return content1, content2
-	end
-end
-------
-function writetxt(file, content, style, time, enter)
-	f = io.open(currentPath().."/"..file, style)
-	if (enter == 1) then
-		f:write(content, "\n");
-	else
-		f:write(content);
-	end
-	usleep(time);
-	f:close();
-	x = readtxt(file);
-	if (x == 0) then
-		f = io.open(currentPath().."/"..file, style)
-		if (enter == 1) then
-			f:write(content, "\n");
-		else
-			f:write(content);
-		end
-		usleep(time);
-		f:close();
-	end
-end
----
 function laydong1(file)
 	local f = io.open(currentPath().."/"..file, "r")
 	local a = f:read("*all")
