@@ -27,6 +27,7 @@ function luurrs(name, ghichu);
 	end
 	writetxt("Quan li RRS.txt", ghichu, "a", 1, 1)
 	openURL("XoaInfo://Reset?RRS")
+	local body = http.request("https://sitengon.com/toolfb/api/updatedevicestatus/"..apitool.."/"..seri.."/luurss")
 	usleep(4000000)
 	i = 1
 	repeat
@@ -85,6 +86,7 @@ function restore(uid)
 		io.popen("activator send switch-off.com.a3tweaks.switch.airplane-mode")
 		usleep(4000000)
 	end
+	local body = http.request("https://sitengon.com/toolfb/api/updatedevicestatus/"..apitool.."/"..seri.."/restorerss")
 	repeat
 		openURL("XoaInfo://Restore?"..uid)
 		usleep(4000000)
@@ -169,6 +171,7 @@ function resetdata();
 		io.popen("activator send switch-off.com.a3tweaks.switch.airplane-mode")
 		usleep(4000000)
 	end
+	local body = http.request("https://sitengon.com/toolfb/api/updatedevicestatus/"..apitool.."/"..seri.."/xoainfo")
 	openURL("XoaInfo://Reset")
 	usleep(4000000)
 	i = 1
@@ -575,6 +578,7 @@ function goisim(web_sim, api_codetextnow, api_otpmmo)
 end
 ---
 function upavatar(id)
+	local body = http.request("https://sitengon.com/toolfb/api/updatedevicestatus/"..apitool.."/"..seri.."/upavt")
 	openURL("fb://profile")
 	usleep(1000000)
 	tap(669, 913)
@@ -742,6 +746,7 @@ function regclone(reg_clone, web_sim, api_codetextnow, api_otpmmo, api_simfast, 
 			site = 3
 		end
 	end
+	local body = http.request("https://sitengon.com/toolfb/api/updatedevicestatus/"..apitool.."/"..seri.."/moappfb")
 	appRun("com.facebook.Facebook");
 	x = waitcolor(399, 1260, 15201279, 515, 777, 31487, 287, 774, 31487, 20, 0);
 	tap(399, 1260);
@@ -770,6 +775,7 @@ function regclone(reg_clone, web_sim, api_codetextnow, api_otpmmo, api_simfast, 
 	if (very_acc == "0" and web_sim ~= "0") then
 		goisim(web_sim, api_codetextnow, api_otpmmo)
 	end
+	local body = http.request("https://sitengon.com/toolfb/api/updatedevicestatus/"..apitool.."/"..seri.."/dientt")
 	touchDown(3, 581.97, 1057.27);
 	usleep(33058.08);
 	touchMove(3, 580.94, 1074.57);
@@ -880,6 +886,7 @@ function regclone(reg_clone, web_sim, api_codetextnow, api_otpmmo, api_simfast, 
 	tap(634, 1287);
 	waitcolor(272, 674, 1799396, 298, 673, 1603570, 298, 700, 1603570, 10, 0)
 	tap(298, 680);
+	local body = http.request("https://sitengon.com/toolfb/api/updatedevicestatus/"..apitool.."/"..seri.."/chodk")
 	---v&#242;ng lặp chờ kết quả đăng k&#253;
 	local i = 1;
 	j = 1;
@@ -1033,6 +1040,7 @@ function regclone(reg_clone, web_sim, api_codetextnow, api_otpmmo, api_simfast, 
 	---nếu reg ok th&#236; xử l&#253; tếp
 	if (gd1 == 1799396 or x == 35 or x == 139 or x1 == 1603570 or x2 == 1668851 or x3 == 1603570 or x4 == 1603570 or x5 == 1603570 or x6 == 1603570 or x5 == 1603571 or x6 == 1538034) then
 		copyText("11")
+		local body = http.request("https://sitengon.com/toolfb/api/updatedevicestatus/"..apitool.."/"..seri.."/dkthanhgcong")
 		if (very_acc == "0" and web_sim ~= "0") then
 			goisim(web_sim, api_codetextnow, api_otpmmo)
 		end
@@ -1071,6 +1079,7 @@ function regclone(reg_clone, web_sim, api_codetextnow, api_otpmmo, api_simfast, 
 			curlPost(url,data);
 			toast("Lỗi vr, lưu nvr")
 		else
+			local body = http.request("https://sitengon.com/toolfb/api/updatedevicestatus/"..apitool.."/"..seri.."/very")
 			if (cookie == "11") then
 				tap(372, 791)
 				usleep(2000000)
@@ -1130,9 +1139,12 @@ function regclone(reg_clone, web_sim, api_codetextnow, api_otpmmo, api_simfast, 
 			end
 		end
 	else
+		local body = http.request("https://sitengon.com/toolfb/api/updatedevicestatus/"..apitool.."/"..seri.."/dkthatbai")
 	end
 end
 -------------------------------------------------------
+local apitool = readtxt("api key.txt")
+local seri = getSN()
 local http = require("socket.http")
 local json = require("json")
 io.popen("activator send switch-off.com.a3tweaks.switch.wifi")
