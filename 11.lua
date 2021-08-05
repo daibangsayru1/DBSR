@@ -1,4 +1,7 @@
 local http = require("socket.http")
+local apitool = readtxt("api key.txt")
+local seri = getSN()
+local json = require("json")
 function luurrs(name, ghichu);
 	appKill("com.facebook.Facebook");
 	usleep(1000000)
@@ -1144,9 +1147,6 @@ function regclone(reg_clone, web_sim, api_codetextnow, api_otpmmo, api_simfast, 
 	end
 end
 -------------------------------------------------------
-local apitool = readtxt("api key.txt")
-local seri = getSN()
-local json = require("json")
 io.popen("activator send switch-off.com.a3tweaks.switch.wifi")
 usleep(1000000)
 io.popen("activator send switch-off.com.a3tweaks.switch.wifi")
