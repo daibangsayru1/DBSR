@@ -1,3 +1,4 @@
+local http = require("socket.http")
 function luurrs(name, ghichu);
 	appKill("com.facebook.Facebook");
 	usleep(1000000)
@@ -1145,7 +1146,6 @@ end
 -------------------------------------------------------
 local apitool = readtxt("api key.txt")
 local seri = getSN()
-local http = require("socket.http")
 local json = require("json")
 io.popen("activator send switch-off.com.a3tweaks.switch.wifi")
 usleep(1000000)
