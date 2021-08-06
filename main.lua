@@ -56,7 +56,7 @@ function main(login_clone, restore_rss, very_acc, up_danh_ba, up_avatar, up_anh_
 		return
 	end
 	if (login_clone == "1") then
-		clone, cl2 = login(filelistclone, loginclonenovery);---login
+		clone, cl2 = login(urlweb, api, loginclonenovery);---login
 		testvr = 1
 	else
 	-----------------------restore RRS
