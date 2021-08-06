@@ -51,6 +51,7 @@ function main(login_clone, restore_rss, very_acc, up_danh_ba, up_avatar, up_anh_
 	local pl = require("pl.tablex")
 	contair = require("socket.https")
 	if (reg_clone ~= "0" and login_clone == "0" and restore_rss == "0") then
+		alert("reg nè")
 		regclone(reg_clone, web_sim, api_codetextnow, api_otpmmo, api_simfast, very_acc, up_avatar, bat_2fa)
 		return
 	end
