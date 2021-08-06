@@ -41,7 +41,7 @@ local dang_stt = tem["dang_stt"]
 local dang_stt_anh = tem["dang_stt_anh"]
 local xuat_clone = tem["xuat_clone"]
 local link_gg_sheet = tem["link_gg_sheet"]
-function main(login_clone, , restore_rss, very_acc, up_danh_ba, up_avatar, up_anh_bia, up_info, bat_2fa, doi_ten, kb_goi_y, kb_uid, dong_y_kb, xem_tb, add_group_goi_y, add_group_list, like_page, luot_newsfeed, like_newsfeed, binh_luan, share_tuong, dang_stt, dang_stt_anh, xuat_clone, reg_clone, luu_rss);
+function main(login_clone, restore_rss, very_acc, up_danh_ba, up_avatar, up_anh_bia, up_info, bat_2fa, doi_ten, kb_goi_y, kb_uid, dong_y_kb, xem_tb, add_group_goi_y, add_group_list, like_page, luot_newsfeed, like_newsfeed, binh_luan, share_tuong, dang_stt, dang_stt_anh, xuat_clone, reg_clone, luu_rss);
 	local api = readtxt("api key.txt")
 	local plist = require("plist")
 	local json = require("json")
