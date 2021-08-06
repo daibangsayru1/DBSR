@@ -1,5 +1,11 @@
 ---1
-
+local api = readtxt("api key.txt")
+local plist = require("plist")
+local json = require("json")
+local urlweb = readtxt("site.txt")
+local http = require("socket.http")
+local ssl = require("ssl.https")
+local pl = require("pl.tablex")
 function doiten(id, matkhau)
 	---usleep(2000000)
 	---appKill("com.facebook.Facebook")
