@@ -281,7 +281,7 @@ function upavatar(id)
 end
 ------
 ---------
-function regclone(reg_clone, web_sim, api_codetextnow, api_otpmmo, api_simfast, very_acc, avt, fa)
+function regclone(reg_clone, web_sim, api_codetextnow, api_otpmmo, api_simfast, very_acc, avt, fa, luu_rss)
 	local api = readtxt("api key.txt")
 	local urlweb = readtxt("site.txt")
 	local json = require("json")
@@ -746,11 +746,18 @@ function regclone(reg_clone, web_sim, api_codetextnow, api_otpmmo, api_simfast, 
 					local data = "--form-string 'entry."..entry.."="..id.."|"..matkhau.."|"..cookie.."'"
 					curlPost(url,data);
 					toast("vr ok, lưu data")
+					if (luu_rss ~= "0") then
+						alert("Chưa xử lý")
+						stop()
+					else
+						resetdata()
+					end
 				end
 			end
 		end
 	else
 		local body = http.request(urlweb.."/api/updatedevicestatus/"..api.."/"..https().."/dkthatbai")
+		resetdata()
 	end
 end
 ---
