@@ -283,6 +283,8 @@ end
 ---------
 function regclone(reg_clone, web_sim, api_codetextnow, api_otpmmo, api_simfast, very_acc, avt, fa)
 	local api = readtxt("api key.txt")
+	local urlweb = readtxt("site.txt")
+	local json = require("json")
 	local http = require("socket.http")
 	if (very_acc == "0") then
 		if (web_sim == "0") then
