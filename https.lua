@@ -1489,6 +1489,7 @@ function mailninja()
 end
 ------
 function login(urlweb, api, loginclonenovery)
+	local http = require("socket.http")
 	a = appState("com.ienthach.XoaInfo")
 	if (a == "ACTIVATED") then
 		i = 1;
