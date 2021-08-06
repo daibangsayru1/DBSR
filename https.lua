@@ -762,7 +762,7 @@ function regclone(reg_clone, web_sim, api_codetextnow, api_otpmmo, api_simfast, 
 end
 ---
 function getclone()
-	local body = http.request(urlweb.."/api/getacc/"..api)
+	local body = http.request(urlweb.."/api/getacc)
 	if (string.find(body, "uid") ~= nil) then
 		local a = json.decode(body)
 		local uid = a["uid"]
@@ -1488,8 +1488,7 @@ function mailninja()
 	until(string.find(response, "temp_mail") ~= nil)
 end
 ------
-function login(filelistclone, loginclonenovery)
-	usleep(4000000)
+function login(urlweb, api, loginclonenovery)
 	a = appState("com.ienthach.XoaInfo")
 	if (a == "ACTIVATED") then
 		i = 1;
@@ -1509,6 +1508,7 @@ function login(filelistclone, loginclonenovery)
 		until(a == "NOT RUNNING")
 	end
 	appRun("com.facebook.Facebook");
+	local body = http.request(urlweb.."/api/updatedevicestatus/"..api.."/"..https().."/moappfb")
 	local x = waitcolor(399, 1260, 15201279, 515, 777, 31487, 287, 774, 31487, 20, 0);
 	if (x ~= 399 and x ~= 515 and x ~= 287) then
 		resetdata()
@@ -1520,24 +1520,22 @@ function login(filelistclone, loginclonenovery)
 	j = 1
 	repeat
 		repeat
-			clone = laydong1(filelistclone)
+			clone, uid, password, key2fa = getclone()
 			writetxt("clone đã chạy.txt", clone, "a", 1, 1)
 			if (clone == nil) then
 				alert(filelistclone.." trống")
 				stop();
 			end
-			test = checkuid(string.sub(clone, 1, string.find(clone, "|")-1))
+			test = checkuid(uid)
 			if (test == 1) then
 				writetxt("Clone DIE.txt", clone, "a", 1, 1)
 			end
 		until(test ~= 1)
-		tab = tachchuoi(clone);
-		id, matkhau = tab[1], tab[2]
-		inputText(id);
+		inputText(uid);
 		usleep(500000)
 		tap(229, 417);
 		usleep(500000)
-		inputText(matkhau)
+		inputText(password)
 		usleep(500000)
 		tap(270, 520);
 		toast("Chờ kết quả")
@@ -1546,10 +1544,11 @@ function login(filelistclone, loginclonenovery)
 			if (getColor(206, 604) == 0 or getColor(543, 607) == 0) then
 				local te = tachchuoi(clone)
 				key2fa = string.gsub(te[3], " ", "")
-				if (key2fa == nil) then 
+				if (key2fa == 0) then 
 					toast("Ko có Key2fa")
 					return 0, 0
 				else
+					key2fa = string.gsub(key2fa, " ", "")
 					local img = findImage("/var/mobile/Library/AutoTouch/Scripts/facebook/img/ok.jpg", 1, 0.99, nil)
 					for i, v in pairs(img) do
 						tap(v[1], v[2])
@@ -1590,17 +1589,7 @@ function login(filelistclone, loginclonenovery)
 			return 0, 0
 		end
 	until(x == 35 or x == 139)
-	if (loginclonenovery == "1") then
-		tap(66, 1280)
-		usleep(3000000)
-		tap(66, 1280)
-		usleep(3000000)
-		tap(66, 1280)
-		usleep(3000000)
-		return id.."|"..matkhau
-	else
-		return clone
-	end
+	return clone
 end
 -----
 function goimail(dungapilayhotmail)
