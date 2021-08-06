@@ -237,69 +237,7 @@ function likelink(file)
 	tap(685, 180)
 	usleep(5000000)
 end
-function check3g()
-	f = assert(io.popen("curl ident.me"))
-	ip = f:read("all")
-	if (string.find(ip, ".") == nil and string.find(ip, ":") == nil) then
-		io.popen("activator send switch-off.com.a3tweaks.switch.airplane-mode")
-		repeat
-			toast("Chờ internet ")
-			f = assert(io.popen("curl ident.me"))
-			ip = f:read("all")
-			usleep(500000)
-		until(string.find(ip, ".") ~= nil or string.find(ip, ":") ~= nil)
-	end
-	f = assert(io.popen("curl ident.me"))
-	ip = f:read("all")
-	if (string.find(ip, "HTML") ~= nil) then
-		i = 1
-		repeat
-			io.popen("activator send switch-on.com.a3tweaks.switch.airplane-mode");
-			usleep(2000000)
-			io.popen("activator send switch-off.com.a3tweaks.switch.airplane-mode")
-			usleep(2000000)
-			f = assert(io.popen("curl ident.me"))
-			ip = f:read("all")
-			if (string.find(ip, ".") == nil and string.find(ip, ":") == nil) then
-				io.popen("activator send switch-off.com.a3tweaks.switch.airplane-mode")
-				repeat
-					toast("Chờ internet ")
-					f = assert(io.popen("curl ident.me"))
-					ip = f:read("all")
-					usleep(500000)
-				until(string.find(ip, ".") ~= nil or string.find(ip, ":") ~= nil)
-			end
-			j = 1
-			repeat
-				toast("Chờ internet "..j)
-				f = assert(io.popen("curl ident.me"))
-				ip = f:read("all")
-				if (string.find(ip, "HTML") == nil) then
-					return
-				end
-				j = j + 1
-				usleep(500000)
-			until(j == 20)
-			i = i + 1
-		
-			if (i == 4) then
-				alert("KO co internet")
-				stop()
-			end
-		until(string.find(ip, "HTML") == nil)
-	end
-end
-------
-function request(url)
-	check3g()
-	local http = require("socket.http")
-	i = 1
-	repeat
-		local body = http.request(url)
-		i = i + 1
-		if (body ~= nil) then return body end
-	until (body ~= nil)
-end
+
 function ketban(slkb, sluid, time, updb, id, matkhau, key2fa)
 	if (slkb == 0 and sluid == 0) then return end
 	local test = tapimg("add.jpg", 1, 1000000)
@@ -481,23 +419,7 @@ function luotnew(slvuot, sllike, slbl, slcs)
 	until (vuot == slvuot)
 end
 
-function findimg(img, sl, time)
-	local img = findImage("/var/mobile/Library/AutoTouch/Scripts/facebook/img/"..img, sl, 0.99, nil)
-	for i, v in pairs(img) do
-		usleep(time)
-		return 1
-	end
-	return 0
-end
-function tapimg2(img, sl, time, regon)
-	local img = findImage("/var/mobile/Library/AutoTouch/Scripts/facebook/img/"..img, sl, 0.99, regon)
-	for i, v in pairs(img) do
-		tap(v[1], v[2])
-		usleep(time)
-		return 1
-	end
-	return 0
-end
+
 ------
 function loginlai(uid, matkhau, key2fa)
 	local test = tapimg("dangnhap2.jpg", 1, 2000000)
@@ -683,31 +605,6 @@ end
 ---
 
 ------
-function listfile(url)
-	tab = {}
-	f = io.popen("ls "..url);
-	i = 1
-	repeat
-		line = f:read("*line")
-		tab[i] = line
-		i = i + 1
-	until(line == nil)
-	return tab
-end
-------
-
---------
-function tongtxt(urlfile)
-	tab = {}
-	f = io.open(urlfile, "r");
-	i = 1
-	repeat
-		line = f:read("*line")
-		tab[i] = line
-		i = i + 1
-	until(line == nil)
-	return tab, #tab
-end
 ------
 
 function Danhba()
