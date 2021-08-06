@@ -282,6 +282,7 @@ end
 ------
 ---------
 function regclone(reg_clone, web_sim, api_codetextnow, api_otpmmo, api_simfast, very_acc, avt, fa)
+	local http = require("socket.http")
 	if (very_acc == "0") then
 		if (web_sim == "0") then
 			toast("Lấy data.txt")
