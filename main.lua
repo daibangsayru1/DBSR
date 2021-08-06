@@ -1,4 +1,11 @@
 function main(loginclonefull, loginclonenovery, restorerrs, filelistclone, filelistrrs, chayvery, dungapilayhotmail, linklayotp, updanhba, upavt, upanhbia, upinfo, bac2fa, changename, soluotkbtheogoiy, soluotkbtheouid, dongyketban, soluotxemthongbao, soluotjoinnhomgoiy, soluotjoinnhomtheolist, filelistnhom, sllikepage, filelistpage, soluotvuotnew, soluotlikenew, soluotbinhluan, tenfilechuanoidungbl, slchiaselentuong, dangstatus, statuskemanh, xuatclonesaukhiauto, value2, regnoverysaukhichay, regbanghotmail, regbangsdtthat, apiotpsim, regbanggmailao, veryhotmail, value3, luurrssaukhichay);
+	local api = readtxt("api key.txt")
+	local plist = require("plist")
+	local json = require("json")
+	local urlweb = readtxt("site.txt")
+	local http = require("socket.http")
+	local ssl = require("ssl.https")
+	local pl = require("pl.tablex")
 	contair = require("socket.https")
 	if (loginclonefull == "1" or loginclonenovery == "1") then
 		clone, cl2 = login(filelistclone, loginclonenovery);---login
