@@ -761,9 +761,9 @@ function regclone(reg_clone, web_sim, api_codetextnow, api_otpmmo, api_simfast, 
 	end
 end
 ---
-function getclone()
+function getclone(urlweb, api)
 	local http = require("socket.http")
-	local body = http.request(urlweb.."/api/getacc")
+	local body = http.request(urlweb.."/api/getacc/"..api)
 	if (string.find(body, "uid") ~= nil) then
 		local a = json.decode(body)
 		local uid = a["uid"]
