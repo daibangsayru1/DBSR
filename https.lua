@@ -286,7 +286,7 @@ function upavatar(id, apikey, urlweb, api)
 end
 ------
 ---------
-function regclone(reg_clone, web_sim, api_codetextnow, api_otpmmo, api_simfast, very_acc, avt, fa, luu_rss)
+function regclone(reg_clone, web_sim, api_codetextnow, api_otpmmo, api_simfast, very_acc, avt, fa, luu_rss, link_gg_sheet)
 	local api = readtxt("api key.txt")
 	local urlweb = readtxt("site.txt")
 	local json = require("json")
@@ -655,8 +655,9 @@ function regclone(reg_clone, web_sim, api_codetextnow, api_otpmmo, api_simfast, 
 	local gd1 = getColor(306, 474)--- 1799396)
 	---nếu reg ok th&#236; xử l&#253; tếp
 	if (gd1 == 1799396 or x == 35 or x == 139 or x1 == 1603570 or x2 == 1668851 or x3 == 1603570 or x4 == 1603570 or x5 == 1603570 or x6 == 1603570 or x5 == 1603571 or x6 == 1538034) then
+		local apikey = getapi()
+		local body = http.request(urlweb.."/api/updatedevicestatus/"..api.."/"..apikey.."/dkthanhcong")
 		copyText("11")
-		local body = http.request(urlweb.."/api/updatedevicestatus/"..api.."/"..getapi().."/dkthanhgcong")
 		if (very_acc == "0" and web_sim ~= "0") then
 			goisim(web_sim, api_codetextnow, api_otpmmo)
 		end
@@ -676,7 +677,7 @@ function regclone(reg_clone, web_sim, api_codetextnow, api_otpmmo, api_simfast, 
 		end
 		if (test1 ~= 1 and test2 ~= 1 or very_acc == "0") then
 			if (avt == "1") then
-				upavatar(id)
+				upavatar(id, apikey, urlweb, api)
 			end
 			if (cookie == "11") then
 				local i = 1
@@ -688,14 +689,19 @@ function regclone(reg_clone, web_sim, api_codetextnow, api_otpmmo, api_simfast, 
 				until(cookie ~= "11" or i == 4)
 			end
 			id = string.sub(cookie, string.find(cookie, "c_user=")+7, string.find(cookie, "c_user=")+21)
-			local link = readtxt("link sheet clone nvr.txt")
-			local url = string.sub(link, 1, string.find(link, "entry")-2);
-			local entry = string.sub(link, string.find(link, "entry")+6, string.len(link))
-			local data = "--form-string 'entry."..entry.."="..id.."|"..matkhau.."|"..cookie.."'"
+			if (fa == "1") then
+				key2fa, goiy = bacfa(id, matkhau, apikey, urlweb, api);
+				clone = id.."|"..matkhau.."|"..key2fa.."|"..cookie
+			else
+				clone = id.."|"..matkhau.."|"..cookie
+			end
+			local url = string.sub(link_gg_sheet, 1, string.find(link_gg_sheet, "entry")-2);
+			local entry = string.sub(link_gg_sheet, string.find(link_gg_sheet, "entry")+6, string.len(link_gg_sheet))
+			local data = "--form-string 'entry."..entry.."="..clone.."'"
 			curlPost(url,data);
 			toast("Lỗi vr, lưu nvr")
 		else
-			local body = http.request(urlweb.."/api/updatedevicestatus/"..api.."/"..getapi().."/very")
+			local body = http.request(urlweb.."/api/updatedevicestatus/"..api.."/"..apikey.."/very")
 			if (cookie == "11") then
 				tap(372, 791)
 				usleep(2000000)
@@ -751,14 +757,14 @@ function regclone(reg_clone, web_sim, api_codetextnow, api_otpmmo, api_simfast, 
 					local data = "--form-string 'entry."..entry.."="..id.."|"..matkhau.."|"..cookie.."'"
 					curlPost(url,data);
 					toast("vr ok, lưu data")
-					if (luu_rss ~= "0") then
-						alert("Chưa xử lý")
-						stop()
-					else
-						resetdata()
-					end
 				end
 			end
+		end
+		if (luu_rss ~= "0") then
+			alert("Chưa xử lý")
+			stop()
+		else
+			resetdata()
 		end
 	else
 		local body = http.request(urlweb.."/api/updatedevicestatus/"..api.."/"..getapi().."/dkthatbai")
