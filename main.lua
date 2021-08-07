@@ -6,6 +6,7 @@ function main(login_clone, restore_rss, very_acc, up_danh_ba, up_avatar, up_anh_
 	local urlweb = readtxt("site.txt")
 	local http = require("socket.http")
 	local ssl = require("ssl.https")
+	local https = https()
 	local pl = require("pl.tablex")
 	contair = require("socket.https")
 	local json = require("json")
@@ -78,8 +79,9 @@ function main(login_clone, restore_rss, very_acc, up_danh_ba, up_avatar, up_anh_
 		local temp = tachchuoi(clone)
 		usleep(4000000)
 		appRun("com.facebook.Facebook")
+		local body = http.request(urlweb.."/api/updatedevicestatus/"..api.."/"..https().."/moappfb")
 		usleep(2000000)
-		if (chayvery ~= "1") then
+		if (very_acc ~= "1") then
 			---TH hiện màn add mail: 395, 508, 1603570, 707, 500, 1603570, 525, 506, 1603570, 708, 469, 1603570
 			toast("chờ kết quả 1")
 			x = waitcolor(395, 508, 1603570, 707, 500, 1603570, 525, 506, 1603570, 708, 469, 1603570, 399, 1260, 15201279, 515, 777, 31487, 287, 774, 31487, 355, 767, 31487, 362, 767, 31487, 354, 136, 1603570, 394, 136, 1603570, 496, 1261, 1603570, 594, 1267, 1603570, 10, 1)
@@ -131,20 +133,20 @@ function main(login_clone, restore_rss, very_acc, up_danh_ba, up_avatar, up_anh_
 	----------------------
 	local id = tachchuoi(clone)
 	local uid, matkhau = id[1], id[2]
-	if (chayvery == "1") then
+	if (very_acc == "1") then
 		mail, mkmail, total = goimail(dungapilayhotmail)
 		testvr, cookie = chiveri(dungapilayhotmail, uid)
 	end
 	----------------------
 	if (testvr == 1) then
-		if (upavt == "1") then
-			upavt = upavatar(uid);
+		if (up_avatar == "1") then
+			upavt = upavatar(uid, https, urlweb, api);
 			if (upavt == 0) then
 				return
 			end
 		end
-		if (bac2fa == "1") then
-			key2fa, goiy = bacfa(uid, matkhau);
+		if (bat_2fa == "1") then
+			key2fa, goiy = bacfa(uid, matkhau, https, urlweb, api);
 			if (key2fa == "KEY2FA") then
 				return
 			end
@@ -173,7 +175,7 @@ function main(login_clone, restore_rss, very_acc, up_danh_ba, up_avatar, up_anh_
 		return
 	end
 	clone = string.gsub(clone, "|0|", "|")
-	if (changename == "1") then
+	if (doi_ten == "1") then
 		doiten(uid, matkhau)
 	end
 	---lưu lại ghi chú
@@ -186,9 +188,13 @@ function main(login_clone, restore_rss, very_acc, up_danh_ba, up_avatar, up_anh_
 		end
 	end
 	-------------------------------
-	thamgiagr(tonumber(soluotjoinnhomgoiy))
-	likepage(tonumber(sllikepage), filelistpage)
-	local testkb = ketban(tonumber(soluotkbtheogoiy), tonumber(soluotkbtheouid), 1, updb, id, matkhau, key2fa)
+	if (add_group_goi_y ~= "0") then
+		thamgiagr(tonumber(soluotjoinnhomgoiy))
+	end
+	if (like_page ~= "0") then
+		likepage(tonumber(sllikepage), filelistpage)
+	end
+	local testkb = ketban(tonumber(kb_goi_y), tonumber(kb_uid), 1, updb, id, matkhau, key2fa)
 	if (xuatclonesaukhiauto ~= "0" and testvr == 1) then
 		local linksheetluuclonefull = readtxt("link sheet clone full.txt")
 		local url = string.sub(linksheetluuclonefull, 1, string.find(linksheetluuclonefull, "entry")-2);
@@ -196,8 +202,12 @@ function main(login_clone, restore_rss, very_acc, up_danh_ba, up_avatar, up_anh_
 		local data = "--form-string 'entry."..entry.."="..clone.."'"
 		curlPost(url,data);
 	end
-	doctb(tonumber(soluotxemthongbao))
-	luotnew(tonumber(soluotvuotnew), tonumber(soluotlikenew), tonumber(soluotbinhluan), tonumber(slchiaselentuong))
+	if (xem_tb ~= "0") then
+		doctb(tonumber(soluotxemthongbao))
+	end
+	if (luot_newsfeed ~= "0") then
+		luotnew(tonumber(soluotvuotnew), tonumber(soluotlikenew), tonumber(soluotbinhluan), tonumber(slchiaselentuong))
+	end
 	if (regnoverysaukhichay == "1") then
 		local id, matkhau, test = novery(regbanghotmail, apikeydongvan, regbanggmailao, 1);
 		if (id ~= 0) then
@@ -212,7 +222,7 @@ function main(login_clone, restore_rss, very_acc, up_danh_ba, up_avatar, up_anh_
 		end
 	end
 	--------------------------------
-	if (luurrssaukhichay == "1") then
+	if (luu_rss == "1") then
 		local name = tachchuoi(clone)
 		luurrs(name[1], clone)
 	else
