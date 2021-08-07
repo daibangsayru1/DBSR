@@ -6,7 +6,7 @@ function main(login_clone, restore_rss, very_acc, up_danh_ba, up_avatar, up_anh_
 	local urlweb = readtxt("site.txt")
 	local http = require("socket.http")
 	local ssl = require("ssl.https")
-	local https = https()
+	local apikey = getapi()
 	local pl = require("pl.tablex")
 	contair = require("socket.https")
 	local json = require("json")
@@ -57,7 +57,7 @@ function main(login_clone, restore_rss, very_acc, up_danh_ba, up_avatar, up_anh_
 		return
 	end
 	if (login_clone == "1") then
-		clone, cl2 = login(urlweb, api, loginclonenovery);---login
+		clone, cl2 = login(urlweb, api, loginclonenovery, apikey);---login
 		testvr = 1
 	else
 	-----------------------restore RRS
@@ -140,13 +140,13 @@ function main(login_clone, restore_rss, very_acc, up_danh_ba, up_avatar, up_anh_
 	----------------------
 	if (testvr == 1) then
 		if (up_avatar == "1") then
-			upavt = upavatar(uid, https, urlweb, api);
+			upavt = upavatar(uid, apikey, urlweb, api);
 			if (upavt == 0) then
 				return
 			end
 		end
 		if (bat_2fa == "1") then
-			key2fa, goiy = bacfa(uid, matkhau, https, urlweb, api);
+			key2fa, goiy = bacfa(uid, matkhau, apikey, urlweb, api);
 			if (key2fa == "KEY2FA") then
 				return
 			end
@@ -195,10 +195,9 @@ function main(login_clone, restore_rss, very_acc, up_danh_ba, up_avatar, up_anh_
 		likepage(tonumber(sllikepage), filelistpage)
 	end
 	local testkb = ketban(tonumber(kb_goi_y), tonumber(kb_uid), 1, updb, id, matkhau, key2fa)
-	if (xuatclonesaukhiauto ~= "0" and testvr == 1) then
-		local linksheetluuclonefull = readtxt("link sheet clone full.txt")
-		local url = string.sub(linksheetluuclonefull, 1, string.find(linksheetluuclonefull, "entry")-2);
-		local entry = string.sub(linksheetluuclonefull, string.find(linksheetluuclonefull, "entry")+6, string.len(linksheetluuclonefull))
+	if (xuat_clone ~= "0" and testvr == 1) then
+		local url = string.sub(link_gg_sheet, 1, string.find(link_gg_sheet, "entry")-2);
+		local entry = string.sub(link_gg_sheet, string.find(link_gg_sheet, "entry")+6, string.len(link_gg_sheet))
 		local data = "--form-string 'entry."..entry.."="..clone.."'"
 		curlPost(url,data);
 	end
@@ -224,7 +223,7 @@ function main(login_clone, restore_rss, very_acc, up_danh_ba, up_avatar, up_anh_
 	--------------------------------
 	if (luu_rss == "1") then
 		local name = tachchuoi(clone)
-		luurrs(name[1], clone)
+		luurrs(name[1], clone, https)
 	else
 		if (restorerrs ~= "1") then
 			resetdata()
