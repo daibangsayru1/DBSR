@@ -53,7 +53,7 @@ function main(login_clone, restore_rss, very_acc, up_danh_ba, up_avatar, up_anh_
 	local xuat_clone = tem["xuat_clone"]
 	local link_gg_sheet = tem["link_gg_sheet"]
 	if (reg_clone ~= "0" and login_clone == "0" and restore_rss == "0") then
-		regclone(reg_clone, web_sim, api_codetextnow, api_otpmmo, api_simfast, very_acc, up_avatar, bat_2fa, luu_rss)
+		regclone(reg_clone, web_sim, api_codetextnow, api_otpmmo, api_simfast, very_acc, up_avatar, bat_2fa, luu_rss, link_gg_sheet)
 		return
 	end
 	if (login_clone == "1") then
