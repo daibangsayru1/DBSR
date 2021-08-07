@@ -185,7 +185,7 @@ function goisim(web_sim, api_codetextnow, api_otpmmo)
 		end
 	end
 end
-function upavatar(id, https, urlweb, api)
+function upavatar(id, apikey, urlweb, api)
 	sleep(2)
 	local http = require("socket.http")
 	openURL("fb://profile")
@@ -203,7 +203,7 @@ function upavatar(id, https, urlweb, api)
 	local testavt1 = tapimg2("avt.jpg", 1, 1000000, region)
 	local testavt2 = tapimg2("avt2.jpg", 1, 1000000, region) 
 	if (testavt1 == 1 or testavt2 == 1) then
-		local body = http.request(urlweb.."/api/updatedevicestatus/"..api.."/"..https.."/upavt")
+		local body = http.request(urlweb.."/api/updatedevicestatus/"..api.."/"..apikey.."/upavt")
 		openURL("photos-redirect://")
 		waitcolor(53, 84, 31487, 557, 284, 31487, 466, 1278, 31487, 20, 1)
 		tap(450, 1280)
@@ -1493,7 +1493,7 @@ function mailninja()
 	until(string.find(response, "temp_mail") ~= nil)
 end
 ------
-function login(urlweb, api, loginclonenovery)
+function login(urlweb, api, loginclonenovery, apikey)
 	local http = require("socket.http")
 	a = appState("com.ienthach.XoaInfo")
 	if (a == "ACTIVATED") then
@@ -1514,7 +1514,7 @@ function login(urlweb, api, loginclonenovery)
 		until(a == "NOT RUNNING")
 	end
 	appRun("com.facebook.Facebook");
-	local body = http.request(urlweb.."/api/updatedevicestatus/"..api.."/"..https().."/login")
+	local body = http.request(urlweb.."/api/updatedevicestatus/"..api.."/"..apikey.."/login")
 	local x = waitcolor(399, 1260, 15201279, 515, 777, 31487, 287, 774, 31487, 20, 0);
 	if (x ~= 399 and x ~= 515 and x ~= 287) then
 		resetdata()
@@ -1901,10 +1901,10 @@ function chiveri(dungapilayhotmail, id)
 end
 
 ------
-function bacfa(id, matkhau, https, urlweb, api)
+function bacfa(id, matkhau, apikey, urlweb, api)
 	local http = require("socket.http")
 	local ssl = require("ssl.https")
-	local body = http.request(urlweb.."/api/updatedevicestatus/"..api.."/"..https.."/bat2fa")
+	local body = http.request(urlweb.."/api/updatedevicestatus/"..api.."/"..apikey.."/bat2fa")
 	local test = tapimg("xnok.jpg", 1, 2000000)
 	if (test == 1) then
 		tap(691, 1289);
