@@ -185,8 +185,9 @@ function goisim(web_sim, api_codetextnow, api_otpmmo)
 		end
 	end
 end
-function upavatar(id)
-	local body = http.request(urlweb.."/api/updatedevicestatus/"..api.."/"..https().."/upavt")
+function upavatar(id, https, urlweb, api)
+	sleep(2)
+	local http = require("socket.http")
 	openURL("fb://profile")
 	usleep(1000000)
 	tap(669, 913)
@@ -194,13 +195,15 @@ function upavatar(id)
 	usleep(1000000)
 	tap(50,100)
 	usleep(1000000)
-	tapimg("xnok.jpg", 1, 2000000)
+	local test = tapimg("xnok.jpg", 1, 2000000)
+	if (test == 1) then tap(45, 111) sleep(2) end
 	tapimg("x.jpg", 1, 1500000)
 	tapimg("dung2.jpg", 1, 2000000)
 	local region = {181, 370, 564, 750};
 	local testavt1 = tapimg2("avt.jpg", 1, 1000000, region)
 	local testavt2 = tapimg2("avt2.jpg", 1, 1000000, region) 
 	if (testavt1 == 1 or testavt2 == 1) then
+		local body = http.request(urlweb.."/api/updatedevicestatus/"..api.."/"..https.."/upavt")
 		openURL("photos-redirect://")
 		waitcolor(53, 84, 31487, 557, 284, 31487, 466, 1278, 31487, 20, 1)
 		tap(450, 1280)
@@ -215,6 +218,7 @@ function upavatar(id)
 		tap(50, 1284);---tap chia sẻ
 		usleep(2000000);
 		tapimg("iconfb.jpg", 1, 1)
+		tapimg("iconfb2.jpg", 1, 1)
 		usleep(2000000);
 		tap(194, 1264);
 		---C&#211; 2 giao diện
@@ -1510,7 +1514,7 @@ function login(urlweb, api, loginclonenovery)
 		until(a == "NOT RUNNING")
 	end
 	appRun("com.facebook.Facebook");
-	local body = http.request(urlweb.."/api/updatedevicestatus/"..api.."/"..https().."/moappfb")
+	local body = http.request(urlweb.."/api/updatedevicestatus/"..api.."/"..https().."/login")
 	local x = waitcolor(399, 1260, 15201279, 515, 777, 31487, 287, 774, 31487, 20, 0);
 	if (x ~= 399 and x ~= 515 and x ~= 287) then
 		resetdata()
@@ -1522,7 +1526,7 @@ function login(urlweb, api, loginclonenovery)
 	j = 1
 	repeat
 		repeat
-			clone, uid, password, key2fa = getclone()
+			clone, uid, password, key2fa = getclone(urlweb, api)
 			writetxt("clone đã chạy.txt", clone, "a", 1, 1)
 			if (clone == nil) then
 				alert(filelistclone.." trống")
@@ -1897,8 +1901,10 @@ function chiveri(dungapilayhotmail, id)
 end
 
 ------
-function bacfa(id, matkhau)
-	http = require("socket.http")
+function bacfa(id, matkhau, https, urlweb, api)
+	local http = require("socket.http")
+	local ssl = require("ssl.https")
+	local body = http.request(urlweb.."/api/updatedevicestatus/"..api.."/"..https.."/bat2fa")
 	local test = tapimg("xnok.jpg", 1, 2000000)
 	if (test == 1) then
 		tap(691, 1289);
@@ -1935,25 +1941,10 @@ function bacfa(id, matkhau)
 		return 0
 	end
 	---
-	x = waitcolor(62, 1047, 13556448, 69, 1196, 13556448, 83, 694, 13556448, 20, 1)
-	if (getColor(62, 1047) ~= 13556448 and getColor(69, 1196) ~= 13556448 and getColor(83, 694) ~= 13556448) then
-		tap(43, 89);
-		usleep(2000000);
-		if (getColor(300, 655) == 16777215) then
-			tap(273, 649);
-		else
-			tap(273, 770);
-		end
-		x = waitcolor(62, 1047, 13556448, 69, 1196, 13556448, 83, 694, 13556448, 20, 1)
-	end
+	x = waitcolor(630, 643, 1603583, 629, 982, 1603583, 62, 1047, 13556448, 69, 1196, 13556448, 83, 694, 13556448, 20, 1)
 	tapimg("baomat.jpg", 1, 1000000)
-	---tes = checkuid(id)
-	---if (tes == 1) then
-	---	writetxt("Clone DIE.txt", id.."|"..matkhau, "a", 1, 1)
-	---	resetdata();
-	---	return 0
-	---end
-	waitcolor(580, 591, 1603570, 643, 662, 1603570, 580, 662, 1603570, 639, 682, 1603570, 643, 622, 1603570, 8, 1)
+	tapimg("baomat2.jpg", 1, 1000000)
+	waitcolor(581, 582, 1603570, 580, 591, 1603570, 643, 662, 1603570, 580, 662, 1603570, 639, 682, 1603570, 643, 622, 1603570, 80, 1)
 	--tap xem tấc cả
 	
 	------------------
@@ -1988,13 +1979,13 @@ function bacfa(id, matkhau)
 	touchUp(4, 585.04, 819.03);
 	usleep(1000000)
 	---------
-	img = findImage("/var/mobile/Library/AutoTouch/Scripts/facebook/img/2fa.jpg", 5, 0.99, nil)
+	img = findImage(currentPath().."/img/2fa.jpg", 5, 0.99, nil)
 	for i, v in pairs(img) do
 		tap(v[1], v[2])
 	end
 	usleep(1000000)
 	---X&#225;c thực 2fa
-	waitcolor(263, 1185, 1603570, 10, 0);
+	waitcolor(263, 1185, 1603570, 263, 1185, 1799396, 10, 0);
 	tap(390, 1175)
 	usleep(1000000)
 	---Tiếp tục
@@ -2018,7 +2009,7 @@ function bacfa(id, matkhau)
 	usleep(1000000)
 	---tap tiếp
 	tap(372, 1181);
-	waitcolor(285, 1181, 1603570, 10, 0);
+	waitcolor(285, 1181, 1603570, 263, 1185, 1799396, 10, 0);
 	---tap nhập m&#227;
 	tap(185, 431);
 	usleep(500000);
@@ -2026,7 +2017,7 @@ function bacfa(id, matkhau)
 	usleep(500000);
 	---tap xong
 	tap(677, 863);
-	waitcolor(285, 1181, 1603570, 10, 0);
+	waitcolor(285, 1181, 1603570, 263, 1185, 1799396, 10, 0);
 	---tap tiếp tục
 	tap(372, 1181);
 	x = waitcolor(282, 1228, 1603570, 500, 1228, 1603570, 282, 1228, 4351922, 500, 1228, 4351922, 64, 185, 3320655, 46, 205, 3320655, 86, 208, 3320655, 20, 1)
