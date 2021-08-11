@@ -1,48 +1,4 @@
-function main(login_clone, restore_rss, very_acc, up_danh_ba, up_avatar, up_anh_bia, up_info, bat_2fa, doi_ten, kb_goi_y, kb_uid, dong_y_kb, xem_tb, add_group_goi_y, add_group_list, like_page, luot_newsfeed, like_newsfeed, binh_luan, share_tuong, dang_stt, dang_stt_anh, xuat_clone, reg_clone, luu_rss);
-	local websocket = require("websocket.clients")
-	local api = readtxt("api key.txt")
-	local plist = require("plist")
-	local json = require("json")
-	local urlweb = readtxt("site.txt")
-	local http = require("socket.http")
-	local ssl = require("ssl.https")
-	local apikey = getapi()
-	local pl = require("pl.tablex")
-	contair = require("socket.https")
-	local json = require("json")
-	local f = io.open(currentPath().."/cấu hình.txt")
-	local data = f:read("all")
-	f:close()
-	local tem = json.decode(data)
-	local login_clone = tem["login_clone"]
-	local very_acc = tem["very_acc"]
-	local reg_clone = tem["reg_clone"]
-	local luu_rss = tem["luu_rss"]
-	local restore_rss = tem["restore_rss"]
-	local web_mail = tem["web_mail"]
-	local api_dongvanfb = tem["api_dongvanfb"]
-	local api_maxclone = tem["api_maxclone"]
-	local web_sim = tem["web_sim"]
-	local api_codetextnow = tem["api_codetextnow"]
-	local api_otpmmo = tem["api_otpmmo"]
-	local api_otpsim = tem["api_otpsim"]
-	local api_simfast = tem["api_simfast"]
-	local up_danh_ba = tem["up_danh_ba"]
-	local up_avatar = tem["up_avatar"]
-	local up_anh_bia = tem["up_anh_bia"]
-	local up_info= tem["up_info"]
-	local bat_2fa = tem["bat_2fa"]
-	local doi_ten = tem["doi_ten"]
-	local kb_goi_y = tem["kb_goi_y"]
-	local kb_uid = tem["kb_uid"]
-	local dong_y_kb = tem["dong_y_kb"]
-	local xem_tb = tem["xem_tb"]
-	local add_group_goi_y = tem["add_group_goi_y"]
-	local add_group_list = tem["add_group_list"]
-	local file_nhom = tem["file_nhom"]
-	local like_page = tem["like_page"]
-	local file_page = tem["file_page"]
-	local luot_newsfeed = tem["luot_newsfeed"]
+
 	local like_newsfeed = tem["like_newsfeed"]
 	local binh_luan = tem["binh_luan"]
 	local share_tuong = tem["share_tuong"]
@@ -53,7 +9,7 @@ function main(login_clone, restore_rss, very_acc, up_danh_ba, up_avatar, up_anh_
 	local xuat_clone = tem["xuat_clone"]
 	local link_gg_sheet = tem["link_gg_sheet"]
 	if (reg_clone ~= "0" and login_clone == "0" and restore_rss == "0") then
-		regclone(reg_clone, web_sim, api_codetextnow, api_otpmmo, api_simfast, very_acc, up_avatar, bat_2fa, luu_rss, link_gg_sheet)
+		regclone(reg_clone, web_sim, api_codetextnow, api_otpmmo, api_simfast, api_otpsim, very_acc, up_avatar, bat_2fa, luu_rss, link_gg_sheet)
 		return
 	end
 	if (login_clone == "1") then
