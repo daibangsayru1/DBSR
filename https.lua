@@ -20,6 +20,7 @@ function checkuid(uid)
 	end
 end
 function getsdt(api_codetextnow)
+	local http = require("socket.http")
 	local i = 1
 	repeat
 		sleep(2)
@@ -161,7 +162,7 @@ function getotp(site, sdt)
 end
 ----------
 function goisim(web_sim, api_codetextnow, api_otpmmo)
-	local c = readtxt("sdt ok.txt")
+	local c = readtxt("sdt chờ.txt")
 	local d = type(c)
 	if (d == "nil") then
 		toast("Hết sim")
@@ -169,7 +170,7 @@ function goisim(web_sim, api_codetextnow, api_otpmmo)
 			local a = getsdt(api_codetextnow)
 			if (a ~= 0) then
 				toast("Get sdt codetextnow")
-				writetxt("sdt ok.txt", a, "a", 1, 1)
+				writetxt("sdt chờ.txt", a, "a", 1, 1)
 				writetxt("data.txt", "", "a", 1, 1)
 				writetxt("data.txt", a, "a", 1, 0)
 			end
@@ -178,7 +179,7 @@ function goisim(web_sim, api_codetextnow, api_otpmmo)
 			local b = getsdt2(api_otpmmo)
 			if (b ~= 0) then
 				toast("Get sdt otpmmo")
-				writetxt("sdt ok.txt", b, "a", 1, 1)
+				writetxt("sdt chờ.txt", b, "a", 1, 1)
 				writetxt("data.txt", "", "a", 1, 1)
 				writetxt("data.txt", b, "a", 1, 0)
 			end
@@ -190,6 +191,7 @@ function upavatar(id, apikey, urlweb, api)
 	local http = require("socket.http")
 	openURL("fb://profile")
 	usleep(1500000)
+	tap(669, 913)
 	tap(669, 913)
 	tap(669, 913)
 	usleep(1000000)
@@ -296,11 +298,11 @@ function regclone(reg_clone, web_sim, api_codetextnow, api_otpmmo, api_simfast, 
 			line = daodong("data.txt")
 			sdt = string.sub(line, 1, 7)..os.date("%d")..math.random(0, 9)
 		else
-			sdt = laydong1("sdt ok.txt")
+			sdt = laydong1("sdt chờ.txt")
 			testsdt = 1
 			if (sdt == nil) then
 				testsdt = 2
-				toast("sdt ok trống, lấy data.txt")
+				toast("sdt chờ trống, lấy data.txt")
 				line = daodong("data.txt")
 				sdt = string.sub(line, 1, 7)..os.date("%d")..math.random(0, 9)
 			end
@@ -308,7 +310,7 @@ function regclone(reg_clone, web_sim, api_codetextnow, api_otpmmo, api_simfast, 
 				local a = getsdt(api_codetextnow)
 				if (a ~= 0) then
 					toast("Get sdt codetextnow")
-					writetxt("sdt ok.txt", a, "a", 1, 1)
+					writetxt("sdt chờ.txt", a, "a", 1, 1)
 					writetxt("data.txt", "", "a", 1, 1)
 					writetxt("data.txt", a, "a", 1, 0)
 				end
@@ -317,7 +319,7 @@ function regclone(reg_clone, web_sim, api_codetextnow, api_otpmmo, api_simfast, 
 				local b = getsdt2(api_otpmmo)
 				if (b ~= 0) then
 					toast("Get sdt otpmmo")
-					writetxt("sdt ok.txt", b, "a", 1, 1)
+					writetxt("sdt chờ.txt", b, "a", 1, 1)
 					writetxt("data.txt", "", "a", 1, 1)
 					writetxt("data.txt", b, "a", 1, 0)
 				end
@@ -562,19 +564,14 @@ function regclone(reg_clone, web_sim, api_codetextnow, api_otpmmo, api_simfast, 
 					line = daodong("data.txt")
 					sdt = string.sub(line, 1, 7)..os.date("%d")..math.random(0, 9)
 				else
-					sdt = laydong1("sdt ok.txt")
-					testsdt = 1
-					if (sdt == nil) then
-						testsdt = 2
-						toast("sdt ok trống, lấy data.txt")
-						line = daodong("data.txt")
-						sdt = string.sub(line, 1, 7)..os.date("%d")..math.random(0, 9)
-					end
+					toast("Lấy data.txt")
+					line = daodong("data.txt")
+					sdt = string.sub(line, 1, 7)..os.date("%d")..math.random(0, 9)
 					if (web_sim == "codetextnow") then
 						local a = getsdt(api_codetextnow)
 						if (a ~= 0) then
 							toast("Get sdt codetextnow")
-							writetxt("sdt ok.txt", a, "a", 1, 1)
+							writetxt("sdt chờ.txt", a, "a", 1, 1)
 							writetxt("data.txt", "", "a", 1, 1)
 							writetxt("data.txt", a, "a", 1, 0)
 						end
@@ -583,7 +580,7 @@ function regclone(reg_clone, web_sim, api_codetextnow, api_otpmmo, api_simfast, 
 						local b = getsdt2(api_otpmmo)
 						if (b ~= 0) then
 							toast("Get sdt otpmmo")
-							writetxt("sdt ok.txt", b, "a", 1, 1)
+							writetxt("sdt chờ.txt", b, "a", 1, 1)
 							writetxt("data.txt", "", "a", 1, 1)
 							writetxt("data.txt", b, "a", 1, 0)
 						end
@@ -1597,7 +1594,6 @@ function login(urlweb, api, loginclonenovery, apikey)
 		end
 		j = j + 1
 		if (j == 2 and x ~= 35 and x ~= 139) then
-			resetdata();
 			return 0, 0
 		end
 	until(x == 35 or x == 139)
