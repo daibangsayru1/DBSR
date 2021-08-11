@@ -90,6 +90,24 @@ function getsdt3(api_simfast)
 	until(a["phone"] ~= nil)
 end
 ---
+function getsdt4(api_otpsim)
+	idnet = "4"
+	repeat
+		local iddv = "7"
+		local http = require("socket.http")
+		local json = require("json")
+		local body = http.request("http://otpsim.com/api/phones/request?token="..api_otpsim.."&service="..iddv.."&network="..idnet)
+		local test = string.find(body, "false")
+		if (test ~= nil) then
+			toast("Hết sim "..idnet)
+		else
+			id = string.sub(body, string.find(body, "session")+10, string.len(body)-3)
+			sdt = string.sub(body, string.find(body, "phone_number")+15, string.find(body, "phone_number")+23)
+			return sdt, id
+		end
+	until(test == nil)
+end
+---
 function getotp(site, sdt)
 	if (site == 1) then
 		local i = 1;
@@ -287,7 +305,7 @@ function upavatar(id, apikey, urlweb, api)
 end
 ------
 ---------
-function regclone(reg_clone, web_sim, api_codetextnow, api_otpmmo, api_simfast, very_acc, avt, fa, luu_rss, link_gg_sheet)
+function regclone(reg_clone, web_sim, api_codetextnow, api_otpmmo, api_simfast, api_otpsim, very_acc, avt, fa, luu_rss, link_gg_sheet)
 	local api = readtxt("api key.txt")
 	local urlweb = readtxt("site.txt")
 	local json = require("json")
@@ -361,6 +379,10 @@ function regclone(reg_clone, web_sim, api_codetextnow, api_otpmmo, api_simfast, 
 			sdt, seson = getsdt3(api_simfast)
 			toast("Get sdt simfast")
 			site = 3
+		end
+		if (web_sim == "otpsim") then
+			sdt, seson = getsdt4(api_otpsim)
+			toast("Get sdt otpsim vn")
 		end
 	end
 	local body = http.request(urlweb.."/api/updatedevicestatus/"..api.."/"..getapi().."/moappfb")
