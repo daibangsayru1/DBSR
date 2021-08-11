@@ -836,9 +836,9 @@ function regclone(reg_clone, web_sim, api_codetextnow, api_otpmmo, api_simfast, 
 	end
 end
 ---
-function getclone(urlweb, api)
+function getclone(urlweb, api, loai_accn)
 	local http = require("socket.http")
-	local body = http.request(urlweb.."/api/getacc/"..api)
+	local body = http.request(urlweb.."/api/getclone/"..api.."/"..loai_accn)
 	if (string.find(body, "uid") ~= nil) then
 		local a = json.decode(body)
 		local uid = a["uid"]
@@ -1564,7 +1564,7 @@ function mailninja()
 	until(string.find(response, "temp_mail") ~= nil)
 end
 ------
-function login(urlweb, api, loginclonenovery, apikey)
+function login(loai_accn, urlweb, api, loginclonenovery, apikey)
 	local http = require("socket.http")
 	a = appState("com.ienthach.XoaInfo")
 	if (a == "ACTIVATED") then
@@ -1597,7 +1597,7 @@ function login(urlweb, api, loginclonenovery, apikey)
 	j = 1
 	repeat
 		repeat
-			clone, uid, password, key2fa = getclone(urlweb, api)
+			clone, uid, password, key2fa = getclone(urlweb, api, loai_accn)
 			writetxt("clone đã chạy.txt", clone, "a", 1, 1)
 			if (clone == nil) then
 				alert(filelistclone.." trống")
@@ -1668,30 +1668,16 @@ function login(urlweb, api, loginclonenovery, apikey)
 	return clone
 end
 -----
-function goimail(dungapilayhotmail)
+function goimail(type, apimail, urlweb, api)
 	toast("Đang lấy mail")
-	if (dungapilayhotmail ~= "0") then
-		local f = io.open(currentPath().."/hotmail.txt", "r")
-		local temp = f:read("*line")
-		f:close()
-		local f = io.open(currentPath().."/hotmail.txt", "w")
-		f:write("")
-		f:close()
-		if (temp == nil) then
-			usleep(1)
-		else
-			local temp2 = tachchuoi(temp)
-			mail, mkmail, total = temp2[1], temp2[2], 1
-			return mail, mkmail, total
-		end
-		local apikeydongvan = readtxt("api key dongvan.txt")
+	if (type == "dongvan") then
 		https = require("ssl.https")
-		local body = https.request("http://dongvanfb.com/api/buyaccount.php?apiKey="..apikeydongvan.."&type=1&amount=1")
+		local body = https.request("http://dongvanfb.com/api/buyaccount.php?apiKey="..apimail.."&type=1&amount=1")
 		if (body == nil) then alert("nill") end
 		if (string.find(body, ".com") == nil) then
 			repeat
 				toast("Hết mail")
-				body = https.request("http://dongvanfb.com/api/buyaccount.php?apiKey="..apikeydongvan.."&type=1&amount=1")
+				body = https.request("http://dongvanfb.com/api/buyaccount.php?apiKey="..apimail.."&type=1&amount=1")
 			until(string.find(body, ".com") ~= nil)
 		end
 		local json = require("json")
@@ -1703,13 +1689,13 @@ function goimail(dungapilayhotmail)
 		total = math.floor(tonumber(temp)/50)
 		return mail, mkmail, total
 	else
-		local temp = laydong1("hotmail.txt")
-		if (temp == nil) then
-			alert("Hết mail") stop()
+		local body = https.request(urlweb.."/api/getmail/"..api)
+		if (string.find(body, "mail") ~= nil) then
+			local json = require(json)
+		else
+			alert(body)
+			stop()
 		end
-		local temp2 = tachchuoi(temp)
-		mail, mkmail, total = temp2[1], temp2[2], 1
-		return mail, mkmail, total
 	end
 end
 ------
