@@ -15,10 +15,11 @@ function main(login_clone, restore_rss, very_acc, up_danh_ba, up_avatar, up_anh_
 	f:close()
 	local tem = json.decode(data)
 	local login_clone = tem["login_clone"]
+	local loai_accn = tem["loai_accn"]
 	local very_acc = tem["very_acc"]
 	local reg_clone = tem["reg_clone"]
-	local luu_rss = tem["luu_rss"]
-	local restore_rss = tem["restore_rss"]
+	local luu_rrs = tem["luu_rrs"]
+	local restore_rrs = tem["restore_rrs"]
 	local web_mail = tem["web_mail"]
 	local api_dongvanfb = tem["api_dongvanfb"]
 	local api_maxclone = tem["api_maxclone"]
@@ -51,9 +52,9 @@ function main(login_clone, restore_rss, very_acc, up_danh_ba, up_avatar, up_anh_
 	local dang_stt = tem["dang_stt"]
 	local dang_stt_anh = tem["dang_stt_anh"]
 	local xuat_clone = tem["xuat_clone"]
-	local link_gg_sheet = tem["link_gg_sheet"]
-	if (reg_clone ~= "0" and login_clone == "0" and restore_rss == "0") then
-		regclone(reg_clone, web_sim, api_codetextnow, api_otpmmo, api_simfast, api_otpsim, very_acc, up_avatar, bat_2fa, luu_rss, link_gg_sheet)
+	local loai_accx = tem["loai_accx"]
+	if (reg_clone ~= "0" and login_clone == "0" and restore_rrs == "0") then
+		regclone(reg_clone, web_sim, api_codetextnow, api_otpmmo, api_simfast, api_otpsim, very_acc, up_avatar, bat_2fa, luu_rrs, loai_accx)
 		return
 	end
 	if (login_clone == "1") then
