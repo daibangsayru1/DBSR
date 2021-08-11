@@ -549,15 +549,18 @@ function regclone(reg_clone, web_sim, api_codetextnow, api_otpmmo, api_simfast, 
 		sleep(2)
 	end
 	tap(300, 395);
-	sleep(2)
+	sleep(1)
 	if (very_acc == "0" and web_sim ~= "0") then
 		goisim(web_sim, api_codetextnow, api_otpmmo)
 	end
-	tapso(sdt)
+	inputText(sdt.." ");
+	usleep(500000)
+	tap(666, 1280)
 	usleep(300000);
 	tap(669, 867);
 	---.Điền mật khẩu---
 	waitcolor(273, 245, 1603570, 5, 0);
+	usleep(500000)
 	local b = os.date("%M")..os.date("%S")
 	matkhau = tem..b
 	---tapchu(matkhau)
