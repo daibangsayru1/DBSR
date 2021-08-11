@@ -438,13 +438,17 @@ function regclone(reg_clone, web_sim, api_codetextnow, api_otpmmo, api_simfast, 
 	end
 	usleep(300000)
 	ho = daodong("họ.txt")
-	tapchu(ho)
+	---tapchu(ho)
+	inputText(ho)
 	usleep(300000)
 	tap(430, 357);
 	usleep(300000);
 	ten = daodong("tên.txt")
-	local tem = string.gsub(ten, " ", "")
-	tapchu(ten)
+	local tem = daodong("pass.txt")
+	---tapchu(ten)
+	inputText(ten)
+	usleep(300000)
+	tap(50, 1280)
 	usleep(300000)
 	tap(617, 1288);
 	waitcolor(134, 256, 1603570, 15, 0);
@@ -554,10 +558,12 @@ function regclone(reg_clone, web_sim, api_codetextnow, api_otpmmo, api_simfast, 
 	tap(669, 867);
 	---.Điền mật khẩu---
 	waitcolor(273, 245, 1603570, 5, 0);
-	tap(136, 354);
 	local b = os.date("%M")..os.date("%S")
 	matkhau = tem..b
-	tapchu(matkhau)
+	---tapchu(matkhau)
+	inputText(matkhau)
+	usleep(300000)
+	tap(50, 1280)
 	usleep(500000);
 	tap(634, 1287);
 	waitcolor(272, 674, 1799396, 298, 673, 1603570, 298, 700, 1603570, 10, 0)
