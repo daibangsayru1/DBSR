@@ -58,7 +58,7 @@ function main(login_clone, restore_rss, very_acc, up_danh_ba, up_avatar, up_anh_
 		return
 	end
 	if (login_clone == "1") then
-		clone, cl2 = login(urlweb, api, loginclonenovery, apikey);---login
+		clone, cl2 = login(loai_accn, urlweb, api, loginclonenovery, apikey);---login
 		testvr = 1
 	else
 	-----------------------restore RRS
@@ -135,7 +135,7 @@ function main(login_clone, restore_rss, very_acc, up_danh_ba, up_avatar, up_anh_
 	local id = tachchuoi(clone)
 	local uid, matkhau = id[1], id[2]
 	if (very_acc == "1") then
-		mail, mkmail, total = goimail(dungapilayhotmail)
+		mail, mkmail, total = goimail(type, apimail, urlweb, api)
 		testvr, cookie = chiveri(dungapilayhotmail, uid)
 	end
 	----------------------
