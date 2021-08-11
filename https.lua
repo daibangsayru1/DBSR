@@ -1,3 +1,40 @@
+function tapchu(text, space)
+	local tababc = {"@|421|1283", ".|517|1283", "1|35|960", "2|111|960", "3|187|960", "4|259|960", "5|334|960", "6|412|960", "7|488|960", "8|564|960", "9|638|960", "0|713|960", "q|35|960", "w|111|960", "e|187|960", "r|259|960", "t|334|960", "y|412|960", "u|488|960", "i|564|960", "o|638|960", "p|713|960", "a|72|1070", "s|145|1070", "d|223|1070", "f|300|1070", "g|373|1070", "h|450|1070", "j|525|1070", "k|599|1070", "l|676|1070", "z|147|1170", "x|221|1170", "c|299|1170", "v|374|1170", "b|451|1170", "n|527|1170", "m|599|1170", " |315|1280"}																				
+	local tababc2 = {"à", "á", "ả", "ã", "ạ", "ă", "ằ", "ắ", "ẳ", "ẵ", "ặ", "â", "ầ", "ấ", "ẩ", "ẫ", "ậ", "đ", "e"}
+	local tem = string.sub(text, 1, string.len(text))
+	num = 1
+	for i = 1, #tem do
+		local abc = string.sub(tem, i, i)
+		if (string.upper(abc) == abc and type(tonumber(abc)) ~= "number" and abc ~= " " and abc ~= "@" and abc ~= ".") then
+			tap(43, 1183)
+			sleep(1)
+			for k = 1, #tababc do
+			local tem = tachchuoi(tababc[k])
+			if (string.lower(abc) == tem[1]) then
+				tap(tem[2], tem[3])
+			end
+		end
+		end
+		local abc2 = string.sub(tem, i+1, i+1)
+		if (type(tonumber(abc)) == "number" and num == 1) then
+			tap(50, 1280)
+			sleep(1)
+			num = 2
+		end
+		for j = 1, #tababc do
+			local tem = tachchuoi(tababc[j])
+			if (abc == tem[1]) then
+				tap(tem[2], tem[3])
+			end
+		end
+		if (type(tonumber(abc2)) ~= "number" and type(tonumber(abc)) == "number") then
+			tap(50, 1280)
+			sleep(1)
+		else
+			--num = 2
+		end
+	end
+end
 function checkuid(uid)
 	toast("Đang check uid")
 	repeat
