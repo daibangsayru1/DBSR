@@ -1705,33 +1705,19 @@ function chiveri(dungapilayhotmail, id, urlweb, api, apikey)
 	local http = require("socket.http")
 	local body = http.request(urlweb.."/api/updatedevicestatus/"..api.."/"..apikey.."/very")
 	local a = readtxt("status.txt")
-	local log = tonumber(a)
-	if (log == 5) then 
-		alert("Lỗi very die liên tiếp") 
-		writetxt("status.txt", 0, "w", 0, 0)
-		stop() 
-	end
+	local b = tachchuoi(a)
 	copyText(0)
 	if (getColor(35, 88) == 1603570 or getColor(139, 90) == 1603570) then
 		tap(66, 1280)
 	end
-	x = waitcolor(394, 444, 1603570, 395, 508, 1603570, 707, 500, 1603570, 525, 506, 1603570, 708, 469, 1603570, 4, 0)
+	sleep(6)
 	tapimg("skip.jpg", 1, 1000000)
 	tapimg("skip.jpg", 1, 1000000)
 	tapimg("skip.jpg", 1, 1000000)
 	tapimg("skip.jpg", 1, 1000000)
 	---
-	local test1 = tapimg("addmail.jpg", 1, 1)
-	local test1 = tapimg("addmail.jpg", 1, 1)
-	if (test1 == 1) then toast("Hiện GD 1") end
-	if (test1 ~= 1) then
-		test2 = tapimg("xnmail.jpg", 1, 1)
-		test2 = tapimg("xnmail.jpg", 1, 1000000)
-		if (test2 == 1) then toast("Hiện GD 2") end
-		test2 = tapimg("xnmail.jpg", 1, 1)
-	else
-		test2 = 0
-	end
+	local test1 = tapimg("addmail.jpg", 1, 2000000)
+	local test2 = tapimg("xnmail.jpg", 1, 2000000)
 	---if (x ~= 395 and x ~= 707 and x ~= 708 and x ~= 525 and x ~= 394) then
 	if (test1 ~= 1 and test2 ~= 1) then
 		local i = 1
@@ -1755,16 +1741,10 @@ function chiveri(dungapilayhotmail, id, urlweb, api, apikey)
 			tapimg("skip.jpg", 1, 1000000)
 			tapimg("skip.jpg", 1, 1000000)
 			x = waitcolor(394, 444, 1603570, 395, 508, 1603570, 707, 500, 1603570, 525, 506, 1603570, 708, 469, 1603570, 2, 0)
-			local test1 = tapimg("addmail.jpg", 1, 1)
-			if (test1 == 1) then toast("Hiện GD 1") end
-			if (test1 ~= 1) then
-				test2 = tapimg("xnmail.jpg", 1, 1)
-				if (test2 == 1) then toast("Hiện GD 2") end
-			else
-				test2 = 0
-			end
+			local test1 = tapimg("addmail.jpg", 1, 2000000)
+			local test2 = tapimg("xnmail.jpg", 1, 2000000)
 			i = i + 1;
-			if (i == 5) then
+			if (i == 5 and test1 ~= 1 and test2 ~= 1) then
 				cookie = clipText()
 				tap(691, 1289);
 				usleep(1000000)
@@ -1833,7 +1813,7 @@ function chiveri(dungapilayhotmail, id, urlweb, api, apikey)
 				local i = 1;
 				repeat
 					toast("Chờ otp.. "..i)
-					local body = request(urlotp)
+					local body = http.request(urlotp)
 					local text = string.find(body, "Facebook");
 					if (string.find(body, "Facebook") ~= nil) then
 						otp = string.sub(body, string.find(body, "code")+7, string.find(body, "sender")-4)
@@ -1848,11 +1828,14 @@ function chiveri(dungapilayhotmail, id, urlweb, api, apikey)
 						usleep(2000000)
 						appRun("com.facebook.Facebook");
 						usleep(3000000)
+					else
+						sleep(2)
 					end
 					test = checkuid(id)
 					if (test == 1) then
-						log = log + 1
-						writetxt("status.txt", log, "w", 0, 0)
+						log = tonumber(b[2])+1
+						writetxt("status.txt", b[1]"|"..log, "w", 0, 0)
+						postlog(urlweb, api, apikey, "that_bai", log, "postfaillogs")
 						writetxt("Clone DIE.txt", clone, "a", 1, 1)
 						return 0, 0
 					end
@@ -1862,7 +1845,9 @@ function chiveri(dungapilayhotmail, id, urlweb, api, apikey)
 						return 0, 0
 					end
 				until(text ~= nil);
-				writetxt("status.txt", 0, "w", 0, 0)
+				log = tonumber(b[1])+1
+				writetxt("status.txt", log.."|"..b[2], "w", 0, 0)
+				postlog(urlweb, api, apikey, "thanh_cong", 0, "postsuccesslogs")
 				cookie = clipText()
 				return 1, cookie
 			end
@@ -1876,15 +1861,13 @@ function chiveri(dungapilayhotmail, id, urlweb, api, apikey)
 	---	test2 = tapimg("xnmail.jpg", 1, 1000000)
 	---	local x = waitcolor(354, 327, 1603570, 395, 329, 1603570, 20, 0);
 	---end
-	sleep(2)
-	tap(700, 219);
 	tap(700, 219)
 	usleep(500000);
 	inputText(mail)
 	usleep(500000);
 	tap(631, 1281)
 	usleep(2000000);
-	x = waitcolor(154, 544, 0, 381, 845, 31487, 35, 88, 1603570, 139, 90, 1603570, 620, 907, 1603570, 610, 907, 1603570, 355, 809, 31487, 382, 809, 31487, 382, 793, 31487, 354, 474, 1603570, 375, 475, 1603570, 60, 1)
+	x = waitcolor(284, 475, 1799396, 154, 544, 0, 381, 845, 31487, 35, 88, 1603570, 139, 90, 1603570, 620, 907, 1603570, 610, 907, 1603570, 355, 809, 31487, 382, 809, 31487, 382, 793, 31487, 354, 474, 1603570, 375, 475, 1603570, 60, 1)
 	----
 	if (x == 355 or x == 382) then
 		tap(355, 809)
@@ -1900,7 +1883,7 @@ function chiveri(dungapilayhotmail, id, urlweb, api, apikey)
 	local i = 1;
 	repeat
 		toast("Chờ otp.. "..i)
-		local body = request(urlotp)
+		local body = http.request(urlotp)
 		local text = string.find(body, "Facebook");
 		if (string.find(body, "Facebook") ~= nil) then
 			otp = string.sub(body, string.find(body, "code")+7, string.find(body, "sender")-4)
@@ -1912,11 +1895,14 @@ function chiveri(dungapilayhotmail, id, urlweb, api, apikey)
 			usleep(500000);
 			tap(379, 474);
 			usleep(1000000) 
+		else
+			sleep(2)
 		end
 		test = checkuid(id)
 		if (test == 1) then
-			log = log + 1
-			writetxt("status.txt", log, "w", 0, 0)
+			log = tonumber(b[2])+1
+			writetxt("status.txt", b[1].."|"..log, "w", 0, 0)
+			postlog(urlweb, api, apikey, "that_bai", log, "postfaillogs")
 			writetxt("Clone DIE.txt", clone, "a", 1, 1)
 			return 0, 0
 		end
@@ -1938,7 +1924,9 @@ function chiveri(dungapilayhotmail, id, urlweb, api, apikey)
 		writetxt("Lỗi OTP.txt", clone, "a", 1, 1)
 		return 0, 0
 	else
-		writetxt("status.txt", 0, "w", 0, 0)
+		log = tonumber(b[1])+1
+		writetxt("status.txt", log.."|"..b[2], "w", 0, 0)
+		postlog(urlweb, api, apikey, "thanh_cong", 0, "postsuccesslogs")
 		if (getColor(35, 88) ~= 1603570 and getColor(139, 90) ~= 1603570) then
 			appKill("com.facebook.Facebook");
 			usleep(1000000)
