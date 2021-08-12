@@ -1565,6 +1565,14 @@ function mailninja()
 end
 ------
 function login(loai_accn, urlweb, api, loginclonenovery, apikey)
+	local a = readtxt("status.txt")
+	local b = tachchuoi(a)
+	if (tonumber(b[2])-tonumber(b[1])>5) then
+		repeat
+			toast("Lỗi very die nhiểu", 7)
+			sleep(3)
+		until(1 == 2)
+	end
 	local http = require("socket.http")
 	a = appState("com.ienthach.XoaInfo")
 	if (a == "ACTIVATED") then
