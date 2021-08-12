@@ -136,7 +136,7 @@ function main(login_clone, restore_rss, very_acc, up_danh_ba, up_avatar, up_anh_
 	local uid, matkhau = id[1], id[2]
 	if (very_acc == "1") then
 		mail, mkmail, total = goimail(type, apimail, urlweb, api)
-		testvr, cookie = chiveri(dungapilayhotmail, uid)
+		testvr, cookie = chiveri(dungapilayhotmail, uid, urlweb, api, apikey)
 	end
 	----------------------
 	if (testvr == 1) then
