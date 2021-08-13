@@ -197,6 +197,11 @@ function main(login_clone, restore_rss, very_acc, up_danh_ba, up_avatar, up_anh_
 	end
 	local testkb = ketban(tonumber(kb_goi_y), tonumber(kb_uid), 1, updb, id, matkhau, key2fa)
 	if (xuat_clone ~= "0" and testvr == 1) then
+		local a = readtxt("status.txt")
+		local b = tachchuoi(a)
+		log = tonumber(b[1])+1
+		writetxt("status.txt", log.."|"..b[2], "w", 0, 0)
+		postlog(urlweb, api, apikey, "thanh_cong", 0, "postsuccesslogs")
 		postclone(urlweb, api, clone, loai_accx)
 	end
 	if (xem_tb ~= "0") then
