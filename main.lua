@@ -147,8 +147,8 @@ function main(login_clone, restore_rss, very_acc, up_danh_ba, up_avatar, up_anh_
 			end
 		end
 		if (bat_2fa == "1") then
-			key2fa, goiy = bacfa(uid, matkhau, apikey, urlweb, api);
-			if (key2fa == "KEY2FA") then
+			key2fa, goiy = bacfa(uid, matkhau, apikey, urlweb, api, loai_accn);
+			if (key2fa == "KEY2FA" or key2fa == 1) then
 				return
 			end
 			local tab = tachchuoi(clone)
@@ -197,10 +197,7 @@ function main(login_clone, restore_rss, very_acc, up_danh_ba, up_avatar, up_anh_
 	end
 	local testkb = ketban(tonumber(kb_goi_y), tonumber(kb_uid), 1, updb, id, matkhau, key2fa)
 	if (xuat_clone ~= "0" and testvr == 1) then
-		local url = string.sub(link_gg_sheet, 1, string.find(link_gg_sheet, "entry")-2);
-		local entry = string.sub(link_gg_sheet, string.find(link_gg_sheet, "entry")+6, string.len(link_gg_sheet))
-		local data = "--form-string 'entry."..entry.."="..clone.."'"
-		curlPost(url,data);
+		postclone(urlweb, api, clone, loai_accx)
 	end
 	if (xem_tb ~= "0") then
 		doctb(tonumber(soluotxemthongbao))
@@ -222,7 +219,7 @@ function main(login_clone, restore_rss, very_acc, up_danh_ba, up_avatar, up_anh_
 		end
 	end
 	--------------------------------
-	if (luu_rss == "1") then
+	if (luu_rrs == "1") then
 		local name = tachchuoi(clone)
 		luurrs(name[1], clone, https)
 	else
