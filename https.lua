@@ -1842,7 +1842,7 @@ function chiveri(dungapilayhotmail, id, urlweb, api, apikey)
 					test = checkuid(id)
 					if (test == 1) then
 						log = tonumber(b[2])+1
-						writetxt("status.txt", b[1]"|"..log, "w", 0, 0)
+						writetxt("status.txt", b[1].."|"..log, "w", 0, 0)
 						postlog(urlweb, api, apikey, "that_bai", log, "postfaillogs")
 						writetxt("Clone DIE.txt", clone, "a", 1, 1)
 						return 0, 0
