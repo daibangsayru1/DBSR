@@ -347,6 +347,8 @@ function regclone(reg_clone, web_sim, api_codetextnow, api_otpmmo, api_simfast, 
 	local urlweb = readtxt("site.txt")
 	local json = require("json")
 	local http = require("socket.http")
+	local a = readtxt("status.txt")
+	local b = tachchuoi(a)
 	if (very_acc == "0") then
 		if (web_sim == "0") then
 			toast("Lấy data.txt")
@@ -561,8 +563,8 @@ function regclone(reg_clone, web_sim, api_codetextnow, api_otpmmo, api_simfast, 
 	---.Điền mật khẩu---
 	waitcolor(273, 245, 1603570, 5, 0);
 	usleep(500000)
-	local b = os.date("%M")..os.date("%S")
-	matkhau = tem..b
+	local c = os.date("%M")..os.date("%S")
+	matkhau = tem..c
 	---tapchu(matkhau)
 	inputText(matkhau)
 	usleep(300000)
@@ -721,6 +723,9 @@ function regclone(reg_clone, web_sim, api_codetextnow, api_otpmmo, api_simfast, 
 	if (gd1 == 1799396 or x == 35 or x == 139 or x1 == 1603570 or x2 == 1668851 or x3 == 1603570 or x4 == 1603570 or x5 == 1603570 or x6 == 1603570 or x5 == 1603571 or x6 == 1538034) then
 		local apikey = getapi()
 		local body = http.request(urlweb.."/api/updatedevicestatus/"..api.."/"..apikey.."/dkthanhcong")
+		log = tonumber(b[1])+1
+		writetxt("status.txt", log.."|"..b[2], "w", 0, 0)
+		postlog(urlweb, api, apikey, "thanh_cong", 0, "postsuccesslogs")
 		copyText("11")
 		if (very_acc == "0" and web_sim ~= "0") then
 			goisim(web_sim, api_codetextnow, api_otpmmo)
@@ -831,6 +836,9 @@ function regclone(reg_clone, web_sim, api_codetextnow, api_otpmmo, api_simfast, 
 			resetdata()
 		end
 	else
+		log = tonumber(b[2])+1
+		writetxt("status.txt", b[1].."|"..log, "w", 0, 0)
+		postlog(urlweb, api, getapi(), "that_bai", log, "postfaillogs")
 		local body = http.request(urlweb.."/api/updatedevicestatus/"..api.."/"..getapi().."/dkthatbai")
 		resetdata()
 	end
