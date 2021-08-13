@@ -2035,7 +2035,7 @@ function bacfa(id, matkhau, apikey, urlweb, api, loai_accn)
 			return 1
 		end
 	end
-	local testfa = tapimg("2fa1.jpg")
+	local testfa = tapimg("2fa1.jpg", 1, 1000000)
 	if (testfa ~= 1) then
 		tap(50, 90)
 		sleep(1)
