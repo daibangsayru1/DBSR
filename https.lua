@@ -248,7 +248,6 @@ function upavatar(id, apikey, urlweb, api)
 	usleep(1500000)
 	tap(669, 913)
 	tap(669, 913)
-	tap(669, 913)
 	usleep(1000000)
 	tap(50,100)
 	usleep(1000000)
@@ -304,7 +303,8 @@ function upavatar(id, apikey, urlweb, api)
 		tapimg("xnok.jpg", 1, 2000000)
 		local te = tapimg("chonanh3.jpg", 1, 1000000)
 		local te2 = tapimg("chonanh4.jpg", 1, 1000000)
-		if (te ~= 1 and te2 ~= 1) then
+		local te3 = tapimg("chonanh1.jpg", 1, 1000000)
+		if (te ~= 1 and te2 ~= 1 and te3 ~= 1) then
 			openURL("fb://profile")
 			usleep(1000000)
 			tap(673, 922)
@@ -860,8 +860,10 @@ function getclone(urlweb, api, loai_accn)
 		local clone = string.gsub(b, "|||", "")
 		return clone, uid, password, key2fa
 	else
-		alert(body)
-		stop()
+		repeat
+			toast("Hết loại "..loai_accn, 7)
+			sleep(3)
+		until(1 == 2)
 	end
 end
 function doiten(id, matkhau)
@@ -1575,7 +1577,7 @@ end
 function login(loai_accn, urlweb, api, loginclonenovery, apikey)
 	local a = readtxt("status.txt")
 	local b = tachchuoi(a)
-	if (tonumber(b[2])-tonumber(b[1])>5) then
+	if (tonumber(b[2])-tonumber(b[1])>5 and loai_accn == "novery") then
 		repeat
 			toast("Lỗi very die nhiểu", 7)
 			sleep(3)
@@ -1632,21 +1634,22 @@ function login(loai_accn, urlweb, api, loginclonenovery, apikey)
 		usleep(500000)
 		tap(270, 520);
 		toast("Chờ kết quả")
-		x, y = waitcolor(572, 86, 4351922, 580, 40, 4351922, 661, 1263, 1603570, 35, 88, 1603570, 139, 90, 1603570, 525, 506, 1603570, 708, 469, 1603570, 353, 326, 1269698, 73, 767, 1269698, 60, 1)
+		x, y = waitcolor(572, 86, 4351922, 580, 40, 4351922, 661, 1263, 1603570, 35, 88, 1603570, 139, 90, 1603570, 525, 506, 1603570, 708, 469, 1603570, 353, 326, 1269698, 73, 767, 1269698, 40, 1)
 		if (x == 353 or x == 73) then
 			if (getColor(206, 604) == 0 or getColor(543, 607) == 0) then
-				local te = tachchuoi(clone)
-				key2fa = string.gsub(te[3], " ", "")
 				if (key2fa == 0) then 
 					toast("Ko có Key2fa")
+					log = tonumber(b[2])+1
+					writetxt("status.txt", b[1].."|"..log, "w", 0, 0)
+					postlog(urlweb, api, apikey, "that_bai", log, "postfaillogs")
 					return 0, 0
 				else
 					key2fa = string.gsub(key2fa, " ", "")
-					local img = findImage("/var/mobile/Library/AutoTouch/Scripts/facebook/img/ok.jpg", 1, 0.99, nil)
+					local img = findImage("/var/mobile/Library/AutoTouch/Scripts/DBSR/img/ok.jpg", 1, 0.99, nil)
 					for i, v in pairs(img) do
 						tap(v[1], v[2])
 						usleep(1000000)
-						local img = findImage("/var/mobile/Library/AutoTouch/Scripts/facebook/img/ma2fa.jpg", 1, 0.99, nil)
+						local img = findImage("/var/mobile/Library/AutoTouch/Scripts/DBSR/img/ma2fa.jpg", 1, 0.99, nil)
 						for i, v in pairs(img) do
 							tap(v[1], v[2])
 							local body = request("https://2fa.live/tok/"..key2fa);
@@ -1656,7 +1659,7 @@ function login(loai_accn, urlweb, api, loginclonenovery, apikey)
 							usleep(500000)
 							inputText(otp2fa);
 							usleep(1000000)
-							local img = findImage("/var/mobile/Library/AutoTouch/Scripts/facebook/img/dangnhap.jpg", 1, 0.99, nil)
+							local img = findImage("/var/mobile/Library/AutoTouch/Scripts/DBSR/img/dangnhap.jpg", 1, 0.99, nil)
 							for i, v in pairs(img) do
 								tap(v[1], v[2])
 								usleep(1000000)
@@ -1678,6 +1681,9 @@ function login(loai_accn, urlweb, api, loginclonenovery, apikey)
 		end
 		j = j + 1
 		if (j == 2 and x ~= 35 and x ~= 139) then
+			log = tonumber(b[2])+1
+			writetxt("status.txt", b[1].."|"..log, "w", 0, 0)
+			postlog(urlweb, api, apikey, "that_bai", log, "postfaillogs")
 			return 0, 0
 		end
 	until(x == 35 or x == 139)
@@ -1958,7 +1964,7 @@ function chiveri(dungapilayhotmail, id, urlweb, api, apikey)
 end
 
 ------
-function bacfa(id, matkhau, apikey, urlweb, api)
+function bacfa(id, matkhau, apikey, urlweb, api, loai_accn)
 	local http = require("socket.http")
 	local ssl = require("ssl.https")
 	local body = http.request(urlweb.."/api/updatedevicestatus/"..api.."/"..apikey.."/bat2fa")
@@ -2003,45 +2009,79 @@ function bacfa(id, matkhau, apikey, urlweb, api)
 	tapimg("baomat2.jpg", 1, 1000000)
 	waitcolor(581, 582, 1603570, 580, 591, 1603570, 643, 662, 1603570, 580, 662, 1603570, 639, 682, 1603570, 643, 622, 1603570, 80, 1)
 	--tap xem tấc cả
-	
-	------------------
-	touchDown(4, 517.30, 1102.07);
-	usleep(14515.92);
-	touchMove(4, 516.28, 1087.80);
-	usleep(18260.54);
-	touchMove(4, 517.30, 1053.20);
-	usleep(16603.79);
-	touchMove(4, 532.70, 1003.31);
-	usleep(16810.29);
-	touchMove(4, 552.20, 954.44);
-	usleep(16663.79);
-	touchMove(4, 566.56, 910.65);
-	usleep(16677.75);
-	touchMove(4, 573.75, 882.15);
-	usleep(16619.08);
-	touchMove(4, 575.81, 862.80);
-	usleep(16801.67);
-	touchMove(4, 576.83, 849.57);
-	usleep(16560.75);
-	touchMove(4, 577.86, 839.39);
-	usleep(16613.00);
-	touchMove(4, 577.86, 831.25);
-	usleep(16746.79);
-	touchMove(4, 577.86, 827.18);
-	usleep(16610.54);
-	touchMove(4, 577.86, 825.14);
-	usleep(116945.08);
-	touchMove(4, 580.94, 823.10);
-	usleep(14975.62);
-	touchUp(4, 585.04, 819.03);
-	usleep(1000000)
-	---------
-	img = findImage(currentPath().."/img/2fa.jpg", 5, 0.99, nil)
-	for i, v in pairs(img) do
-		tap(v[1], v[2])
+	tapimg("xemtacca.jpg", 1, 1)
+	tap(642, 595)
+	usleep(3000000)
+	local test = tapimg("dangxuattb.jpg", 1, 2000000)
+	if (test ~= 1) then
+		local test = tapimg("dangxuattb.jpg", 1, 2000000)
+		if (test ~= 1) then
+			keoxuong(1000)
+			usleep(1000000)
+			local test = tapimg("dangxuattb.jpg", 1, 2000000)
+		end
 	end
-	usleep(1000000)
-	---X&#225;c thực 2fa
+	local x = waitcolor(268, 494, 4227327, 500, 494, 4227327, 20, 0)
+	if (x ~= 268 and x ~= 500) then
+		alert("Lỗi")
+		stop()
+	end
+	tap(300, 494)
+	local x = waitcolor(64, 547, 4227327, 431, 561, 41984, 274, 506, 1603570, 100, 188, 3889560, 273, 465, 1603570, 466, 465, 1603570, 20, 1)
+	if (x == 274 or x == 100 or x == 273 or x == 466) then
+		if (loai_accn ~= "novery") then
+			toast("clone chưa very")
+			postclone(urlweb, api, id.."|"..matkhau, "novery")
+			return 1
+		end
+	end
+	local testfa = tapimg("2fa1.jpg")
+	if (testfa ~= 1) then
+		tap(50, 90)
+		sleep(1)
+		tap(50, 90)
+		sleep(1)
+		tap(50, 90)
+		sleep(1)
+		------------------
+		touchDown(4, 517.30, 1102.07);
+		usleep(14515.92);
+		touchMove(4, 516.28, 1087.80);
+		usleep(18260.54);
+		touchMove(4, 517.30, 1053.20);
+		usleep(16603.79);
+		touchMove(4, 532.70, 1003.31);
+		usleep(16810.29);
+		touchMove(4, 552.20, 954.44);
+		usleep(16663.79);
+		touchMove(4, 566.56, 910.65);
+		usleep(16677.75);
+		touchMove(4, 573.75, 882.15);
+		usleep(16619.08);
+		touchMove(4, 575.81, 862.80);
+		usleep(16801.67);
+		touchMove(4, 576.83, 849.57);
+		usleep(16560.75);
+		touchMove(4, 577.86, 839.39);
+		usleep(16613.00);
+		touchMove(4, 577.86, 831.25);
+		usleep(16746.79);
+		touchMove(4, 577.86, 827.18);
+		usleep(16610.54);
+		touchMove(4, 577.86, 825.14);
+		usleep(116945.08);
+		touchMove(4, 580.94, 823.10);
+		usleep(14975.62);
+		touchUp(4, 585.04, 819.03);
+		usleep(1000000)
+	---------
+		img = findImage(currentPath().."/img/2fa.jpg", 5, 0.99, nil)
+		for i, v in pairs(img) do
+			tap(v[1], v[2])
+		end
+		usleep(1000000)
+		---X&#225;c thực 2fa
+	end
 	waitcolor(263, 1185, 1603570, 263, 1185, 1799396, 10, 0);
 	tap(390, 1175)
 	usleep(1000000)
