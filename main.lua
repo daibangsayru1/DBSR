@@ -201,7 +201,7 @@ function main(login_clone, restore_rss, very_acc, up_danh_ba, up_avatar, up_anh_
 		local b = tachchuoi(a)
 		log = tonumber(b[1])+1
 		writetxt("status.txt", log.."|"..b[2], "w", 0, 0)
-		postlog(urlweb, api, apikey, "thanh_cong", 0, "postsuccesslogs")
+		postlog(urlweb, api, apikey, "thanh_cong", log, "postsuccesslogs")
 		postclone(urlweb, api, clone, loai_accx)
 	end
 	if (xem_tb ~= "0") then
