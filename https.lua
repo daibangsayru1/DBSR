@@ -1668,6 +1668,7 @@ function login(loai_accn, urlweb, api, loginclonenovery, apikey)
 						end
 						waitcolor(35, 88, 1603570, 139, 90, 1603570, 355, 785, 31487, 382, 785, 31487, 30, 1)
 					end
+					toast("Chờ load dữ liệu", 7)
 					tap(66, 1280)
 					usleep(3000000)
 					tap(66, 1280)
