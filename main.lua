@@ -62,7 +62,10 @@ function main(login_clone, restore_rss, very_acc, up_danh_ba, up_avatar, up_anh_
 		testvr = 1
 	else
 	-----------------------restore RRS
-		clone = laydong1("List RRS.txt")
+		local loai = 4
+		if (loai == 4) then
+			clone = daodong("RRS avt 2fa.txt")
+		end
 		local f = io.popen("ls var/mobile/Media/XoaInfo")
 		local a = f:read("all")
 		f:close()
