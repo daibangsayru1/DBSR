@@ -226,7 +226,9 @@ function main(login_clone, restore_rss, very_acc, up_danh_ba, up_avatar, up_anh_
 	--------------------------------
 	if (luu_rrs == "1") then
 		local name = tachchuoi(clone)
-		luurrs(name[1], clone, https)
+		local loai = "RRS avt 2fa"
+		toast("Đang lưu loại: "..loai)
+		luurrs(name[1], clone, loai)
 	else
 		if (restorerrs ~= "1") then
 			resetdata()
