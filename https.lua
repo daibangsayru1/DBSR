@@ -1,3 +1,181 @@
+function xemvideo(sl, thoigian, sllike, slbl, slcs)
+	local dem = 0
+	local test1 = findimg("w1.jpg", 1, 1, nil, 0)
+	local test2 = findimg("w2.jpg", 1, 1, nil, 0)
+	if (test1 ~= 1 and test2 ~= 1) then
+		tap(666, 1280)
+		sleep(1)
+		tap(666, 1280)
+		sleep(2)
+		tapimg("w3.jpg", 1, 2000000)
+	end
+	local x = waitcolor(142, 164, 15201279, 60, 179, 1532879, 30, 0)
+	if (x ~= 142 and x ~= 60) then alert("Chưa xử lý") stop() end
+	---local test = findimg("tructiep.jpg", 1, 1, nil, 0)
+	swipe(300, 1200, 300, 100, 10000, 81)
+	sleep(1)
+	tap(367, 553)
+	local reg = {17.96, 625.35, 722.54, 700}
+	repeat
+		delay(thoigian)
+		tapimg("likew.jpg", 1, 1)
+		sleep(1)
+		dem = dem + 1
+		repeat
+			touchUp(6, 710.27, 923.88);
+			usleep(600561.79);
+			touchDown(6, 714.37, 925.94);
+			usleep(117841.12);
+			touchMove(6, 706.16, 915.74);
+			usleep(16689.42);
+			touchMove(6, 706.16, 907.60);
+			usleep(16789.17);
+			touchMove(6, 706.16, 897.42);
+			usleep(16608.50);
+			touchMove(6, 706.16, 885.21);
+			usleep(16707.42);
+			touchMove(6, 706.16, 870.96);
+			usleep(16677.96);
+			touchMove(6, 706.16, 853.64);
+			usleep(16515.75);
+			touchMove(6, 706.16, 832.26);
+			usleep(16753.46);
+			touchMove(6, 706.16, 810.87);
+			usleep(16719.79);
+			touchMove(6, 706.16, 788.48);
+			usleep(16511.00);
+			touchMove(6, 706.16, 770.16);
+			usleep(16743.33);
+			touchMove(6, 706.16, 749.78);
+			usleep(16742.75);
+			touchMove(6, 706.16, 730.45);
+			usleep(16680.96);
+			touchMove(6, 706.16, 712.13);
+			usleep(16658.96);
+			touchMove(6, 706.16, 693.79);
+			usleep(16555.88);
+			touchMove(6, 706.16, 676.49);
+			usleep(16832.21);
+			touchMove(6, 705.13, 658.17);
+			usleep(16363.04);
+			touchMove(6, 704.11, 641.86);
+			usleep(16680.25);
+			touchMove(6, 704.11, 627.61);
+			usleep(16753.79);
+			touchMove(6, 704.11, 610.31);
+			usleep(16585.58);
+			touchMove(6, 704.11, 595.04);
+			usleep(16905.46);
+			touchMove(6, 704.11, 581.79);
+			usleep(16470.83);
+			touchMove(6, 704.11, 568.56);
+			usleep(16621.33);
+			touchMove(6, 704.11, 556.35);
+			usleep(16719.29);
+			touchMove(6, 704.11, 544.14);
+			usleep(16841.67);
+			touchMove(6, 704.11, 531.90);
+			usleep(16594.29);
+			touchMove(6, 704.11, 519.69);
+			usleep(16510.88);
+			touchMove(6, 704.11, 508.49);
+			usleep(16735.08);
+			touchMove(6, 705.13, 498.32);
+			usleep(16585.71);
+			touchMove(6, 706.16, 489.16);
+			usleep(16718.79);
+			touchMove(6, 707.19, 480.99);
+			usleep(16834.38);
+			touchMove(6, 708.21, 474.89);
+			usleep(16614.96);
+			touchMove(6, 708.21, 470.82);
+			usleep(16584.75);
+			touchMove(6, 709.24, 465.73);
+			usleep(16907.50);
+			touchMove(6, 709.24, 461.66);
+			usleep(16521.75);
+			touchMove(6, 710.27, 456.57);
+			usleep(16711.00);
+			touchMove(6, 711.28, 452.50);
+			usleep(16667.75);
+			touchMove(6, 711.28, 449.44);
+			usleep(16682.71);
+			touchMove(6, 711.28, 447.41);
+			usleep(16620.79);
+			touchMove(6, 711.28, 446.39);
+			usleep(16719.33);
+			touchMove(6, 711.28, 445.37);
+			usleep(566481.54);
+			touchMove(6, 711.28, 446.39);
+			usleep(16659.62);
+			touchMove(6, 718.47, 449.44);
+			usleep(15210.67);
+			touchUp(6, 722.58, 453.51);
+			sleep(2)
+			test = findimg("likew.jpg", 1, 1, reg, 0)
+		until(test == 1)
+		local a, x, y = findimg("likew.jpg", 1, 1, nil, 0)
+		if (a == 1) then
+			if (y < 1100) then
+				touchDown(2, x, y);
+				usleep(82852.50);
+				repeat
+					y = y + 5
+					touchMove(2, x, y);
+					usleep(16888.04)
+				until (y > 1250)
+				touchUp(2, x, y)
+				usleep(1000000)
+			end
+		end
+	until (dem == sl)
+end
+function dongy(sl, thoigian)
+	local test = tapimg("add.jpg", 1, 1000000)
+	local test1 = tapimg("add1.jpg", 1, 1000000)
+	local test4 = tapimg("add4.jpg", 1, 1000000)
+	local test2 = tapimg("add0.jpg", 1, 1000000)
+	local test5 = tapimg("add5.jpg", 1, 1000000)
+	if (test == 0 and test2 == 0 and test1 == 0 and test4 == 0 and test5 == 0) then
+		tap(666, 1280)
+		usleep(1000000)
+		tap(666, 1280)
+		usleep(1000000)
+		tap(666, 1280)
+		usleep(2000000)
+		tapimg("add2.jpg", 1, 1000000)
+		tapimg("add3.jpg", 1, 1000000)
+	end
+	y = waitcolor(271, 633, 1799396, 260, 893, 1799396, 273, 505, 1799396, 458, 468, 1603570, 458, 613, 1603570, 458, 845, 1603570, 461, 685, 1603570, 7, 1)
+	if (y ~= 271 and y ~= 458 and y ~= 461 and y ~= 273 and y ~= 260) then
+		alert("Chưa xử lí")
+		stop()
+	end
+	local test2 = findimg("xacnhan.jpg", 1, 1, nil, 0)
+	if (test2 == 0) then toast("Không có lời mời")  return end
+	local dem = 0
+	local dem2 = 0
+	repeat
+		local test = tapimg("xacnhan.jpg", 1, 1)
+		if (test == 1) then
+			dem2 = 0
+			delay(thoigian)
+			dem = dem + 1
+			toast("SL : "..dem)
+		else
+			dem2 = dem2 + 1
+			if (dem2 == 2) then return end
+			keoxuong(8000)
+			sleep(2)
+		end
+	until (dem == sl)
+end
+function delay(giay)
+	for i = 1, giay do
+		toast("Chờ "..i)
+		sleep(1)
+	end
+end
 function tapchu(text, space)
 	local tababc = {"@|421|1283", ".|517|1283", "1|35|960", "2|111|960", "3|187|960", "4|259|960", "5|334|960", "6|412|960", "7|488|960", "8|564|960", "9|638|960", "0|713|960", "q|35|960", "w|111|960", "e|187|960", "r|259|960", "t|334|960", "y|412|960", "u|488|960", "i|564|960", "o|638|960", "p|713|960", "a|72|1070", "s|145|1070", "d|223|1070", "f|300|1070", "g|373|1070", "h|450|1070", "j|525|1070", "k|599|1070", "l|676|1070", "z|147|1170", "x|221|1170", "c|299|1170", "v|374|1170", "b|451|1170", "n|527|1170", "m|599|1170", " |315|1280"}																				
 	local tababc2 = {"à", "á", "ả", "ã", "ạ", "ă", "ằ", "ắ", "ẳ", "ẵ", "ặ", "â", "ầ", "ấ", "ẩ", "ẫ", "ậ", "đ", "e"}
@@ -1104,11 +1282,15 @@ function likelink(file)
 	usleep(5000000)
 end
 
-function ketban(slkb, sluid, time, updb, id, matkhau, key2fa)
-	if (slkb == 0 and sluid == 0) then return end
+function ketban(kb_goi_y, delay_kb_goiy, kb_uid, delay_kb_uid, up_danh_ba)
+	tap(66, 1280)
+	sleep(2)
 	local test = tapimg("add.jpg", 1, 1000000)
 	local test2 = tapimg("add0.jpg", 1, 1000000)
-	if (test == 0 and test2 == 0) then
+	local test1 = tapimg("add1.jpg", 1, 1000000)
+	local test4 = tapimg("add4.jpg", 1, 1000000)
+	local test5 = tapimg("add5.jpg", 1, 1000000)
+	if (test == 0 and test2 == 0 and test1 == 0 and test4 == 0 and test5 == 0) then
 		tap(666, 1280)
 		usleep(1000000)
 		tap(666, 1280)
@@ -1118,9 +1300,12 @@ function ketban(slkb, sluid, time, updb, id, matkhau, key2fa)
 		tapimg("add2.jpg", 1, 1000000)
 		tapimg("add3.jpg", 1, 1000000)
 	end
-	y = waitcolor(458, 468, 1603570, 458, 613, 1603570, 458, 845, 1603570, 461, 685, 1603570, 7, 1)
-	if (y ~= 458 and y ~= 461) then
-		if (updb ~= 0) then
+	y = waitcolor(271, 633, 1799396, 260, 893, 1799396, 273, 505, 1799396, 458, 468, 1603570, 458, 613, 1603570, 458, 845, 1603570, 461, 685, 1603570, 7, 1)
+	if (y ~= 271 and y ~= 458 and y ~= 461 and y ~= 273 and y ~= 260) then
+		toast("Ko có gợi ý")
+		if (up_danh_ba ~= "0") then
+			alert("Chưa xử lý")
+			stop()
 			local test = tapimg("updb.jpg", 1, 1000000)
 			local test2 = tapimg("bat.jpg", 1, 1000000)
 			if (test == 1 or test2 == 1) then
@@ -1137,74 +1322,94 @@ function ketban(slkb, sluid, time, updb, id, matkhau, key2fa)
 				end
 			end
 		end
-	end
-	if (slkb == 0) then return end
-	local i, k = 0, 0
-	repeat
-		for j = 1, 4 do
-			testkb = tapimg("addfr.jpg", 1, time)
-			testkb2 = tapimg("addfr2.jpg", 1, time)
-			if (testkb == 1 or testkb2 == 1) then
-				i = i + 1
-				if (i == slkb) then return 1 end
-			end
-			k = k + 1
-		end
-		if (i == slkb) then return 1 end
-		keoxuong(10000)
-		usleep(500000)
-		testkb = tapimg("addfr.jpg", 1, time)
-		testkb2 = tapimg("addfr2.jpg", 1, time)
-		if (testkb ~= 1 and testkb2 ~= 1) then 
-			local te = tapimg("ok.jpg", 1, 2000000)
-			if (te == 1) then
-				test = loginlai(id, matkhau, key2fa)
-			else
-				usleep(1)
-			end
-			local test = tapimg("add.jpg", 1, 1000000)
-			if (test == 0) then
-				tap(666, 1280)
-				usleep(1000000)
-				tap(666, 1280)
-				usleep(1000000)
-				tap(666, 1280)
-				usleep(2000000)
-				tapimg("add2.jpg", 1, 3000000)
-				tapimg("add3.jpg", 1, 3000000)
-				testkb = tapimg("addfr.jpg", 1, time)
-				testkb2 = tapimg("addfr.jpg", 1, time)
-				if (testkb ~= 1 and testkb2 ~= 1) then return end
-			end
-		end
-	until(i == sl)
-	if (sluid ~= 0) then
-		if (sluid == 0) then return end
-		local i, k = 0, 0
+	else
+		dem = 0
+		dem2 = 0
 		repeat
-			repeat
-				uid , cont = readtxt("uid.txt")
-				test = checkuid(uid)
-				if (test == 0) then 
-					writetxt2("uid.txt", cont, uid, "w", 1)
-				else 
-					writetxt("uid.txt", cont, "w", 1, 0) 
-				end
-			until(test == 0)
-			openURL("fb://profile?id="..uid)
-			usleep(2000000)
-			local test = tapimg("addprofile.jpg", 1, 2000000)
-			tapimg("thembb.jpg", 1, 1000000)
-			if (test == 1) then
-				i = i + 1
-				if (i == sluid) then return end
+			local a = findimg("addfr.jpg", 1, 1, nil, 1)
+			local b = findimg("addfr2.jpg", 1, 1, nil, 1)
+			local c = findimg("addfr3.jpg", 1, 1, nil, 1)
+			local d = tapimg("xacnhan.jpg", 1, 1)
+			local e = findimg("addfr1.jpg", 1, 1, nil, 1)
+			if (a == 1 or b == 1 or c == 1 or d == 1 or e == 1) then
+				dem = dem + 1
+				dem2 = 0
+				delay(delay_kb_goiy)
+				toast("SL : "..dem)
+			else
+				keoxuong(8000)
+				sleep(2)
+				dem2 = dem2 + 1
+				if (dem2 == 2) then return end
 			end
-			k = k + 1
-			if (k > i) then 
-				return
-			end
-		until (i == sluid)
+		until(dem == kb_goi_y)
 	end
+	---local i, k = 0, 0
+	---repeat
+	---	for j = 1, 4 do
+	---		testkb = tapimg("addfr.jpg", 1, time)
+	---		testkb2 = tapimg("addfr2.jpg", 1, time)
+	---		if (testkb == 1 or testkb2 == 1) then
+	---			i = i + 1
+	---			if (i == slkb) then return 1 end
+	---		end
+	---		k = k + 1
+	---	end
+	---	if (i == slkb) then return 1 end
+	---	keoxuong(10000)
+	---	usleep(500000)
+	---	testkb = tapimg("addfr.jpg", 1, time)
+	---	testkb2 = tapimg("addfr2.jpg", 1, time)
+	---	if (testkb ~= 1 and testkb2 ~= 1) then 
+	---		local te = tapimg("ok.jpg", 1, 2000000)
+	---		if (te == 1) then
+	---			test = loginlai(id, matkhau, key2fa)
+	---		else
+	---			usleep(1)
+	---		end
+	---		local test = tapimg("add.jpg", 1, 1000000)
+	---		if (test == 0) then
+	---			tap(666, 1280)
+	---			usleep(1000000)
+	---			tap(666, 1280)
+	---			usleep(1000000)
+	---			tap(666, 1280)
+	---			usleep(2000000)
+	---			tapimg("add2.jpg", 1, 3000000)
+	---			tapimg("add3.jpg", 1, 3000000)
+	---			testkb = tapimg("addfr.jpg", 1, time)
+	---			testkb2 = tapimg("addfr.jpg", 1, time)
+	---			if (testkb ~= 1 and testkb2 ~= 1) then return end
+	---		end
+	---	end
+	---until(i == sl)
+	---if (sluid ~= 0) then
+	---	if (sluid == 0) then return end
+	---	local i, k = 0, 0
+	---	repeat
+	---		repeat
+	---			uid , cont = readtxt("uid.txt")
+	---			test = checkuid(uid)
+	---			if (test == 0) then 
+	---				writetxt2("uid.txt", cont, uid, "w", 1)
+	---			else 
+	---				writetxt("uid.txt", cont, "w", 1, 0) 
+	---			end
+	---		until(test == 0)
+	---		openURL("fb://profile?id="..uid)
+	---		usleep(2000000)
+	---		local test = tapimg("addprofile.jpg", 1, 2000000)
+	---		tapimg("thembb.jpg", 1, 1000000)
+	---		if (test == 1) then
+	---			i = i + 1
+	---			if (i == sluid) then return end
+	---		end
+	---		k = k + 1
+	---		if (k > i) then 
+	---			return
+	---		end
+	---	until (i == sluid)
+	---end
 end
 ------
 function likepage(sl, file)
@@ -1232,13 +1437,24 @@ function vuotnew()
 	touchUp(1, 393.10, 594.01);
 	usleep(1000000)
 end
-function luotnew(slvuot, sllike, slbl, slcs)
-	vuot, like, bl, cs = 0, 0, 0, 0
-	if (vuot == slvuot) then return end
+function luotnew(slvuot, thoigian, sllike, slbl, slcs)
+	like = 0
+	dem = 0
 	tap(66, 1280)
 	usleep(1000000)
 	tap(66, 1280)
 	usleep(1000000)
+	local x = waitcolor(35, 88, 1603570, 139, 90, 1603570, 6, 1)
+	if (x ~= 35 and x ~= 139) then
+		appKill("com.facebook.Facebook")
+		sleep(2)
+		appRun("com.facebook.Facebook")
+		waitcolor(35, 88, 1603570, 139, 90, 1603570, 60, 1)
+		tap(66, 1280)
+		usleep(1000000)
+		tap(66, 1280)
+		usleep(1000000)
+	end
 	keolen(2000)
 	usleep(3000000)
 	tapimg("xnok.jpg", 1, 2000000)
@@ -1250,39 +1466,43 @@ function luotnew(slvuot, sllike, slbl, slcs)
 		if (test1 == 1) then
 			loginlai(matkhau, key2fa)
 		end
-		keoxuong(8000)
-		usleep(1000000)
-		if (like ~= sllike) then
-			local test1 = tapimg("like.jpg", 1, 1000000)
-			if (test1 == 1) then
-				like = like + 1
-			end
+		swipe(300, 1200, 300, 100, 10000, 81)
+		delay(thoigian)
+		local test1 = tapimg("like.jpg", 1, 1000000)
+		if (test1 == 1) then
+			like = like + 1
+			toast("SL : "..like)
+			dem = 0
+		else
+			dem = dem + 1
+			toast("Lỗi "..dem)
+			if (dem == 3) then return end
 		end
-		if (bl ~= slbl) then
-			local test1 = tapimg("binhluan.jpg", 1, 3000000)
-			if (test1 == 1) then
-				bl = bl + 1
-				local text, cont = readtxt("binhluan.txt")
-				writetxt2("binhluan.txt", cont, text, "w", 1)
-				inputText(text)
-				usleep(1000000)
-				tap(691, 852)
-				usleep(3000000)
-				tap(66, 1280)
-				usleep(2000000)
-				keoxuong(8000)
-				usleep(1000000)
-			end
-		end
-		if (cs ~= slcs) then
-			local test1 = tapimg("chiase.jpg", 1, 2000000)
-			if (test1 == 1) then
-				cs = cs + 1
-				tapimg("chiase2.jpg", 1, 3000000)
-			end
-		end
-		vuot = vuot + 1
-	until (vuot == slvuot)
+		---if (bl ~= slbl) then
+		---	local test1 = tapimg("binhluan.jpg", 1, 3000000)
+		---	if (test1 == 1) then
+		---		bl = bl + 1
+		---		local text, cont = readtxt("binhluan.txt")
+		---		writetxt2("binhluan.txt", cont, text, "w", 1)
+		---		inputText(text)
+		---		usleep(1000000)
+		---		tap(691, 852)
+		---		usleep(3000000)
+		---		tap(66, 1280)
+		---		usleep(2000000)
+		---		keoxuong(8000)
+		---		usleep(1000000)
+		---	end
+		---end
+		---if (cs ~= slcs) then
+		---	local test1 = tapimg("chiase.jpg", 1, 2000000)
+		---	if (test1 == 1) then
+		---		cs = cs + 1
+		---		tapimg("chiase2.jpg", 1, 3000000)
+		---	end
+		---end
+		
+	until (like == sllike)
 end
 
 
@@ -1413,20 +1633,27 @@ function kbtheogr(sl, matkhau, key2fa)
 	until (j == sl+1)
 end
 ------
-function doctb(sl)
-	if (sl == 0) then return end
+function doctb(sl, thoigian)
+	dem = 0
 	for j = 0, sl do
 		openURL("fb://notifications")
 		usleep(2000000)
 		local result = findColor(15201279, 1, nil);
 		for i, v in pairs(result) do
-			tap(v[1], v[2]);
-			usleep(3000000)
+			tap(v[1]+50, v[2]+50);
+			dem = 0
 		end
+		delay(thoigian)
+		tapimg("xnok.jpg", 1, 2000000)
+		dem = dem + 1
+		if (dem == 2) then return end
 	end
 end
 ------
-function thamgiagr(sl)
+function thamgiagr(sl, thoigian)
+	writetxt("dem.txt", 0, "w", 1, 0)
+	local dem = readtxt("dem.txt")
+	local log1 = 0
 	soluot = 0
 	if (soluot == sl) then return end
 	local test = tapimg("gr1.jpg", 1, 1000000)
@@ -1437,36 +1664,64 @@ function thamgiagr(sl)
 		usleep(1000000)
 		keolen(5000)
 		usleep(1000000);
-		tapimg("gr3.jpg", 1, 1000000)
-		tapimg("gr2.jpg", 1, 1000000)
+		tapimg("gr3.jpg", 1, 3000000)
+		tapimg("gr2.jpg", 1, 3000000)
 	end
 	tapimg("xnok.jpg", 1, 2000000)
-	keoxuong(8000)
+	swipe(300, 1200, 300, 100, 10000, 81)
 	usleep(1000000)
-	local test = tapimg("thamgia.jpg", 1, 500000)
-	tapimg("thamgia.jpg", 1, 500000)
-	tapimg("thamgia.jpg", 1, 500000)
-	tapimg("thamgia.jpg", 1, 1000000)
-	if (test ~= 1) then
+	local test = findimg("thamgia.jpg", 0, 1, nil, 0)
+	if (test == 1) then
+		repeat	
+			local test2 = findimg("thamgia.jpg", 1, 1, nil, 1)
+			if (test2 == 1) then
+				delay(thoigian)
+				local test3 = findimg("thamgia.jpg", 0, 1, nil, 0)
+				if (test3 ~= 1) then
+					tapimg("x.jpg", 1, 2000000)
+					tapimg("thoat.jpg", 1, 2000000)
+				end
+				dem = tonumber(dem) + 1
+				toast("SL : "..dem)
+			else
+				swipe(300, 1200, 300, 100, 10000, 81)
+				log1 = log1 + 1
+				if (log1 == 5) then return end
+			end
+		until (dem == sl)
+	else
 		keolen(1000)
 		keolen(1000)
 		keolen(1000)
 		usleep(1000000)
-		tapimg("khampha.jpg", 1, 1000000)
-		for i = 1, 1 do
-			tapimg("xnok.jpg", 1, 2000000)
-			keoxuong(8000)
-			usleep(1000000)
-			tapimg("thamgia.jpg", 1, 500000)
-			tapimg("thamgia.jpg", 1, 500000)
-			tapimg("thamgia.jpg", 1, 500000)
-			tapimg("thamgia.jpg", 1, 500000)
+		local tem1 = tapimg("khampha.jpg", 1, 2000000)
+		if (tem1 ~= 1) then
+			local tem2 = findimg("xemtacca2.jpg", 1, 1, nil, 1)
+			if (tem2 ~= 1) then
+				tap(323, 190)
+				sleep(3)
+				tap(543, 759)
+				sleep(4)
+			end
 		end
+		repeat	
+			local test2 = findimg("thamgia.jpg", 1, 1, nil, 1)
+			if (test2 == 1) then
+				delay(thoigian)
+				local test3 = findimg("thamgia.jpg", 0, 1, nil, 0)
+				if (test3 ~= 1) then
+					tapimg("x.jpg", 1, 2000000)
+					tapimg("thoat.jpg", 1, 2000000)
+				end
+				dem = tonumber(dem) + 1
+				toast("SL : "..dem)
+			else
+				log1 = log1 + 1
+				if (log1 == 5) then return end
+				swipe(300, 1200, 300, 100, 10000, 81)
+			end
+		until (dem == sl)
 	end
-	appKill("com.facebook.Facebook");
-	usleep(2000000)
-	appRun("com.facebook.Facebook");
-	waitcolor(35, 88, 1603570, 139, 90, 1603570, 60, 0)
 end
 ---
 
