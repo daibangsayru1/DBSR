@@ -35,17 +35,25 @@ function main(login_clone, restore_rss, very_acc, up_danh_ba, up_avatar, up_anh_
 	local bat_2fa = tem["bat_2fa"]
 	local doi_ten = tem["doi_ten"]
 	local kb_goi_y = tem["kb_goi_y"]
+	local delay_kb_goiy = tem["delay_kb_goiy"]
 	local kb_uid = tem["kb_uid"]
 	local dong_y_kb = tem["dong_y_kb"]
+	local delay_dongy_kb = tem["delay_dongy_kb"]
 	local xem_tb = tem["xem_tb"]
+	local delay_xem_tb = tem["delay_xem_tb"]
 	local add_group_goi_y = tem["add_group_goi_y"]
+	local delay_add_group_goiy = tem["delay_add_group_goiy"]
 	local add_group_list = tem["add_group_list"]
 	local file_nhom = tem["file_nhom"]
 	local like_page = tem["like_page"]
 	local file_page = tem["file_page"]
 	local luot_newsfeed = tem["luot_newsfeed"]
+	local delay_luot_newsfeed = tem["delay_luot_newsfeed"]
 	local like_newsfeed = tem["like_newsfeed"]
+	local delay_like_newsfeed = tem["delay_like_newsfeed"]
 	local binh_luan = tem["binh_luan"]
+	local xem_watch = tem["xem_watch"]
+	local delay_xem_watch = tem["delay_xem_watch"]
 	local share_tuong = tem["share_tuong"]
 	local share_live = tem["share_live"]
 	local link_share_live = tem["link_share_live"]
@@ -53,6 +61,8 @@ function main(login_clone, restore_rss, very_acc, up_danh_ba, up_avatar, up_anh_
 	local dang_stt_anh = tem["dang_stt_anh"]
 	local xuat_clone = tem["xuat_clone"]
 	local loai_accx = tem["loai_accx"]
+	-------------------------------------
+	-------------------------------------
 	if (reg_clone ~= "0" and login_clone == "0" and restore_rrs == "0") then
 		regclone(reg_clone, web_sim, api_codetextnow, api_otpmmo, api_simfast, api_otpsim, very_acc, up_avatar, bat_2fa, luu_rrs, loai_accx)
 		return
@@ -71,7 +81,7 @@ function main(login_clone, restore_rss, very_acc, up_danh_ba, up_avatar, up_anh_
 		f:close()
 		ten = tachchuoi(clone)
 		if (string.find(a, ten[1]) == nil) then toast("Ko có RRS") return end
-		writetxt("RRS đã chạy.txt", clone, "a", 1, 1)
+		---writetxt("RRS đã chạy.txt", clone, "a", 1, 1)
 		local check = checkuid(ten[1])
 		if (check == 1) then
 			openURL("XoaInfo://DelRRS?listRRS="..ten[1])
@@ -83,7 +93,7 @@ function main(login_clone, restore_rss, very_acc, up_danh_ba, up_avatar, up_anh_
 		local temp = tachchuoi(clone)
 		usleep(4000000)
 		appRun("com.facebook.Facebook")
-		local body = http.request(urlweb.."/api/updatedevicestatus/"..api.."/"..https().."/moappfb")
+		local body = http.request(urlweb.."/api/updatedevicestatus/"..api.."/"..apikey.."/moappfb")
 		usleep(2000000)
 		if (very_acc ~= "1") then
 			---TH hiện màn add mail: 395, 508, 1603570, 707, 500, 1603570, 525, 506, 1603570, 708, 469, 1603570
@@ -193,12 +203,37 @@ function main(login_clone, restore_rss, very_acc, up_danh_ba, up_avatar, up_anh_
 	end
 	-------------------------------
 	if (add_group_goi_y ~= "0") then
-		thamgiagr(tonumber(soluotjoinnhomgoiy))
+		local body = http.request(urlweb.."/api/updatedevicestatus/"..api.."/"..apikey.."/joingroup")
+		thamgiagr(tonumber(add_group_goi_y), tonumber(delay_add_group_goiy))
 	end
+	------------------------------
+	if (dong_y_kb ~= "0") then
+		local body = http.request(urlweb.."/api/updatedevicestatus/"..api.."/"..apikey.."/ketban")
+		dongy(tonumber(dong_y_kb), tonumber(delay_dongy_kb))
+	end
+	------------------------------
+	if (kb_goi_y ~= "0") then
+		local body = http.request(urlweb.."/api/updatedevicestatus/"..api.."/"..apikey.."/ketban")
+		ketban(tonumber(kb_goi_y), tonumber(delay_kb_goiy), tonumber(kb_uid), tonumber(delay_kb_uid), up_danh_ba)
+	end
+	-------------------------------
+	if (xem_tb ~= "0") then
+		local body = http.request(urlweb.."/api/updatedevicestatus/"..api.."/"..apikey.."/doctb")
+		doctb(tonumber(xem_tb), tonumber(delay_xem_tb))
+	end
+	-------------------------------
 	if (like_page ~= "0") then
 		likepage(tonumber(sllikepage), filelistpage)
 	end
-	local testkb = ketban(tonumber(kb_goi_y), tonumber(kb_uid), 1, updb, id, matkhau, key2fa)
+	-------------------------------
+	if (luot_newsfeed ~= "0") then
+		local body = http.request(urlweb.."/api/updatedevicestatus/"..api.."/"..apikey.."/newsfeed")
+		luotnew(tonumber(luot_newsfeed), tonumber(delay_luot_newsfeed), tonumber(like_newsfeed), slbl, slcs)
+	end
+	-------------------------------
+	if (xem_watch ~= "0") then
+		xemvideo(tonumber(xem_watch), tonumber(delay_xem_watch), sllike, slbl, slcs)
+	end
 	if (xuat_clone ~= "0" and testvr == 1) then
 		local a = readtxt("status.txt")
 		local b = tachchuoi(a)
@@ -206,12 +241,6 @@ function main(login_clone, restore_rss, very_acc, up_danh_ba, up_avatar, up_anh_
 		writetxt("status.txt", log.."|"..b[2], "w", 0, 0)
 		postlog(urlweb, api, apikey, "thanh_cong", log, "postsuccesslogs")
 		postclone(urlweb, api, clone, loai_accx)
-	end
-	if (xem_tb ~= "0") then
-		doctb(tonumber(soluotxemthongbao))
-	end
-	if (luot_newsfeed ~= "0") then
-		luotnew(tonumber(soluotvuotnew), tonumber(soluotlikenew), tonumber(soluotbinhluan), tonumber(slchiaselentuong))
 	end
 	if (regnoverysaukhichay == "1") then
 		local id, matkhau, test = novery(regbanghotmail, apikeydongvan, regbanggmailao, 1);
@@ -236,6 +265,9 @@ function main(login_clone, restore_rss, very_acc, up_danh_ba, up_avatar, up_anh_
 		if (restorerrs ~= "1") then
 			resetdata()
 		else
+			log = tonumber(b[1])+1
+			writetxt("status.txt", log.."|"..b[2], "w", 0, 0)
+			postlog(urlweb, api, apikey, "thanh_cong", log, "postsuccesslogs")
 			if (testrrs == 0 and regnoverysaukhichay == "0") then
 				local f = io.popen("ls var/mobile/Media/XoaInfo")
 				local a = f:read("all")
