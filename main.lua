@@ -85,6 +85,13 @@ function main(login_clone, restore_rss, very_acc, up_danh_ba, up_avatar, up_anh_
 	end
 	if (login_clone == "1") then
 		clone, cl2 = login(loai_accn, urlweb, api, loginclonenovery, apikey);---login
+		if (loai_accn == "novery" and very_acc == "0") then
+			for i = 1, 3 do
+				tap(66, 1280)
+				toast("Chờ load dữ liệu")
+				sleep(3)
+			end
+		end
 		testvr = 1
 	else
 	-----------------------restore RRS
