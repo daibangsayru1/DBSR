@@ -9,12 +9,12 @@ function xemvideo(sl, thoigian, sllike, slbl, slcs)
 	local test1 = findimg("w1.jpg", 1, 1, nil, 1)
 	local test2 = findimg("w2.jpg", 1, 1, nil, 1)
 	if (test1 ~= 1 and test2 ~= 1) then
-		tapimg("w3.jpg", 1, 2000000)
-		local test3 = tapimg("w3.jpg", 1, 2000000)
+		tapimg("w4.jpg", 1, 2000000)
+		local test3 = tapimg("w4.jpg", 1, 2000000)
 		if (test3 == 0) then
 			swipe(300, 1200, 300, 100, 10000, 81)
 			sleep(2)
-			tapimg("w3.jpg", 1, 2000000)
+			tapimg("w4.jpg", 1, 2000000)
 		end
 	end
 	local x = waitcolor(142, 164, 15201279, 60, 179, 1532879, 10, 0)
@@ -144,10 +144,10 @@ end
 function dongy(sl, thoigian)
 	local test = tapimg("add.jpg", 1, 1000000)
 	local test1 = tapimg("add1.jpg", 1, 1000000)
-	local test4 = tapimg("add4.jpg", 1, 1000000)
+	--local test4 = tapimg("add4.jpg", 1, 1000000)
 	local test2 = tapimg("add0.jpg", 1, 1000000)
-	local test5 = tapimg("add5.jpg", 1, 1000000)
-	if (test == 0 and test2 == 0 and test1 == 0 and test4 == 0 and test5 == 0) then
+	--local test5 = tapimg("add5.jpg", 1, 1000000)
+	if (test == 0 and test2 == 0 and test1 == 0) then
 		tap(666, 1280)
 		usleep(1000000)
 		tap(666, 1280)
@@ -162,12 +162,12 @@ function dongy(sl, thoigian)
 		alert("Chưa xử lí")
 		stop()
 	end
-	local test2 = findimg("xacnhan.jpg", 1, 1, nil, 0)
+	local test2 = findimg("xacnhan1.jpg", 1, 1, nil, 0)
 	if (test2 == 0) then toast("Không có lời mời")  return end
 	local dem = 0
 	local dem2 = 0
 	repeat
-		local test = tapimg("xacnhan.jpg", 1, 1)
+		local test = tapimg("xacnhan1.jpg", 1, 1)
 		if (test == 1) then
 			dem2 = 0
 			delay(thoigian)
@@ -530,7 +530,7 @@ function upavatar(id, apikey, urlweb, api)
 	
 end
 ------
----------
+-----
 function regclone(reg_clone, web_sim, api_codetextnow, api_otpmmo, api_simfast, api_otpsim, very_acc, avt, fa, luu_rss, link_gg_sheet)
 	local api = readtxt("api key.txt")
 	local urlweb = readtxt("site.txt")
@@ -1297,9 +1297,9 @@ function ketban(kb_goi_y, delay_kb_goiy, kb_uid, delay_kb_uid, up_danh_ba)
 	local test = tapimg("add.jpg", 1, 1000000)
 	local test2 = tapimg("add0.jpg", 1, 1000000)
 	local test1 = tapimg("add1.jpg", 1, 1000000)
-	local test4 = tapimg("add4.jpg", 1, 1000000)
-	local test5 = tapimg("add5.jpg", 1, 1000000)
-	if (test == 0 and test2 == 0 and test1 == 0 and test4 == 0 and test5 == 0) then
+	--local test4 = tapimg("add4.jpg", 1, 1000000)
+	---local test5 = tapimg("add5.jpg", 1, 1000000)
+	if (test == 0 and test2 == 0 and test1 == 0) then
 		tap(666, 1280)
 		usleep(1000000)
 		tap(666, 1280)
@@ -1317,9 +1317,9 @@ function ketban(kb_goi_y, delay_kb_goiy, kb_uid, delay_kb_uid, up_danh_ba)
 	local a = findimg("addfr.jpg", 1, 1, nil, 0)
 	local b = findimg("addfr2.jpg", 1, 1, nil, 0)
 	local c = findimg("addfr3.jpg", 1, 1, nil, 0)
-	local d = tapimg("xacnhan.jpg", 1, 1)
-	local e = findimg("addfr1.jpg", 1, 1, nil, 0)
-	if (a == 0 and b == 0 and c == 0 and d == 0 and e == 0) then
+	local d = tapimg("xacnhan1.jpg", 1, 1)
+	---local e = findimg("addfr1.jpg", 1, 1, nil, 0)
+	if (a == 0 and b == 0 and c == 0 and d == 0) then
 		toast("Ko có gợi ý")
 		if (up_danh_ba ~= "0") then
 			alert("Chưa xử lý")
@@ -1348,9 +1348,9 @@ function ketban(kb_goi_y, delay_kb_goiy, kb_uid, delay_kb_uid, up_danh_ba)
 			local a = findimg("addfr.jpg", 1, 1, nil, 1)
 			local b = findimg("addfr2.jpg", 1, 1, nil, 1)
 			local c = findimg("addfr3.jpg", 1, 1, nil, 1)
-			local d = tapimg("xacnhan.jpg", 1, 1)
-			local e = findimg("addfr1.jpg", 1, 1, nil, 1)
-			if (a == 1 or b == 1 or c == 1 or d == 1 or e == 1) then
+			local d = tapimg("xacnhan1.jpg", 1, 1)
+			---local e = findimg("addfr1.jpg", 1, 1, nil, 1)
+			if (a == 1 or b == 1 or c == 1 or d == 1) then
 				dem = dem + 1
 				dem2 = 0
 				delay(delay_kb_goiy)
