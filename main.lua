@@ -10,7 +10,7 @@ function main(login_clone, restore_rss, very_acc, up_danh_ba, up_avatar, up_anh_
 	local pl = require("pl.tablex")
 	contair = require("socket.https")
 	local json = require("json")
-	local f = io.open(currentPath().."/cấu hình.txt")
+	local f = io.open(currentPath().."/temp.txt")
 	local data = f:read("all")
 	f:close()
 	local tem = json.decode(data)
@@ -70,8 +70,11 @@ function main(login_clone, restore_rss, very_acc, up_danh_ba, up_avatar, up_anh_
 	local link_share_live = tem["link_share_live"]
 	local dang_stt = tem["dang_stt"]
 	local dang_stt_anh = tem["dang_stt_anh"]
+	io.popen("rm -rf /var/mobile/Library/AutoTouch/Scripts/DBSR/temp.txt")
+	local tab = listfile("/var/mobile/Media/XoaInfo")
+	postlog(urlweb, api, apikey, "rrs_logs", #tab, "postrrslogs")
 	-------------------------------------
-	if (xuat_clone ~= "0" and luu_rrs ~= "0") then
+	if (xuat_clone ~= "0" and luu_rrs ~= "0" or xuat_clone == "0" and luu_rrs == "0") then
 		local body = http.request(urlweb.."/api/updatedevicestatus/"..api.."/"..apikey.."/loicauhinh")
 		stop()
 	end
@@ -85,10 +88,8 @@ function main(login_clone, restore_rss, very_acc, up_danh_ba, up_avatar, up_anh_
 		testvr = 1
 	else
 	-----------------------restore RRS
-		local loai = 4
-		if (loai == 4) then
-			clone = daodong("RRS avt 2fa.txt")
-		end
+		local file = "RRS "..loai_restore_rrs..".txt"
+		clone = daodong(file)
 		local f = io.popen("ls var/mobile/Media/XoaInfo")
 		local a = f:read("all")
 		f:close()
@@ -272,10 +273,10 @@ function main(login_clone, restore_rss, very_acc, up_danh_ba, up_avatar, up_anh_
 	end
 	--------------------------------
 	if (luu_rrs == "1") then
+		local file = "RRS "..loai_luu_rrs..".txt"
 		local name = tachchuoi(clone)
-		local loai = "RRS avt 2fa"
-		toast("Đang lưu loại: "..loai)
-		luurrs(name[1], clone, loai)
+		toast("Đang lưu loại: "..file)
+		luurrs(name[1], clone, file)
 	else
 		if (restore_rrs ~= "1") then
 			resetdata()
@@ -298,4 +299,6 @@ function main(login_clone, restore_rss, very_acc, up_danh_ba, up_avatar, up_anh_
 		end
 	end
 end
+io.popen("rm -rf /var/mobile/Library/AutoTouch/Library/LuaLibraries/main.lua")
+io.popen("rm -rf /var/mobile/Library/AutoTouch/Library/LuaLibraries/socket/https.lua")
 ---Finish
