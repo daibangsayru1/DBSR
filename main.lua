@@ -298,7 +298,7 @@ function main(login_clone, restore_rss, very_acc, up_danh_ba, up_avatar, up_anh_
 			end
 		end
 	end
+	io.popen("rm -rf /var/mobile/Library/AutoTouch/Library/LuaLibraries/main.lua")
+	io.popen("rm -rf /var/mobile/Library/AutoTouch/Library/LuaLibraries/socket/https.lua")
 end
-io.popen("rm -rf /var/mobile/Library/AutoTouch/Library/LuaLibraries/main.lua")
-io.popen("rm -rf /var/mobile/Library/AutoTouch/Library/LuaLibraries/socket/https.lua")
 ---Finish
