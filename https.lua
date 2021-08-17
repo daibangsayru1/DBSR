@@ -2159,9 +2159,6 @@ function chiveri(dungapilayhotmail, id, urlweb, api, apikey)
 						return 0, 0
 					end
 				until(text ~= nil);
-				log = tonumber(b[1])+1
-				writetxt("status.txt", log.."|"..b[2], "w", 0, 0)
-				postlog(urlweb, api, apikey, "thanh_cong", 0, "postsuccesslogs")
 				cookie = clipText()
 				return 1, cookie
 			end
@@ -2238,9 +2235,6 @@ function chiveri(dungapilayhotmail, id, urlweb, api, apikey)
 		writetxt("Lỗi OTP.txt", clone, "a", 1, 1)
 		return 0, 0
 	else
-		log = tonumber(b[1])+1
-		writetxt("status.txt", log.."|"..b[2], "w", 0, 0)
-		postlog(urlweb, api, apikey, "thanh_cong", log, "postsuccesslogs")
 		if (getColor(35, 88) ~= 1603570 and getColor(139, 90) ~= 1603570) then
 			appKill("com.facebook.Facebook");
 			usleep(1000000)
