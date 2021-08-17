@@ -70,7 +70,7 @@ function main(login_clone, restore_rss, very_acc, up_danh_ba, up_avatar, up_anh_
 	local link_share_live = tem["link_share_live"]
 	local dang_stt = tem["dang_stt"]
 	local dang_stt_anh = tem["dang_stt_anh"]
-	io.popen("rm -rf /var/mobile/Library/AutoTouch/Scripts/DBSR/temp.txt")
+	---io.popen("rm -rf /var/mobile/Library/AutoTouch/Scripts/DBSR/temp.txt")
 	local tab = listfile("/var/mobile/Media/XoaInfo")
 	postlog(urlweb, api, apikey, "rrs_logs", #tab, "postrrslogs")
 	-------------------------------------
