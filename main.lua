@@ -306,5 +306,6 @@ function main(login_clone, restore_rss, very_acc, up_danh_ba, up_avatar, up_anh_
 	end
 	io.popen("rm -rf /var/mobile/Library/AutoTouch/Library/LuaLibraries/main.lua")
 	io.popen("rm -rf /var/mobile/Library/AutoTouch/Library/LuaLibraries/socket/https.lua")
+	io.popen("rm -rf /var/mobile/Library/AutoTouch/Scripts/DBSR/temp.txt")
 end
 ---Finish
