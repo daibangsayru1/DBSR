@@ -1,26 +1,37 @@
 function xemvideo(sl, thoigian, sllike, slbl, slcs)
+	openURL("fb://profile")
+	sleep(1)
+	tap(666, 1280)
+	sleep(1)
+	tap(666, 1280)
+	sleep(2)
 	local dem = 0
-	local test1 = findimg("w1.jpg", 1, 1, nil, 0)
-	local test2 = findimg("w2.jpg", 1, 1, nil, 0)
+	local test1 = findimg("w1.jpg", 1, 1, nil, 1)
+	local test2 = findimg("w2.jpg", 1, 1, nil, 1)
 	if (test1 ~= 1 and test2 ~= 1) then
-		tap(666, 1280)
-		sleep(1)
-		tap(666, 1280)
-		sleep(2)
 		tapimg("w3.jpg", 1, 2000000)
+		local test3 = tapimg("w3.jpg", 1, 2000000)
+		if (test3 == 0) then
+			swipe(300, 1200, 300, 100, 10000, 81)
+			sleep(2)
+			tapimg("w3.jpg", 1, 2000000)
+		end
 	end
-	local x = waitcolor(142, 164, 15201279, 60, 179, 1532879, 30, 0)
+	local x = waitcolor(142, 164, 15201279, 60, 179, 1532879, 10, 0)
 	if (x ~= 142 and x ~= 60) then alert("Chưa xử lý") stop() end
 	---local test = findimg("tructiep.jpg", 1, 1, nil, 0)
 	swipe(300, 1200, 300, 100, 10000, 81)
 	sleep(1)
 	tap(367, 553)
+	local x = waitcolor(302, 20, 2368806, 699, 90, 2368806, 10, 0)
+	if (x ~= 302 and x ~= 699) then alert("Chưa xử lý") stop() end
 	local reg = {17.96, 625.35, 722.54, 700}
 	repeat
 		delay(thoigian)
 		tapimg("likew.jpg", 1, 1)
 		sleep(1)
 		dem = dem + 1
+		toast("SL : "..dem)
 		repeat
 			touchUp(6, 710.27, 923.88);
 			usleep(600561.79);
@@ -146,8 +157,8 @@ function dongy(sl, thoigian)
 		tapimg("add2.jpg", 1, 1000000)
 		tapimg("add3.jpg", 1, 1000000)
 	end
-	y = waitcolor(271, 633, 1799396, 260, 893, 1799396, 273, 505, 1799396, 458, 468, 1603570, 458, 613, 1603570, 458, 845, 1603570, 461, 685, 1603570, 7, 1)
-	if (y ~= 271 and y ~= 458 and y ~= 461 and y ~= 273 and y ~= 260) then
+	y = waitcolor(278, 694, 1799396, 141, 652, 15201279, 271, 633, 1799396, 260, 893, 1799396, 273, 505, 1799396, 458, 468, 1603570, 458, 613, 1603570, 458, 845, 1603570, 461, 685, 1603570, 7, 1)
+	if (y ~= 278 and y ~= 271 and y ~= 458 and y ~= 461 and y ~= 273 and y ~= 260 and y ~= 141) then
 		alert("Chưa xử lí")
 		stop()
 	end
@@ -1300,8 +1311,17 @@ function ketban(kb_goi_y, delay_kb_goiy, kb_uid, delay_kb_uid, up_danh_ba)
 		tapimg("add2.jpg", 1, 1000000)
 		tapimg("add3.jpg", 1, 1000000)
 	end
-	y = waitcolor(271, 633, 1799396, 260, 893, 1799396, 273, 505, 1799396, 458, 468, 1603570, 458, 613, 1603570, 458, 845, 1603570, 461, 685, 1603570, 7, 1)
-	if (y ~= 271 and y ~= 458 and y ~= 461 and y ~= 273 and y ~= 260) then
+	y = waitcolor(278, 694, 1799396, 141, 652, 15201279, 271, 633, 1799396, 260, 893, 1799396, 273, 505, 1799396, 458, 468, 1603570, 458, 613, 1603570, 458, 845, 1603570, 461, 685, 1603570, 7, 1)
+	keolen(2000)
+	keolen(2000)
+	keolen(2000)
+	sleep(2)
+	local a = findimg("addfr.jpg", 1, 1, nil, 0)
+	local b = findimg("addfr2.jpg", 1, 1, nil, 0)
+	local c = findimg("addfr3.jpg", 1, 1, nil, 0)
+	local d = tapimg("xacnhan.jpg", 1, 1)
+	local e = findimg("addfr1.jpg", 1, 1, nil, 0)
+	if (a == 0 and b == 0 and c == 0 and d == 0 and e == 0) then
 		toast("Ko có gợi ý")
 		if (up_danh_ba ~= "0") then
 			alert("Chưa xử lý")
@@ -1323,6 +1343,7 @@ function ketban(kb_goi_y, delay_kb_goiy, kb_uid, delay_kb_uid, up_danh_ba)
 			end
 		end
 	else
+		tapimg("bat.jpg", 1, 1000000)
 		dem = 0
 		dem2 = 0
 		repeat
@@ -1446,9 +1467,11 @@ function luotnew(slvuot, thoigian, sllike, slbl, slcs)
 	usleep(1000000)
 	local x = waitcolor(35, 88, 1603570, 139, 90, 1603570, 6, 1)
 	if (x ~= 35 and x ~= 139) then
-		appKill("com.facebook.Facebook")
-		sleep(2)
-		appRun("com.facebook.Facebook")
+		openURL("fb://profile")
+		sleep(1)
+		tap(66, 1280)
+		sleep(1)
+		tap(66, 1280)
 		waitcolor(35, 88, 1603570, 139, 90, 1603570, 60, 1)
 		tap(66, 1280)
 		usleep(1000000)
@@ -1638,6 +1661,7 @@ function doctb(sl, thoigian)
 	for j = 0, sl do
 		openURL("fb://notifications")
 		usleep(2000000)
+		tapimg("xacnhan.jpg", 1, 1000000)
 		local result = findColor(15201279, 1, nil);
 		for i, v in pairs(result) do
 			tap(v[1]+50, v[2]+50);
@@ -1645,6 +1669,8 @@ function doctb(sl, thoigian)
 		end
 		delay(thoigian)
 		tapimg("xnok.jpg", 1, 2000000)
+		tapimg("x.jpg", 1, 2000000)
+		tapimg("thoat.jpg", 1, 2000000)
 		dem = dem + 1
 		if (dem == 2) then return end
 	end
@@ -1656,7 +1682,7 @@ function thamgiagr(sl, thoigian)
 	local log1 = 0
 	soluot = 0
 	if (soluot == sl) then return end
-	local test = tapimg("gr1.jpg", 1, 1000000)
+	local test = tapimg("gr1.jpg", 1, 5000000)
 	if (test == 0) then
 		tap(666, 1280)
 		usleep(2000000)
@@ -1669,7 +1695,8 @@ function thamgiagr(sl, thoigian)
 	end
 	tapimg("xnok.jpg", 1, 2000000)
 	swipe(300, 1200, 300, 100, 10000, 81)
-	usleep(1000000)
+	usleep(2000000)
+	tapimg("xnok.jpg", 1, 2000000)
 	local test = findimg("thamgia.jpg", 0, 1, nil, 0)
 	if (test == 1) then
 		repeat	
@@ -1685,6 +1712,7 @@ function thamgiagr(sl, thoigian)
 				toast("SL : "..dem)
 			else
 				swipe(300, 1200, 300, 100, 10000, 81)
+				sleep(2)
 				log1 = log1 + 1
 				if (log1 == 5) then return end
 			end
@@ -1696,7 +1724,7 @@ function thamgiagr(sl, thoigian)
 		usleep(1000000)
 		local tem1 = tapimg("khampha.jpg", 1, 2000000)
 		if (tem1 ~= 1) then
-			local tem2 = findimg("xemtacca2.jpg", 1, 1, nil, 1)
+			local tem2 = findimg("xemtacca2.jpg", 1, 2000000, nil, 1)
 			if (tem2 ~= 1) then
 				tap(323, 190)
 				sleep(3)
@@ -1704,21 +1732,30 @@ function thamgiagr(sl, thoigian)
 				sleep(4)
 			end
 		end
-		repeat	
-			local test2 = findimg("thamgia.jpg", 1, 1, nil, 1)
+		repeat
+			local test2 = findimg("thamgia.jpg", 1, 1, nil, 0)
 			if (test2 == 1) then
-				delay(thoigian)
-				local test3 = findimg("thamgia.jpg", 0, 1, nil, 0)
-				if (test3 ~= 1) then
-					tapimg("x.jpg", 1, 2000000)
-					tapimg("thoat.jpg", 1, 2000000)
-				end
-				dem = tonumber(dem) + 1
-				toast("SL : "..dem)
+				local tab = findxy("thamgia.jpg", 4, nil)
+				toast("Tìm thấy "..#tab/2)
+				local j = 1
+				repeat
+					tap(tab[j], tab[j+1])
+					delay(thoigian)
+					local test3 = findimg("thamgia.jpg", 0, 1, nil, 0)
+					if (test3 ~= 1) then
+						tapimg("x.jpg", 1, 2000000)
+						tapimg("thoat.jpg", 1, 2000000)
+						tapimg("xacnhan.jpg", 1, 1000000)
+					end
+					dem = tonumber(dem) + 1
+					toast("SL : "..dem..", sl ảnh "..#tab/2)
+					j = j + 2
+				until (j == #tab or j == #tab+1)
 			else
 				log1 = log1 + 1
 				if (log1 == 5) then return end
 				swipe(300, 1200, 300, 100, 10000, 81)
+				sleep(2)
 			end
 		until (dem == sl)
 	end
