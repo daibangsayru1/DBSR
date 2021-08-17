@@ -207,6 +207,11 @@ function main(login_clone, restore_rss, very_acc, up_danh_ba, up_avatar, up_anh_
 		thamgiagr(tonumber(add_group_goi_y), tonumber(delay_add_group_goiy))
 	end
 	------------------------------
+	if (luot_newsfeed ~= "0") then
+		local body = http.request(urlweb.."/api/updatedevicestatus/"..api.."/"..apikey.."/newsfeed")
+		luotnew(tonumber(luot_newsfeed), tonumber(delay_luot_newsfeed), tonumber(like_newsfeed), slbl, slcs)
+	end
+	------------------------------
 	if (dong_y_kb ~= "0") then
 		local body = http.request(urlweb.."/api/updatedevicestatus/"..api.."/"..apikey.."/ketban")
 		dongy(tonumber(dong_y_kb), tonumber(delay_dongy_kb))
@@ -222,16 +227,13 @@ function main(login_clone, restore_rss, very_acc, up_danh_ba, up_avatar, up_anh_
 		doctb(tonumber(xem_tb), tonumber(delay_xem_tb))
 	end
 	-------------------------------
-	if (like_page ~= "0") then
-		likepage(tonumber(sllikepage), filelistpage)
-	end
+	--if (like_page ~= "0") then
+	----	likepage(tonumber(sllikepage), filelistpage)
+	---end
 	-------------------------------
-	if (luot_newsfeed ~= "0") then
-		local body = http.request(urlweb.."/api/updatedevicestatus/"..api.."/"..apikey.."/newsfeed")
-		luotnew(tonumber(luot_newsfeed), tonumber(delay_luot_newsfeed), tonumber(like_newsfeed), slbl, slcs)
-	end
 	-------------------------------
 	if (xem_watch ~= "0") then
+		local body = http.request(urlweb.."/api/updatedevicestatus/"..api.."/"..apikey.."/xemwatch")
 		xemvideo(tonumber(xem_watch), tonumber(delay_xem_watch), sllike, slbl, slcs)
 	end
 	if (xuat_clone ~= "0" and testvr == 1) then
@@ -262,9 +264,11 @@ function main(login_clone, restore_rss, very_acc, up_danh_ba, up_avatar, up_anh_
 		toast("Đang lưu loại: "..loai)
 		luurrs(name[1], clone, loai)
 	else
-		if (restorerrs ~= "1") then
+		if (restore_rrs ~= "1") then
 			resetdata()
 		else
+			local a = readtxt("status.txt")
+			local b = tachchuoi(a)
 			log = tonumber(b[1])+1
 			writetxt("status.txt", log.."|"..b[2], "w", 0, 0)
 			postlog(urlweb, api, apikey, "thanh_cong", log, "postsuccesslogs")
