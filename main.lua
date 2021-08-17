@@ -271,6 +271,11 @@ function main(login_clone, restore_rss, very_acc, up_danh_ba, up_avatar, up_anh_
 			curlPost(url,data);	
 		end
 	end
+	local a = readtxt("status.txt")
+	local b = tachchuoi(a)
+	log = tonumber(b[1])+1
+	writetxt("status.txt", log.."|"..b[2], "w", 0, 0)
+	postlog(urlweb, api, apikey, "thanh_cong", log, "postsuccesslogs")
 	--------------------------------
 	if (luu_rrs == "1") then
 		local file = "RRS "..loai_luu_rrs..".txt"
@@ -281,11 +286,6 @@ function main(login_clone, restore_rss, very_acc, up_danh_ba, up_avatar, up_anh_
 		if (restore_rrs ~= "1") then
 			resetdata()
 		else
-			local a = readtxt("status.txt")
-			local b = tachchuoi(a)
-			log = tonumber(b[1])+1
-			writetxt("status.txt", log.."|"..b[2], "w", 0, 0)
-			postlog(urlweb, api, apikey, "thanh_cong", log, "postsuccesslogs")
 			if (testrrs == 0 and regnoverysaukhichay == "0") then
 				local f = io.popen("ls var/mobile/Media/XoaInfo")
 				local a = f:read("all")
