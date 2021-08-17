@@ -1033,7 +1033,7 @@ function regclone(reg_clone, web_sim, api_codetextnow, api_otpmmo, api_simfast, 
 	end
 end
 ---
-function getclone(urlweb, api, loai_accn)
+function getclone(urlweb, api, apikey, loai_accn)
 	local http = require("socket.http")
 	local body = http.request(urlweb.."/api/getclone/"..api.."/"..loai_accn)
 	if (string.find(body, "uid") ~= nil) then
@@ -1049,10 +1049,8 @@ function getclone(urlweb, api, loai_accn)
 		local clone = string.gsub(b, "|||", "")
 		return clone, uid, password, key2fa
 	else
-		repeat
-			toast("Hết loại "..loai_accn, 7)
-			sleep(3)
-		until(1 == 2)
+		local body = http.request(urlweb.."/api/updatedevicestatus/"..api.."/"..apikey.."/hetclone")
+		stop()
 	end
 end
 function doiten(id, matkhau)
@@ -1907,7 +1905,7 @@ function login(loai_accn, urlweb, api, loginclonenovery, apikey)
 	j = 1
 	repeat
 		repeat
-			clone, uid, password, key2fa = getclone(urlweb, api, loai_accn)
+			clone, uid, password, key2fa = getclone(urlweb, api, apikey, loai_accn)
 			writetxt("clone đã chạy.txt", clone, "a", 1, 1)
 			if (clone == nil) then
 				alert(filelistclone.." trống")
